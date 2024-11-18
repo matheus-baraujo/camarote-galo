@@ -1,17 +1,20 @@
 const axios = require('axios');
 
 async function getAccessToken() {
-  const clientId = 'SEU_CLIENT_ID'; // Substitua pelo seu Client ID
-  const clientSecret = 'SEU_CLIENT_SECRET'; // Substitua pelo seu Client Secret
 
   try {
-    const response = await axios.post('https://api.sumup.com/token', null, {
-      params: {
+    const response = await axios.post('https://api.sumup.com/token',
+      new URLSearchParams({
         grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret,
-      },
-    });
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
+      }),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
 
     console.log('Access Token:', response.data.access_token);
     return response.data.access_token;
@@ -21,46 +24,62 @@ async function getAccessToken() {
 }
 
 
-async function createTransaction(accessToken) {
-    const transactionData = {
-      amount: '10.00', // Valor da transação
-      currency: 'BRL', // Moeda
-      description: 'Compra de Produto X',
-      merchant_code: 'SEU_MERCHANT_CODE', // Substitua pelo código do seu vendedor
-      payment_type: 'card', // Tipo de pagamento
-      redirect_url: 'https://seusite.com/confirmacao-pagamento', // URL de redirecionamento
-    };
-  
-    try {
-      const response = await axios.post('https://api.sumup.com/v0.1/checkouts', transactionData, {
+async function createTransaction(accessToken, amount, currency, checkoutReference) {
+  try {
+    const response = await axios.post(
+      'https://api.sumup.com/v0.1/checkouts',
+      new URLSearchParams({
+        checkout_reference: checkoutReference, // Referência única da transação
+        amount: amount.toString(), // Valor da transação
+        currency: currency, // Moeda da transação
+        description: 'Descrição do produto ou serviço', // Descrição opcional
+      }),
+      {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`, // Token de autorização
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-      });
-  
-      console.log('URL de Checkout:', response.data.checkout_url);
-      return response.data;
-    } catch (error) {
-      console.error('Erro ao criar a transação:', error.response?.data || error.message);
-    }
+      }
+    );
+
+    console.log('Transação criada:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar transação:', error.response?.data || error.message);
+  }
 }
 
-async function getTransactionStatus(accessToken, transactionCode) {
-    try {
-      const response = await axios.get(`https://api.sumup.com/v0.1/checkouts/${transactionCode}`, {
+//createTransaction('seu_access_token', 100.0, 'BRL', 'referencia_transacao_12345');
+
+async function getTransactionStatus(accessToken, transactionId) {
+  try {
+    const response = await axios.get(
+      `https://api.sumup.com/v0.1/transactions/${transactionId}`,
+      {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`, // Token de autorização
         },
-      });
-  
-      console.log('Status da Transação:', response.data.status);
-      return response.data;
-    } catch (error) {
-      console.error('Erro ao verificar o status da transação:', error.response?.data || error.message);
-    }
+      }
+    );
+
+    console.log('Status da transação:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao obter status da transação:', error.response?.data || error.message);
+  }
 }
+
+//getTransactionStatus('seu_access_token', 'id_da_transacao');
   
+module.exports = {
+  getAccessToken, 
+  createTransaction,
+  getTransactionStatus
+};
+
+
+
+
 
 //teste
 
