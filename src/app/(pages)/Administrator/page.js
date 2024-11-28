@@ -3,20 +3,7 @@
 import styles from "./page.module.css";
 import { useState } from "react";
 
-var md5 = require('md5');
-
-const saltRounds = 10;
-function makeid(length) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
-}
+import { checkEmail, hashPassword, hashPassword2 } from "@/app/database/utilidades";
 
 export default function Home() {
 
@@ -28,7 +15,7 @@ export default function Home() {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     // Set initial error values to empty
     setEmailError('')
     setPasswordError('')
@@ -56,32 +43,33 @@ export default function Home() {
 
     console.log(login)
 
-    var salt = makeid(5);
-    var hash = '';
+    var hash = hashPassword(password)
 
-    for (let index = 0; index < saltRounds; index++) {
-      hash = md5(hash+salt)  
-    }
-
-    console.log(salt)
-    console.log(hash)
+    console.log(hash[0])
+    console.log(hash[1])
 
     // URL do endpoint com a chave de API
     const apiKey = 'minha_chave_secreta';
     
     const url = `http://localhost/api/getAdmin.php?api_key=${apiKey}&login=${login}`;
-
-      fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Erro: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => setData(data))
-        .catch((error) => setError(error.message));
     
-    console.log(data[0])
+    await fetch(url)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+      setData(data)
+      if(data.length == 1){
+        if(data[0].hash == hashPassword2(data[0].salt, data[0].hash))
+      }else{
+        console.log("login não encontrado")
+      }
+    })
+    .catch((error) => setError(error.message));
+      
   };
 
   return (
