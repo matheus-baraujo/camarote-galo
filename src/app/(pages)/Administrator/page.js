@@ -3,7 +3,7 @@
 import styles from "./page.module.css";
 import { useState } from "react";
 
-import { checkEmail, hashPassword, hashPassword2 } from "@/app/database/utilidades";
+import { hashPassword, hashPassword2 } from "@/app/database/utilidades";
 
 export default function Home() {
 
@@ -41,12 +41,6 @@ export default function Home() {
       return
     }
 
-    console.log(login)
-
-    var hash = hashPassword(password)
-
-    console.log(hash[0])
-    console.log(hash[1])
 
     // URL do endpoint com a chave de API
     const apiKey = 'minha_chave_secreta';
@@ -63,7 +57,15 @@ export default function Home() {
     .then((data) => {
       setData(data)
       if(data.length == 1){
-        if(data[0].hash == hashPassword2(data[0].salt, data[0].hash))
+        
+        var senha = hashPassword2(data[0].salt, password)
+        
+        if(data[0].hash == senha){
+          console.log('logado!!')
+          // setLoggedIn(true)
+        }else{
+          console.log('senha incorreta')
+        }
       }else{
         console.log("login não encontrado")
       }
