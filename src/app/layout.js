@@ -17,7 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" >
       <body className={jotiOne.className}>
-        {children}
+        <div style={{backgroundColor: 'rgba(224, 215, 223, 0.6)', overflowX: 'clip', position:'relative'}}>
+          {children}
+        </div>
       </body>
     </html>
   );

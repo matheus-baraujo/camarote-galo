@@ -60,7 +60,6 @@ const index = () => {
       <Col xs={6} className={''}>
 
         <div className={''}>
-
           <img src="/assets/arrows.png" height={'auto'} width={'100%'} alt="arrows" />
         </div>
         

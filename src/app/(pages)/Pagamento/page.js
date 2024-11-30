@@ -7,7 +7,7 @@ import styles from './page.module.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import PaymentForm from '../../_components/PaymentForm'
+import PaymentForm from './PaymentForm'
 
 
 export default function Pagamento() {

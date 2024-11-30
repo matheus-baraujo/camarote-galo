@@ -1,0 +1,28 @@
+.Card{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+
+  border-radius: 25px;
+  background-color: gray;
+
+  min-height: 100px;
+  text-align: center;
+}
+
+.Item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.Item p{
+  margin: 0;
+}
+
+.Valor{
+  background-color: white;
+  border-radius: 25px;
+  padding: 3px;
+}

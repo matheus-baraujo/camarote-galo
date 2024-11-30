@@ -1,0 +1,19 @@
+.Card{
+  margin: 60px auto;
+  background-color: #F9F921;
+  border-radius: 25px;
+  box-shadow: #962FBF -5px 10px 4px;
+  text-align: center;
+  padding: 5px;
+  width: 50%;
+}
+
+.Card h2{
+  color: #962FBF;
+  font-size: 60px;
+}
+
+.Card p{
+  color: #F4016A;
+  font-size: 40px;
+}

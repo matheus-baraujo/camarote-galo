@@ -17,7 +17,7 @@ export default function Home() {
   const searchParams = useSearchParams()
 
   const paymentId = searchParams.get('payment_id')
-  const status = searchParams.get('status')
+  const statusUrl = searchParams.get('status')
   const paymentType = searchParams.get('payment_type')
   const preferenceId = searchParams.get('preference_id')
   
@@ -42,11 +42,67 @@ export default function Home() {
         .then((response) => response.json())
         .then((result) => {
         
-          console.log(result)
+          //console.log(result)
       
-          const codigo = makeCod()
-        
-          setCod(codigo)
+          var codigo = '';
+          if(result.status == 'approved'){
+            codigo = makeCod()
+            setCod(codigo)
+          }
+          
+          const idPreference = preferenceId;
+          const idPagamento = paymentId
+          const status = result.status;
+          // CREATE COMPRA
+          const apiKey = 'minha_chave_secreta';
+          const clienteData = {apiKey, idPreference, idPagamento, status};
+          const url = `http://localhost/api/createCompra.php`;
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(clienteData),
+          })
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error(`Erro: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then((data) => {
+            //console.log('compra criada com sucesso')
+
+            // UPDATE COMPRA
+            const apiKey = 'minha_chave_secreta';
+            const updateCompraData = {apiKey, idPagamento, status, codigo};
+
+            //console.log(updateCompraData)
+
+            const url = `http://localhost/api/updateCompra.php`;
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(updateCompraData),
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Erro: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+              //console.log('compra atualizada com sucesso')
+            })
+            .catch((error) => console.log(error.message));
+
+          })
+          .catch((error) => console.log(error.message));
+
         })
         .catch((error) => console.error(error));
     }
@@ -61,8 +117,9 @@ export default function Home() {
       <Row className='px-3 px-md-5' style={{margin: 'auto', width: '75%', textAlign:'center'}}>
           <h1 className={styles.title}>Compra bem sucedida!</h1>
           <p>{cod}</p>
-          <p>Você receberá o código de recebimento do kit em seu email.</p>
-          <p>Ou poderá acessar seus ingressos em:</p>
+          <p>Orientamos que guarde este código.</p>
+          <p>Você receberá uma cópia do código de recebimento do kit em seu email.</p>
+          <p>Ou poderá acessar seus ingressos e códigos em:</p>
           <button style={{margin: 'auto', width: '50%', textAlign:'center'}}>Meus ingressos</button> 
       </Row>
     </Container>

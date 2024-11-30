@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './styles.module.css'
-import FormGroup from './FormGroup'
+import FormGroup from '../../../_components/FormGroup'
 import { Button } from 'react-bootstrap';
 
 const index = () => {
@@ -26,8 +26,6 @@ const index = () => {
   const [quantError, setQuantError] = useState('')
 
   //pagamento
-  const [idPagamento, setIdPagamento] = useState('');
-  const [status, setStatus] = useState('');
   const [initPoint, setInitPoint] = useState(null);
 
   const cpfMask = (value) => {
@@ -89,7 +87,7 @@ const index = () => {
     
     // CREATE CLIENTE
     const apiKey = 'minha_chave_secreta';
-    const clienteData = {apiKey, nome, email, cpf };
+    const clienteData = {apiKey, nome, email, cpf};
     const url = `http://localhost/api/createCliente.php`;
     
     await fetch(url, {
@@ -106,7 +104,7 @@ const index = () => {
         return response.json();
     })
     .then((data) => {
-      console.log(data)
+      //console.log(data)
 
       //create preference
       const myHeaders = new Headers();
@@ -155,12 +153,47 @@ const index = () => {
       fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          console.log(cpf)
-          console.log(result)
-          console.log(result.id)
-          console.log(result.init_point)
+
+          setInitPoint(result.init_point)
+
+          // console.log(cpf)
+          // console.log(result)
+          // console.log(result.id)
+          // console.log(result.init_point)
+
+          var idPreference = result.id;
+          var link = result.init_point;
+
+          //console.log(idPreference)
+          const apiKey = 'minha_chave_secreta';
+          const preferenceData = {apiKey, idPreference, cpf, quant};
+
+          console.log(preferenceData)
+          console.log(clienteData)
+          const url2 = `http://localhost/api/createPreference.php`;
+
+          fetch(url2, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(preferenceData),
+          })
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error(`Erro: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then((data) => {
+            // console.log(data)
+            // console.log('consegui cadastrar cliente e preference')
+            // console.log(initPoint)
+            window.location.replace(initPoint)
+          })
+          .catch((error) => console.error(error.message));
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error.message));
       })
       .catch((error) => console.log(error.message));
 

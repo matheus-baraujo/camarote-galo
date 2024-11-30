@@ -1,0 +1,14 @@
+.Container{
+  text-align: center;
+  width: 45%;
+  margin: 0 auto;
+}
+
+.Container ul{
+  list-style: none;
+  padding: 0%;
+}
+
+.Container p, .Container li{
+  font-size: 25px;
+}

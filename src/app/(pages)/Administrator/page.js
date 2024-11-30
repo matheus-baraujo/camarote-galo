@@ -3,9 +3,15 @@
 import styles from "./page.module.css";
 import { useState } from "react";
 
-import { hashPassword, hashPassword2 } from "@/app/database/utilidades";
+import Container from 'react-bootstrap/Container';
 
-export default function Home() {
+import Login from './Login'
+//import Logged from './Logged'
+import { Button, Col, Row } from "react-bootstrap";
+
+import { hashPassword2 } from "@/app/database/utilidades";
+
+export default function Administrator() {
 
   const [data, setData] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false)
@@ -57,7 +63,7 @@ export default function Home() {
         
         if(data[0].hash == senha){
           console.log('logado!!')
-          // setLoggedIn(true)
+          setLoggedIn(true)
         }else{
           console.log('senha incorreta')
         }
@@ -70,33 +76,17 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1>teste admin</h1>
 
-      <div>
-        <p>LOGIN</p>
+    <Container fluid="sm" style={{position: 'relative', minHeight: '100vh', alignContent:'center'}}>
+      <Row className='px-3 px-md-5' style={{margin: 'auto'}}>
+        <Col xs={12} md={6} style={{margin:'auto'}}>
+          <h1 className={styles.title}>Admin</h1>
+          {loggedIn ?   <Logged /> : <Login login={login} senha={password} loginError={emailError} senhaError={passwordError} setLogin={setLogin} setSenha={setPassword} logar={onButtonClick}/>}
+        </Col>
+      </Row>
 
-        <input type="text" name="login" id="login" placeholder="login" onChange={(ev) => setLogin(ev.target.value)}/>
-        <label className="errorLabel">{emailError}</label>
+      {loggedIn ? <Button onClick={setLoggedIn(false)} className={styles.Logout}>Logout</Button> : <></>}
+    </Container>
 
-        <input
-          type="password"
-          name="password"
-          id="senha"
-          placeholder="senha"
-          onChange={(ev) => setPassword(ev.target.value)}
-        />
-        <label className="errorLabel">{passwordError}</label>
-
-        <input
-          className={"inputButton"}
-          type="button"
-          onClick={onButtonClick}
-          value={loggedIn ? "Log out" : "Log in"}
-        />
-
-        {loggedIn ? <div>O login funciona</div> : <div />}
-      </div>
-    </div>
   );
 }
