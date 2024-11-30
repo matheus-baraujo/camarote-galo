@@ -1,0 +1,8 @@
+.topBar{
+  height:100px; 
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background-image: linear-gradient(135deg , #f9f921, #f4016a);
+}

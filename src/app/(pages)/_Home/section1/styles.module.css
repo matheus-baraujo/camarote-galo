@@ -1,0 +1,64 @@
+.section{
+  margin: auto;
+  width: 100%; 
+  min-height: 100vh;
+  align-items: center;
+}
+
+.leftSide{
+  min-height:100vh;
+  position:relative;
+}
+
+.rightSide{
+  text-align:center;
+  min-height:100vh; 
+  padding:50px 0px; 
+  display:flex;
+  flex-direction:column;
+}
+
+.logo{
+  height: auto;
+  width: 100%;
+  left: 0%;
+  top: 20%; 
+  position: absolute;
+  z-index: 2;
+}
+
+.selo{
+  height:auto; 
+  width:250px;
+  margin:0px auto;
+}
+
+.buttons{
+  width:75%;
+  margin:auto;
+  display:inherit;
+  flex-direction:inherit;
+  gap:50px;
+}
+
+.points{
+  width:230px;
+  height:190px; 
+  position:absolute;
+  left: 10%;
+  bottom:10%;
+  transform: rotate(45deg);
+}
+
+.button{
+  background-color:#F4016A;
+  border-radius: 25px;
+  border: solid 8px  #f9f921;
+  transition: ease-in-out .3s;
+}
+
+.button:hover{
+  background-color:#F4016A;
+  border: solid 8px  #f9f921;
+  opacity: .6;
+}

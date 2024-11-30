@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 
 const index = () => {
 
+  //cliente
   const [nome, setNome] = useState('')
   const [nomeError, setNomeError] = useState('')
 
@@ -21,8 +22,13 @@ const index = () => {
   const [cpf, setCpf] = useState('')
   const [cpfError, setCpfError] = useState('')
 
-  const [quant, setQuant] = useState('')
+  const [quant, setQuant] = useState(1)
   const [quantError, setQuantError] = useState('')
+
+  //pagamento
+  const [idPagamento, setIdPagamento] = useState('');
+  const [status, setStatus] = useState('');
+  const [initPoint, setInitPoint] = useState(null);
 
   const cpfMask = (value) => {
     return value
@@ -36,7 +42,7 @@ const index = () => {
   const alterarCpf = (value) => {
     value = cpfMask(value)
     setCpf(value)
-    console.log(cpf)
+    //console.log(cpf)
   }
 
   const onButtonClick = async () => {
@@ -80,13 +86,10 @@ const index = () => {
       setCpfError('invalid cpf')
       return
     }
-
-
-    // URL do endpoint com a chave de API
-    const apiKey = 'minha_chave_secreta';
     
+    // CREATE CLIENTE
+    const apiKey = 'minha_chave_secreta';
     const clienteData = {apiKey, nome, email, cpf };
-
     const url = `http://localhost/api/createCliente.php`;
     
     await fetch(url, {
@@ -104,9 +107,63 @@ const index = () => {
     })
     .then((data) => {
       console.log(data)
-    })
-    .catch((error) => console.log(error.message));
-      
+
+      //create preference
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", "Bearer APP_USR-8863321753051093-112114-41a86e2093152d19ff5b839604fa15b9-2108742539");
+      const raw = JSON.stringify({
+        "auto_return": "approved",
+        "back_urls": {
+          "success": "http://localhost:3000/Successo",
+          "failure": "http://localhost:3000/Erro",
+          "pending": "http://localhost:3000/Erro"
+        },
+        "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
+        "items": [
+          {
+            "id": "010983098",
+            "title": "Ingresso",
+            "quantity": quant,
+            "unit_price": 1000,
+            "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
+          }
+        ],
+        "payer": {
+          "email": email,
+          "name": nome
+        },
+        "payment_methods": {
+          "excluded_payment_types": [{ id: "ticket" },],
+          "excluded_payment_methods": [{ id: "bolbradesco" },],
+          "installments": 1
+        },
+        "notification_url": "https://www.your-site.com/webhook",
+        "expires": true,
+        "expiration_date_from": "2024-01-01T12:00:00.000-04:00",
+        "expiration_date_to": "2024-12-31T12:00:00.000-04:00"
+      });
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      console.log(raw)
+
+      fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(cpf)
+          console.log(result)
+          console.log(result.id)
+          console.log(result.init_point)
+        })
+        .catch((error) => console.error(error));
+      })
+      .catch((error) => console.log(error.message));
+
   };
 
   return (

@@ -105,8 +105,7 @@ async function createPreference(){
 
 
 module.exports = {
-  getAccessToken, 
-  createPaymentPix,
+  getAccessToken,
   getPaymentStatus,
   createPreference,
 };

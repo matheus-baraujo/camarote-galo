@@ -16,7 +16,7 @@ const index = (props) => {
     }else if(props.type != 4){
         aux = <Form.Control type={types[props.type][1]} placeholder={types[props.type][2]} value={props.valor} onChange={(ev) => props.setting(ev.target.value)}/>;
     }else{
-        aux = <Form.Control type={types[props.type][1]} min={1} placeholder={types[props.type][2]} value={props.valor} onChange={(ev) => props.setting(ev.target.value)}/>;
+        aux = <Form.Control type={types[props.type][1]} min={1} placeholder={types[props.type][2]} value={props.valor} onChange={(ev) => props.setting(parseInt(ev.target.value))}/>;
     }
 
     return (

@@ -26,11 +26,6 @@ export default function Home() {
       return
     }
 
-    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(login)) {
-    //   setEmailError('Please enter a valid email')
-    //   return
-    // }
-
     if ('' === password) {
       setPasswordError('Please enter a password')
       return
