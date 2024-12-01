@@ -2,54 +2,49 @@ import React from 'react'
 
 import style from './styles.module.css'
 import { Row, Col } from 'react-bootstrap';
+import InfoAtracao from './InfoAtracao'
 
 const index = () => {
+
+  var content = [['Titulo','facilisis efficitur. nisl. elit varius lorem. Quisque Nunc eu non elementum sapien nec diam facilisis Ut amet, nibh sit Sed']]
+
+
   return (
     <Row className={style.section+' px-3 px-md-5'} style={{color:'#F4016A'}}>
 
-      <h2 style={{textAlign:'center', margin:'100px 0px'}}>Atrações</h2>
+      <h2 className={style.title}>Atrações</h2>
 
-      
-      <Row style={{margin:'130px 0px'}}>
-        <Col xs={6} style={{textAlign:'center'}}>
-          <div style={{width:'50%', margin:'auto'}}>
-            <h3>Titulo</h3>
-            <p>facilisis efficitur. nisl. elit varius lorem. Quisque Nunc eu non elementum sapien nec diam facilisis Ut amet, nibh sit Sed </p>
-          </div>
+      <Row className={style.Atracao}>
+        <Col xs={6}>
+          <InfoAtracao title={content[0][0]} text={content[0][1]} />
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/faringes.png" style={{position:'absolute', top:'-540px', right:'-450px' , height:'1200px', width:'auto', zIndex:'2'}} className={''} alt="faringes" />
+          <img src="/assets/faringes.png" className={style.Atracao1} alt="faringes" />
         </Col>
       </Row>
     
-      <Row style={{margin:'130px 0px'}}>
+      <Row className={style.Atracao}>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/patusco.png" style={{position:'absolute', top:'-350px', left:'-370px' , height:'900px', width:'auto', zIndex:'2'}} className={''} alt="faringes" />
+          <img src="/assets/patusco.png" className={style.Atracao2} alt="patusco" />
 
           <img src="/assets/Points.png" className={style.points2} alt="logo" />
         </Col>
 
-        <Col xs={6} style={{textAlign:'center'}}>
-          <div style={{width:'50%', margin:'auto'}}>
-            <h3>Titulo</h3>
-            <p>facilisis efficitur. nisl. elit varius lorem. Quisque Nunc eu non elementum sapien nec diam facilisis Ut amet, nibh sit Sed </p>
-          </div>
+        <Col xs={6}>
+          <InfoAtracao title={content[0][0]} text={content[0][1]} />
         </Col>
 
       </Row>
     
-      <Row style={{margin:'130px 0px'}}>
+      <Row className={style.Atracao}>
         <Col xs={6} style={{textAlign:'center'}}>
-          <div style={{width:'50%', margin:'auto'}}>
-            <h3>Titulo</h3>
-            <p>facilisis efficitur. nisl. elit varius lorem. Quisque Nunc eu non elementum sapien nec diam facilisis Ut amet, nibh sit Sed </p>
-          </div>
+          <InfoAtracao title={content[0][0]} text={content[0][1]} />
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/faringes.png" style={{position:'absolute', top:'-540px', right:'-450px' , height:'1200px', width:'auto', zIndex:'2'}} className={''} alt="faringes" />
+          <img src="/assets/faringes.png" className={style.Atracao1} alt="faringes" />
         </Col>
       </Row>
 

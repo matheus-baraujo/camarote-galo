@@ -1,0 +1,9 @@
+.label{
+  color: #F4016A;
+}
+
+.error{
+  text-align: end;
+  width: 100%;
+  color: red;
+}

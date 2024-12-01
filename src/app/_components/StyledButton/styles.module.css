@@ -1,0 +1,27 @@
+.button{
+  color: #F4016A;
+  position: relative;
+  display: flex;
+  margin: auto;
+  height: 100px;
+  width: 200px;
+  transition: ease-in-out .3s;
+  padding: 0%;
+}
+
+.button:hover{
+  opacity: 70%;
+}
+
+.button img{
+  position: absolute;
+  z-index: -1;
+  height: auto;
+  width: 100%;
+  top: -10%;
+}
+
+.button p{
+  margin: auto;
+  font-size: 20px;
+}

@@ -20,3 +20,25 @@
   bottom:-150%;
   transform: rotate(0deg);
 }
+
+.containerCross{
+  width: 80px;
+  display:flex;
+  padding:0%;
+}
+
+.Cross{
+  width:80px;
+  height:60px;
+  margin:200% 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .containerCross{
+    width: 100%;
+  }
+  
+  .Cross{
+    margin:auto;
+  }
+}

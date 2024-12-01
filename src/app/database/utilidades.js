@@ -68,10 +68,29 @@ function checkEmail(email) {
   }
 }
 
+async function sendEmail(email, codigo) {
+
+  var mensagem = "Obrigado pela compra! Aqui está uma cópia do seu código :"+codigo;
+
+  const response = await fetch("https://localhost/send_email.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      subject: "Sua Compra",
+      message: mensagem,
+    }),
+  });
+
+  const result = await response.json();
+  console.log(result.message);
+}
+
 module.exports = {
   makeid,
   makeCod,
   checkEmail,
   hashPassword,
   hashPassword2,
+  sendEmail,
 };

@@ -9,6 +9,25 @@
   padding: 0%;
 }
 
+.Container img{
+  width:100%;
+  margin-bottom:50px;
+}
+
 .Container p, .Container li{
   font-size: 25px;
+}
+
+@media screen and (max-width: 600px) {
+  .Container{
+    width: 100%;
+  }
+
+  .Container img{
+    width:80%;
+  }
+
+  .Container p, .Container li{
+    font-size: 17px;
+  }
 }

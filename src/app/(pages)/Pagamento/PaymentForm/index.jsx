@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './styles.module.css'
 import FormGroup from '../../../_components/FormGroup'
-import { Button } from 'react-bootstrap';
+import StyledButton from '../../../_components/StyledButton'
 
 const index = () => {
 
@@ -200,19 +200,15 @@ const index = () => {
   };
 
   return (
-    <Form>
+    <Form className={styles.Container}>
       <FormGroup type={0} valor={nome}    setting={setNome}     error={nomeError}/>
       <FormGroup type={1} valor={email}   setting={setEmail}    error={emailError}/>
       <FormGroup type={2} valor={email2}  setting={setEmail2}   error={emailError2}/>
       <FormGroup type={3} valor={cpf}     setting={alterarCpf}  error={cpfError}/>
       <FormGroup type={4} valor={quant}   setting={setQuant}    error={quantError}/>
 
-      <Button 
-        onClick={onButtonClick} 
-        style={{width: '50%', margin: 'auto 25%'}}>
-        Pagar
-      </Button>
-
+      <StyledButton texto={'Pagar'} action={onButtonClick} />
+      
     </Form>
   )
 }

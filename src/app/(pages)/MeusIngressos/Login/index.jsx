@@ -2,8 +2,12 @@
 
 import React from 'react'
 import { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
+
+import styles from './styles.module.css'
+
 import FormGroup from '../../../_components/FormGroup'
+import StyledButton from '../../../_components/StyledButton'
 
 const index = (props) => {
 
@@ -97,15 +101,11 @@ const index = (props) => {
   }
 
   return (
-    <Form>
+    <Form className={styles.form}>
       <FormGroup type={1} valor={email}   setting={setEmail}    error={emailError}/>
       <FormGroup type={3} valor={cpf}     setting={alterarCpf}  error={cpfError}/>
 
-      <Button 
-        onClick={onButtonClick} 
-        style={{width: '50%', margin: 'auto 25%'}}>
-        Acessar
-      </Button>
+      <StyledButton texto={'Acessar'} action={onButtonClick}/>
 
     </Form>
   )

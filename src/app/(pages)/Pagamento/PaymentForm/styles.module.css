@@ -1,0 +1,10 @@
+.Container{
+  width: 70%;
+  margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .Container{
+    width: 100%;
+  }
+}

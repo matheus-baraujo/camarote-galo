@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 const index = () => {
   return (
     <div className={styles.Container}>
-      <img style={{width:'100%', marginBottom:'50px'}} src="/assets/Open food.png" alt="" />
+      <img src="/assets/Open food.png" alt="" />
 
       <p>
           <ul>

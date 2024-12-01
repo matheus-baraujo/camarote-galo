@@ -23,6 +23,7 @@ export default function Home() {
       </Container>
 
       <img className={styles.Waves} src="/assets/waves.png" alt="waves" />
+
     </>
   );
 }

@@ -1,5 +1,8 @@
 .title{
   text-align: center;
+  font-size: 48px;
+  color: #F4016A;
+  text-shadow: #F9F921 3px 3px 4px;
   margin-bottom: 50px;
 }
 
@@ -7,4 +10,11 @@
   position: absolute;
   top: 10%;
   right: 10%;
+}
+
+
+@media screen and (max-width:600px) {
+  .title{
+      margin-bottom: 25px;
+  }
 }

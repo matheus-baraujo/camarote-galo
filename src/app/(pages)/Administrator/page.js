@@ -8,8 +8,10 @@ import Container from 'react-bootstrap/Container';
 import Login from './Login'
 //import Logged from './Logged'
 import { Button, Col, Row } from "react-bootstrap";
-
 import { hashPassword2 } from "@/app/database/utilidades";
+
+import BackgroundAssets from '../../_components/BackgroundAssets'
+import StyledButton from '../../_components/StyledButton'
 
 export default function Administrator() {
 
@@ -76,17 +78,19 @@ export default function Administrator() {
   };
 
   return (
+    <>
+      <Container fluid="sm" style={{position: 'relative', minHeight: '100vh', alignContent:'center'}}>
+        <Row className='px-3 px-md-5' style={{margin: 'auto'}}>
+          <Col xs={12} md={6} style={{margin:'auto'}}>
+            <h1 className={styles.title}>Admin</h1>
+            {loggedIn ?   <Logged /> : <Login login={login} senha={password} loginError={emailError} senhaError={passwordError} setLogin={setLogin} setSenha={setPassword} logar={onButtonClick}/>}
+          </Col>
+        </Row>
+        
+        {loggedIn ?  <StyledButton texto={'Logout'} action={setLoggedIn(false)} /> : <></>}
+      </Container>
 
-    <Container fluid="sm" style={{position: 'relative', minHeight: '100vh', alignContent:'center'}}>
-      <Row className='px-3 px-md-5' style={{margin: 'auto'}}>
-        <Col xs={12} md={6} style={{margin:'auto'}}>
-          <h1 className={styles.title}>Admin</h1>
-          {loggedIn ?   <Logged /> : <Login login={login} senha={password} loginError={emailError} senhaError={passwordError} setLogin={setLogin} setSenha={setPassword} logar={onButtonClick}/>}
-        </Col>
-      </Row>
-
-      {loggedIn ? <Button onClick={setLoggedIn(false)} className={styles.Logout}>Logout</Button> : <></>}
-    </Container>
-
+      <BackgroundAssets />
+    </>
   );
 }

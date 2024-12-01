@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+.title{
+  text-align: center;
+  margin: 100px 0px;
+  font-size: 60px;
+}
+
 .points2{
   width:230px;
   height:190px; 
@@ -12,4 +18,60 @@
   left: -15%;
   bottom:-150%;
   transform: rotate(0deg);
+}
+
+.Atracao{
+  margin:130px 0px;
+}
+
+.Atracao1{
+  position:absolute;
+  top:-540px;
+  right:-450px;
+  height:1200px;
+  width:auto;
+  z-index:2;
+}
+
+.Atracao2{
+  position:absolute; 
+  top:-350px;
+  left:-370px;
+  height:900px;
+  width:auto; 
+  z-index:2;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  
+  .title{
+    margin: 40px 0px;
+  }
+
+  .Atracao{
+    margin:20px 0px;
+    padding: 0%;
+  }
+
+  .Atracao1{
+    top: -70px;
+    right: -160px;
+    height: 360px;
+  }
+
+  .Atracao2{
+    top:-47px;
+    left:-155px;
+    height:300px;
+  }
+
+  .points2{
+    width:125px;
+    height:85px; 
+    left: -40%;
+    bottom:10%;
+  }
+
 }

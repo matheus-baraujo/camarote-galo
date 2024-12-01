@@ -1,0 +1,80 @@
+.Logo{
+  position: absolute;
+  z-index: -1;
+  height: auto;
+  width: 350px;
+  top: 5%;
+  left: 5%;
+}
+
+.cornerBottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.cornerTop{
+  transform: rotate(180deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.points, .points2, .points3, .arrows{
+  position: absolute;
+}
+
+.points, .points2, .points3{
+  height: auto;
+  width: 250px;
+}
+
+.points{
+  bottom: 15%;
+  left: 10%;
+  z-index: -1;
+  rotate: 90deg;
+}
+
+.points2{
+  right: 1%;
+  bottom: 1%;
+  rotate: 180deg;
+}
+
+.points3{
+  top: 18%;
+  right: 12%;
+  z-index: -1;
+}
+
+.arrows{
+  right: 2%;
+  bottom: 25%;
+  rotate: 180deg;
+}
+
+@media screen and (max-width:600px) {
+  .Logo{
+      z-index: -3;
+      top: 30%;
+      opacity: 50%;
+  }
+  
+  .cornerBottom, .cornerTop{
+      z-index: -3;
+      width: 150px;
+  }
+
+  .points, .points2, .points3, .arrows{
+      z-index: -3;
+  }
+
+  .points, .points2, .points3{
+      width: 100px;
+  }
+
+  .arrows{
+      width: 150px;
+  }
+}

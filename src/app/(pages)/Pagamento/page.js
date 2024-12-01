@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 import PaymentForm from './PaymentForm'
-
+import BackgroundAssets from '../../_components/BackgroundAssets'
 
 export default function Pagamento() {
 
@@ -66,13 +66,17 @@ export default function Pagamento() {
   };
   
   return (
+    <>
       <Container fluid="sm" style={{position: 'relative', minHeight: '100vh', display: 'flex'}}>
+
         <Row className='px-3 px-md-5' style={{margin: 'auto'}}>
             <h1 className={styles.title}>Compra Ingresso</h1>
-            {/* <button onClick={handlePayment}>teste</button> */}
-
             <PaymentForm />
         </Row>
+
       </Container>
+
+      <BackgroundAssets />
+    </>
   );
 }

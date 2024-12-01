@@ -2,12 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
+import styles from './styles.module.css'
+
 const index = (props) => {
   const [data, setData] = useState([]);
 
   
   return (
-    <Form>
+    <Form className={styles.form}>
 
       <Form.Group className="mb-3">
           <Form.Label>Senha</Form.Label>

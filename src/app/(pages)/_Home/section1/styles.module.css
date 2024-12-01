@@ -41,6 +41,13 @@
   gap:50px;
 }
 
+.button2{
+  font-size: 48px;
+}
+.button3{
+  font-size: 36px;
+}
+
 .points{
   width:230px;
   height:190px; 
@@ -61,4 +68,57 @@
   background-color:#F4016A;
   border: solid 8px  #f9f921;
   opacity: .6;
+}
+
+
+@media screen and (max-width: 600px ){
+
+
+  .leftSide{
+    min-height:200px;
+    margin: 60px 0;
+  }
+  
+  .rightSide{
+    min-height:200px; 
+  }
+
+
+  .logo{
+    width: 100%;
+    left: 0%;
+  }
+
+  .selo{
+    position: absolute;
+    top: 1%;
+    right: 5%;
+    height:auto; 
+    width:140px;
+  }
+
+  .points{
+    left: -37%;
+    bottom: -72%;
+  }
+
+  .buttons{
+    width:90%;
+    gap:20px;
+  }
+
+  .button{
+    border: solid 3px  #f9f921;
+  }
+  
+  .button:hover{
+    border: solid 3px  #f9f921;
+  }
+
+  .button2{
+    font-size: 17px;
+  }
+  .button3{
+    font-size: 17px;
+  }
 }

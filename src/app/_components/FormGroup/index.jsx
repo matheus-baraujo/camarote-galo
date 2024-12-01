@@ -21,11 +21,11 @@ const index = (props) => {
 
     return (
         <Form.Group className="mb-3" controlId={"label "+types[props.type][0]}>
-            <Form.Label>{types[props.type][0]}</Form.Label>
+            <Form.Label className={styles.label}>{types[props.type][0]}</Form.Label>
             {
                 aux
             }
-            <Form.Label>{props.error}</Form.Label>
+            <Form.Label className={styles.error}>{props.error}</Form.Label>
         </Form.Group>
     )
 }
