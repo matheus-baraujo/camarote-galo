@@ -47,18 +47,6 @@ const index = () => {
           <img src="/assets/chicadan.png" className={style.Atracao1} alt="chicadan" />
         </Col>
       </Row>
-
-      <Col xs={6} className={''}>
-        
-      </Col>
-
-      <Col xs={6} className={''}>
-
-        <div className={''}>
-          <img src="/assets/arrows.png" height={'auto'} width={'100%'} alt="arrows" />
-        </div>
-        
-      </Col>
     </Row>
   )
 }

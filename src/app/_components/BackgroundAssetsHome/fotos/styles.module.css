@@ -1,44 +1,46 @@
-.fotos1,.fotos2,.fotos3,.fotos4,.fotos5,.fotos6 {
+.fotos1,.fotos2,.fotos3,.fotos4,.fotos5,.fotos6, .banner {
   position: absolute;
   height: auto;
-  width: 500px;
-  z-index: -2;
-  opacity: .4;
+  width: 400px;
+  z-index: -1;
+  opacity: 1;
+  border-radius: 25px;
+  box-shadow: purple 6px 6px 4px;
 }
 
 .fotos1{
-  top: 17%;
+  top: 18%;
   right: 10%;
   rotate: 15deg;
 }
 
 .fotos2{
-  top: 22%;
-  left: 7%;
+  top: 20%;
+  left: 9%;
   rotate: -18deg;
 }
 
 .fotos3{
-  top: 56%;
-  right: 7%;
+  top: 57%;
+  right: 4%;
   rotate: 25deg;
 }
 
 .fotos4{
-  bottom: 18%;
+  bottom: 16%;
   right: 7%;
   rotate: 25deg;
 }
 
 .fotos5{
-  bottom: 14%;
+  bottom: 11%;
   left: 7%;
   rotate: -25deg;
 }
 
 .fotos6{
-  bottom: 41%;
-  left: 7%;
+  bottom: 50%;
+  left: -1%;
   rotate: -25deg;
 }
 
@@ -48,22 +50,22 @@
   }
 
   .fotos1{
-    top: 21%;
+    top: 20%;
     left: 61%;
     rotate: -18deg;
   }
   .fotos2{
-    top: 22%;
+    top: 20%;
     left: -5%;
     rotate: -18deg;
   }
   .fotos3{
-    top: 51%;
-    right: 7%;
+    top: 52%;
+    right: 0%;
     rotate: 25deg;
   }
   .fotos4{
-    bottom: 6%;
+    bottom: 7%;
     right: -7%;
     rotate: 25deg;
   }
@@ -73,7 +75,7 @@
     rotate: -25deg;
   }
   .fotos6{
-    bottom: 40%;
+    bottom: 42%;
     left: -9%;
     rotate: -25deg;
   }

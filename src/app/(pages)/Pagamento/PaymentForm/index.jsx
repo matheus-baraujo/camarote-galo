@@ -92,23 +92,13 @@ const index = () => {
     }
     
     
-    // CREATE CLIENTE
-    
+    // checando cliente
+    // URL do endpoint com a chave de API
     const apiKey = process.env.NEXT_PUBLIC_DB_API;
-    const clienteData = {apiKey, nome, email, cpf};
-    const token = process.env.NEXT_PUBLIC_DB_URL;
-    const url = token+`createCliente.php`;
     
-    console.log(url)
-    console.log(clienteData)
-
-    await fetch(url, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(clienteData),
-    })
+    const urlCheck = process.env.NEXT_PUBLIC_DB_URL+`getClienteCPF.php?api_key=${apiKey}&cpf=${cpf}`;
+    
+    await fetch(urlCheck)
     .then((response) => {
         if (!response.ok) {
             throw new Error(`Erro: ${response.status}`);
@@ -116,98 +106,356 @@ const index = () => {
         return response.json();
     })
     .then((data) => {
+      //setData(data)
       //console.log(data)
+      var count = Object.keys(data).length / 4;
+      //console.log(count)
+      //console.log(cpf)
+      //console.log(email)
+      
+      if(count >= 1){
+        if(data.cpf == cpf && data.email == email){
+          //console.log('logado!!')
+          //props.lembrarCliente(data.nome, data.cpf, data.email)
+          //props.setLogin(true);
 
-      const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
-      //create preference
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", token);
-      const raw = JSON.stringify({
-        "auto_return": "approved",
-        "back_urls": {
-          "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
-          "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
-          "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
-        },
-        "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
-        "items": [
-          {
-            "id": "010983098",
-            "title": "Ingresso",
-            "quantity": quant,
-            "unit_price": 340,
-            "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
-          }
-        ],
-        "payer": {
-          "email": email,
-          "name": nome
-        },
-        "payment_methods": {
-          "excluded_payment_types": [{ id: "ticket" },],
-          "excluded_payment_methods": [{ id: "bolbradesco" },],
-          "installments": 1
-        },
-        "notification_url": "",
-        "expires": false
-      });
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow"
-      };
+            const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+            //create preference
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", token);
+            const raw = JSON.stringify({
+              "auto_return": "approved",
+              "back_urls": {
+                "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
+                "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
+                "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
+              },
+              "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
+              "items": [
+                {
+                  "id": "010983098",
+                  "title": "Ingresso",
+                  "quantity": quant,
+                  "unit_price": 340,
+                  "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
+                }
+              ],
+              "payer": {
+                "email": email,
+                "name": nome
+              },
+              "payment_methods": {
+                "excluded_payment_types": [{ id: "ticket" },],
+                "excluded_payment_methods": [{ id: "bolbradesco" },],
+                "installments": 1
+              },
+              "notification_url": "",
+              "expires": false
+            });
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: raw,
+              redirect: "follow"
+            };
 
-      //console.log(raw)
+            //console.log(raw)
 
-      fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
+            fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
+              .then((response) => response.json())
+              .then((result) => {
 
-          setInitPoint(result.init_point)
+                setInitPoint(result.init_point)
 
-          // console.log(cpf)
-          // console.log(result)
-          // console.log(result.id)
-          // console.log(result.init_point)
+                // console.log(cpf)
+                // console.log(result)
+                // console.log(result.id)
+                // console.log(result.init_point)
 
-          var idPreference = result.id;
-          //const link = result.init_point;
-          const link = result.init_point;
+                var idPreference = result.id;
+                //const link = result.init_point;
+                const link = result.init_point;
 
-          //console.log(idPreference)
-          const apiKey = process.env.NEXT_PUBLIC_DB_API;
-          const preferenceData = {apiKey, idPreference, cpf, quant};
+                //console.log(idPreference)
+                const apiKey = process.env.NEXT_PUBLIC_DB_API;
+                const preferenceData = {apiKey, idPreference, cpf, quant};
 
-          //console.log(preferenceData)
-          //console.log(clienteData)
-          const url2 = process.env.NEXT_PUBLIC_DB_URL+`createPreference.php`;
+                //console.log(preferenceData)
+                //console.log(clienteData)
+                const url2 = process.env.NEXT_PUBLIC_DB_URL+`createPreference.php`;
 
-          fetch(url2, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(preferenceData),
-          })
-          .then((response) => {
-              if (!response.ok) {
-                  throw new Error(`Erro: ${response.status}`);
-              }
-              return response.json();
-          })
-          .then((data) => {
-            // console.log(data)
-            // console.log('consegui cadastrar cliente e preference')
-            // console.log(link)
-            window.location.href = link;
-          })
-          .catch((error) => console.error('erro cadastro preferencia'));
-        })
-        .catch((error) => console.error('erro api mercado pago'));
+                fetch(url2, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(preferenceData),
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                  // console.log(data)
+                  // console.log('consegui cadastrar cliente e preference')
+                  // console.log(link)
+                  window.location.href = link;
+                })
+                .catch((error) => console.error('erro cadastro preferencia'));
+              })
+              .catch((error) => console.error('erro api mercado pago'));
+          
+        }else{
+          //console.log('credenciais incorretas')
+          setCpfError('Já existe outro cadastro com este cpf,\n\n por favor use o mesmo email ou outro cpf')
+          return
+        }
+      }else{
+        //setEmailError("registro não encontrado")
+        //console.log("registro não encontrado")
+      }
     })
-    .catch((error) => console.log('erro cadastro cliente'));
+    .catch((error) => {
+        // CREATE CLIENTE
+        const clienteData = {apiKey, nome, email, cpf};
+        const token = process.env.NEXT_PUBLIC_DB_URL;
+        const url = token+`createCliente.php`;
+
+        console.log(url)
+        console.log(clienteData)
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(clienteData),
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Erro: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+          //console.log(data)
+
+          const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+          //create preference
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+          myHeaders.append("Authorization", token);
+          const raw = JSON.stringify({
+            "auto_return": "approved",
+            "back_urls": {
+              "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
+              "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
+              "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
+            },
+            "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
+            "items": [
+              {
+                "id": "010983098",
+                "title": "Ingresso",
+                "quantity": quant,
+                "unit_price": 340,
+                "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
+              }
+            ],
+            "payer": {
+              "email": email,
+              "name": nome
+            },
+            "payment_methods": {
+              "excluded_payment_types": [{ id: "ticket" },],
+              "excluded_payment_methods": [{ id: "bolbradesco" },],
+              "installments": 1
+            },
+            "notification_url": "",
+            "expires": false
+          });
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+          };
+
+          //console.log(raw)
+
+          fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+
+              setInitPoint(result.init_point)
+
+              // console.log(cpf)
+              // console.log(result)
+              // console.log(result.id)
+              // console.log(result.init_point)
+
+              var idPreference = result.id;
+              //const link = result.init_point;
+              const link = result.init_point;
+
+              //console.log(idPreference)
+              const apiKey = process.env.NEXT_PUBLIC_DB_API;
+              const preferenceData = {apiKey, idPreference, cpf, quant};
+
+              //console.log(preferenceData)
+              //console.log(clienteData)
+              const url2 = process.env.NEXT_PUBLIC_DB_URL+`createPreference.php`;
+
+              fetch(url2, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(preferenceData),
+              })
+              .then((response) => {
+                  if (!response.ok) {
+                      throw new Error(`Erro: ${response.status}`);
+                  }
+                  return response.json();
+              })
+              .then((data) => {
+                // console.log(data)
+                // console.log('consegui cadastrar cliente e preference')
+                // console.log(link)
+                window.location.href = link;
+              })
+              .catch((error) => console.error('erro cadastro preferencia'));
+            })
+            .catch((error) => console.error('erro api mercado pago'));
+        })
+        .catch((error) => console.log('erro cadastro cliente'));
+
+        console.log(error.message)
+    });
+
+
+
+
+
+    // // CREATE CLIENTE
+    
+    // const clienteData = {apiKey, nome, email, cpf};
+    // const token = process.env.NEXT_PUBLIC_DB_URL;
+    // const url = token+`createCliente.php`;
+    
+    // // console.log(url)
+    // // console.log(clienteData)
+
+    // await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //       'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(clienteData),
+    // })
+    // .then((response) => {
+    //     if (!response.ok) {
+    //         throw new Error(`Erro: ${response.status}`);
+    //     }
+    //     return response.json();
+    // })
+    // .then((data) => {
+    //   //console.log(data)
+
+    //   const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+    //   //create preference
+    //   const myHeaders = new Headers();
+    //   myHeaders.append("Content-Type", "application/json");
+    //   myHeaders.append("Authorization", token);
+    //   const raw = JSON.stringify({
+    //     "auto_return": "approved",
+    //     "back_urls": {
+    //       "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
+    //       "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
+    //       "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
+    //     },
+    //     "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
+    //     "items": [
+    //       {
+    //         "id": "010983098",
+    //         "title": "Ingresso",
+    //         "quantity": quant,
+    //         "unit_price": 340,
+    //         "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
+    //       }
+    //     ],
+    //     "payer": {
+    //       "email": email,
+    //       "name": nome
+    //     },
+    //     "payment_methods": {
+    //       "excluded_payment_types": [{ id: "ticket" },],
+    //       "excluded_payment_methods": [{ id: "bolbradesco" },],
+    //       "installments": 1
+    //     },
+    //     "notification_url": "",
+    //     "expires": false
+    //   });
+    //   const requestOptions = {
+    //     method: "POST",
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: "follow"
+    //   };
+
+    //   //console.log(raw)
+
+    //   fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
+    //     .then((response) => response.json())
+    //     .then((result) => {
+
+    //       setInitPoint(result.init_point)
+
+    //       // console.log(cpf)
+    //       // console.log(result)
+    //       // console.log(result.id)
+    //       // console.log(result.init_point)
+
+    //       var idPreference = result.id;
+    //       //const link = result.init_point;
+    //       const link = result.init_point;
+
+    //       //console.log(idPreference)
+    //       const apiKey = process.env.NEXT_PUBLIC_DB_API;
+    //       const preferenceData = {apiKey, idPreference, cpf, quant};
+
+    //       //console.log(preferenceData)
+    //       //console.log(clienteData)
+    //       const url2 = process.env.NEXT_PUBLIC_DB_URL+`createPreference.php`;
+
+    //       fetch(url2, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(preferenceData),
+    //       })
+    //       .then((response) => {
+    //           if (!response.ok) {
+    //               throw new Error(`Erro: ${response.status}`);
+    //           }
+    //           return response.json();
+    //       })
+    //       .then((data) => {
+    //         // console.log(data)
+    //         // console.log('consegui cadastrar cliente e preference')
+    //         // console.log(link)
+    //         window.location.href = link;
+    //       })
+    //       .catch((error) => console.error('erro cadastro preferencia'));
+    //     })
+    //     .catch((error) => console.error('erro api mercado pago'));
+    // })
+    // .catch((error) => console.log('erro cadastro cliente'));
 
   };
 

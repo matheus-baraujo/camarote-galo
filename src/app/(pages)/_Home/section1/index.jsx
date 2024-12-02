@@ -16,7 +16,7 @@ const index = () => {
 
       <Col xs={12}  md={6} className={style.rightSide}>
 
-        <img src="/assets/selo18anos.png" className={style.selo} alt="selo" />
+        <img src="/assets/banner.jpg" className={style.banner} alt="banner" />
         <div className={style.buttons}>
           <a href='/Pagamento' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a>
           {/* <a href='/' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a> */}

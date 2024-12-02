@@ -17,7 +17,7 @@ const index = () => {
       <Row style={{margin:'30px 0px'}}>
         <OpenBar />
         <div className={style.containerCross} >
-          <img src="/assets/cross.png" className={style.Cross} alt="" />
+          <img src="/assets/cross.png" className={style.Cross} alt="cross" />
         </div>
         
         <OpenFood />
@@ -26,7 +26,7 @@ const index = () => {
       <Row>
         <div style={{display:'flex', flexDirection:'column', justifyContent:'space-around', textAlign:'center'}}>
           
-          <img src="/assets/Date.png" width={'40%'} style={{margin:'auto'}} alt="" />
+          <img src="/assets/Date.png" width={'40%'} style={{margin:'auto'}} alt="data" />
 
           <Informacoes />
 

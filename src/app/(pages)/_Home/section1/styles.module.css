@@ -27,10 +27,11 @@
   z-index: 2;
 }
 
-.selo{
+.banner{
   height:auto; 
   width:250px;
   margin:0px auto;
+  box-shadow: purple 6px 6px 4px;
 }
 
 .buttons{
@@ -91,7 +92,7 @@
     left: 0%;
   }
 
-  .selo{
+  .banner{
     position: absolute;
     top: 1%;
     right: 5%;

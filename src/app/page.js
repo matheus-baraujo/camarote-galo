@@ -15,6 +15,8 @@ export default function Home() {
     <>
       <div className={styles.topBar} ></div>
 
+      <h1 style={{display:'none'}}>Camarote - Se Você Não For Eu Vou</h1>
+
       <Container fluid="sm" style={{position: 'relative', minHeight: '100vh'}}>
         
         <Section1 />
