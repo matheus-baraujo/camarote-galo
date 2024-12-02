@@ -4,12 +4,26 @@
   text-align:center;
 }
 
+.Card h3{
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: #F9F921 3px 3px 4px;
+}
+
 .Card p{
-  font-size: 20px;
+  font-size: 25px;
 }
 
 @media screen and (max-width: 600px) {
   .Card{
     width:100%;
+  }
+
+  .Card h3{
+    font-size: 20px;
+  }
+  
+  .Card p{
+    font-size: 17px;
   }
 }

@@ -59,6 +59,8 @@
 
 .button{
   background-color:#F4016A;
+  color: white;
+  text-decoration: none;
   border-radius: 25px;
   border: solid 8px  #f9f921;
   transition: ease-in-out .3s;

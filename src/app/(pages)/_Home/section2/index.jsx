@@ -6,7 +6,8 @@ import InfoAtracao from './InfoAtracao'
 
 const index = () => {
 
-  var content = [['Titulo','facilisis efficitur. nisl. elit varius lorem. Quisque Nunc eu non elementum sapien nec diam facilisis Ut amet, nibh sit Sed']]
+  var content = [['A Alegria do Frevo: Patusco no Carnaval','Prepare-se para dançar com o tradicional bloco Patusco! Ritmo, energia e muito frevo para fazer a folia inesquecível! 🎭🎶'],
+                  ['Paixão e Música: Faringes da Paixão no Palco','Deixe-se contagiar pelo som animado e irreverente da Faringes da Paixão! Uma atração que promete levantar a galera! 🎤🎉']]
 
 
   return (
@@ -16,7 +17,7 @@ const index = () => {
 
       <Row className={style.Atracao}>
         <Col xs={6}>
-          <InfoAtracao title={content[0][0]} text={content[0][1]} />
+          <InfoAtracao title={content[1][0]} text={content[1][1]} />
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
@@ -38,7 +39,7 @@ const index = () => {
     
       <Row className={style.Atracao}>
         <Col xs={6} style={{textAlign:'center'}}>
-          <InfoAtracao title={content[0][0]} text={content[0][1]} />
+          <InfoAtracao title={content[1][0]} text={content[1][1]} />
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>

@@ -55,7 +55,7 @@ const index = () => {
     setCpfError('')
 
     
-    console.log(token)
+    //console.log(token)
 
     // Check if the user has entered fields correctly
     if ('' === nome) {
@@ -99,6 +99,9 @@ const index = () => {
     const token = process.env.NEXT_PUBLIC_DB_URL;
     const url = token+`createCliente.php`;
     
+    console.log(url)
+    console.log(clienteData)
+
     await fetch(url, {
       method: 'POST',
       headers: {
@@ -170,7 +173,8 @@ const index = () => {
           // console.log(result.init_point)
 
           var idPreference = result.id;
-          var link = result.init_point;
+          //const link = result.init_point;
+          const link = result.sandbox_init_point;
 
           //console.log(idPreference)
           const apiKey = process.env.NEXT_PUBLIC_DB_API;
@@ -196,8 +200,8 @@ const index = () => {
           .then((data) => {
             // console.log(data)
             // console.log('consegui cadastrar cliente e preference')
-            // console.log(initPoint)
-            window.location.href = initPoint;
+            // console.log(link)
+            window.location.href = link;
           })
           .catch((error) => console.error('erro cadastro preferencia'));
         })

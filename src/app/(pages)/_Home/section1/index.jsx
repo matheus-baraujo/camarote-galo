@@ -6,15 +6,6 @@ import style from './styles.module.css'
 import { Row, Col, Button } from 'react-bootstrap';
 
 
-const Pagamento = () => {
-  window.location.href = '/Pagamento';
-}
-
-const Ingressos = () => {
-  window.location.href = '/MeusIngressos';
-}
-
-
 const index = () => {
   return (
     <Row className={style.section+' px-3 px-md-5'} >
@@ -27,8 +18,9 @@ const index = () => {
 
         <img src="/assets/selo18anos.png" className={style.selo} alt="selo" />
         <div className={style.buttons}>
-          <Button className={style.button +' '+ style.button2} onClick={Pagamento}>Garanta já seu ingresso !!</Button>
-          <Button className={style.button +' '+ style.button3} onClick={Ingressos}>Meu ingressos</Button>
+          {/* <a href='/Pagamento' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a> */}
+          <a href='/' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a>
+          <a href='/MeusIngressos' className={style.button +' '+ style.button3} >Meu ingressos</a>
           <img src="/assets/arrows.png" height={'auto'} width={'100%'} alt="arrows" />
         </div>
         

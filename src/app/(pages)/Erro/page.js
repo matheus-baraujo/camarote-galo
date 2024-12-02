@@ -18,9 +18,10 @@ const Ingressos = () => {
 
 export default function Erro() {
 
-  const searchParams = useSearchParams()
+  
 
   useEffect(()=>{
+    const searchParams = useSearchParams()
     
     const paymentId = searchParams.get('payment_id')
     const status = searchParams.get('status')
