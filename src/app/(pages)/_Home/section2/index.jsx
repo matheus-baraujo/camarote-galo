@@ -7,7 +7,8 @@ import InfoAtracao from './InfoAtracao'
 const index = () => {
 
   var content = [['A Alegria do Frevo: Patusco no Carnaval','Prepare-se para dançar com o tradicional bloco Patusco! Ritmo, energia e muito frevo para fazer a folia inesquecível! 🎭🎶'],
-                  ['Paixão e Música: Faringes da Paixão no Palco','Deixe-se contagiar pelo som animado e irreverente da Faringes da Paixão! Uma atração que promete levantar a galera! 🎤🎉']]
+                  ['Paixão e Música: Faringes da Paixão no Palco','Deixe-se contagiar pelo som animado e irreverente da Faringes da Paixão! Uma atração que promete levantar a galera! 🎤🎉'],
+                  ['Explosão de Ritmos: Chicadan no Carnaval', 'Prepare-se para a energia contagiante de Chicadan! Muito ritmo e animação para agitar sua folia como nunca! 💃🎶']]
 
 
   return (
@@ -39,11 +40,11 @@ const index = () => {
     
       <Row className={style.Atracao}>
         <Col xs={6} style={{textAlign:'center'}}>
-          <InfoAtracao title={content[1][0]} text={content[1][1]} />
+          <InfoAtracao title={content[2][0]} text={content[2][1]} />
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/faringes.png" className={style.Atracao1} alt="faringes" />
+          <img src="/assets/chicadan.png" className={style.Atracao1} alt="chicadan" />
         </Col>
       </Row>
 

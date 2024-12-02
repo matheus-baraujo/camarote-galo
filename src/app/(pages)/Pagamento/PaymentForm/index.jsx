@@ -126,7 +126,7 @@ const index = () => {
       const raw = JSON.stringify({
         "auto_return": "approved",
         "back_urls": {
-          "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Successo",
+          "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
           "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
           "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
         },
@@ -174,7 +174,7 @@ const index = () => {
 
           var idPreference = result.id;
           //const link = result.init_point;
-          const link = result.sandbox_init_point;
+          const link = result.init_point;
 
           //console.log(idPreference)
           const apiKey = process.env.NEXT_PUBLIC_DB_API;
