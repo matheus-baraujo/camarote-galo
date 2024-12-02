@@ -1,0 +1,80 @@
+.fotos1,.fotos2,.fotos3,.fotos4,.fotos5,.fotos6 {
+  position: absolute;
+  height: auto;
+  width: 500px;
+  z-index: -2;
+  opacity: .4;
+}
+
+.fotos1{
+  top: 17%;
+  right: 10%;
+  rotate: 15deg;
+}
+
+.fotos2{
+  top: 22%;
+  left: 7%;
+  rotate: -18deg;
+}
+
+.fotos3{
+  top: 56%;
+  right: 7%;
+  rotate: 25deg;
+}
+
+.fotos4{
+  bottom: 18%;
+  right: 7%;
+  rotate: 25deg;
+}
+
+.fotos5{
+  bottom: 14%;
+  left: 7%;
+  rotate: -25deg;
+}
+
+.fotos6{
+  bottom: 41%;
+  left: 7%;
+  rotate: -25deg;
+}
+
+@media screen and (max-width:600px) {
+  .fotos1,.fotos2,.fotos3,.fotos4,.fotos5,.fotos6 {
+    width: 200px;
+  }
+
+  .fotos1{
+    top: 21%;
+    left: 61%;
+    rotate: -18deg;
+  }
+  .fotos2{
+    top: 22%;
+    left: -5%;
+    rotate: -18deg;
+  }
+  .fotos3{
+    top: 51%;
+    right: 7%;
+    rotate: 25deg;
+  }
+  .fotos4{
+    bottom: 6%;
+    right: -7%;
+    rotate: 25deg;
+  }
+  .fotos5{
+    bottom: 10%;
+    left: -10%;
+    rotate: -25deg;
+  }
+  .fotos6{
+    bottom: 40%;
+    left: -9%;
+    rotate: -25deg;
+  }
+}

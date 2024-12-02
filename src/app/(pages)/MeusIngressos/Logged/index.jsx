@@ -11,9 +11,9 @@ const index = (props) => {
 
   async function fetchData(){
     // URL do endpoint com a chave de API
-    const apiKey = 'minha_chave_secreta';
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
     
-    const url = `http://localhost/api/getComprasCliente.php?api_key=${apiKey}&cpf=${props.clienteCpf}`;
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getComprasCliente.php?api_key=${apiKey}&cpf=${props.clienteCpf}`;
     
     await fetch(url)
     .then((response) => {
@@ -47,7 +47,7 @@ const index = (props) => {
           {
             data.map((item) =>{
               return(
-                <Compra codigo={item.codigoRecebimento} id={item.idPagamento} status={item.status} quant={item.quant}/>
+                <Compra key={item.id} codigo={item.codigoRecebimento} id={item.idPagamento} status={item.status} quant={item.quant} action={fetchData}/>
               )
             })
           }

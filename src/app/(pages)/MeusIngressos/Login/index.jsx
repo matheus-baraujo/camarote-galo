@@ -43,28 +43,28 @@ const index = (props) => {
     // Check if the user has entered fields correctly
     
     if ('' === email) {
-      setEmailError('Please enter your email')
+      setEmailError('Campo vazio')
       return
     }
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError('Please enter a valid email')
+      setEmailError('Email inválido')
       return
     }
     if ('' === cpf) {
-      setCpfError('Please enter your cpf')
+      setCpfError('Campo vazio')
       return
     }
     if (cpf.length !== 14) {
-      setCpfError('invalid cpf')
+      setCpfError('CPF inválido')
       return
     }
 
     
 
     // URL do endpoint com a chave de API
-    const apiKey = 'minha_chave_secreta';
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
     
-    const url = `http://localhost/api/getClienteCPF.php?api_key=${apiKey}&cpf=${cpf}`;
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getClienteCPF.php?api_key=${apiKey}&cpf=${cpf}`;
     
     await fetch(url)
     .then((response) => {

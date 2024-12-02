@@ -46,9 +46,9 @@ export default function Administrator() {
 
 
     // URL do endpoint com a chave de API
-    const apiKey = 'minha_chave_secreta';
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
     
-    const url = `http://localhost/api/getAdmin.php?api_key=${apiKey}&login=${login}`;
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getAdmin.php?api_key=${apiKey}&login=${login}`;
     
     await fetch(url)
     .then((response) => {

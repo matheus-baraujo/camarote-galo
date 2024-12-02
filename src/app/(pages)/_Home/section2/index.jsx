@@ -28,8 +28,6 @@ const index = () => {
 
         <Col xs={6} style={{position:'relative'}}>
           <img src="/assets/patusco.png" className={style.Atracao2} alt="patusco" />
-
-          <img src="/assets/Points.png" className={style.points2} alt="logo" />
         </Col>
 
         <Col xs={6}>

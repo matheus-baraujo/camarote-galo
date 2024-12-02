@@ -1,7 +1,7 @@
 
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Joti_One } from 'next/font/google'
+import { Joti_One , Roboto} from 'next/font/google'
 
 export const metadata = {
   title: "Camarote - Se vc não for eu vou",
@@ -13,10 +13,15 @@ const jotiOne = Joti_One({
   subsets: ['latin'],
 })
 
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" >
-      <body className={jotiOne.className}>
+      <body className={roboto.className}>
         <div style={{overflowX: 'clip', position:'relative'}}>
           <div style={{backgroundColor: 'rgba(224, 215, 223, 0.6)', position: 'absolute', width:'100%', height:'100%', zIndex:'-2'}}></div>
           {children}

@@ -1,11 +1,15 @@
 'use client'
 
+require('dotenv').config()
+
 import React from 'react'
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './styles.module.css'
 import FormGroup from '../../../_components/FormGroup'
 import StyledButton from '../../../_components/StyledButton'
+
+
 
 const index = () => {
 
@@ -50,45 +54,50 @@ const index = () => {
     setEmailError2('')
     setCpfError('')
 
+    
+    console.log(token)
 
     // Check if the user has entered fields correctly
     if ('' === nome) {
-      setNomeError('Please enter your name')
+      setNomeError('Campo vazio')
       return
     }
     if ('' === email) {
-      setEmailError('Please enter your email')
+      setEmailError('Campo vazio')
       return
     }
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError('Please enter a valid email')
+      setEmailError('Email inválido')
       return
     }
     if ('' === email2) {
-      setEmailError2('Please enter your email')
+      setEmailError2('Campo vazio')
       return
     }
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email2)) {
-      setEmailError2('Please enter a valid email')
+      setEmailError2('Email inválido')
       return
     }
     if (email != email2){
-      setEmailError2('Your email must be the same')
+      setEmailError2('Os email devem ser iguais')
       return
     }
     if ('' === cpf) {
-      setCpfError('Please enter your cpf')
+      setCpfError('Campo vazio')
       return
     }
     if (cpf.length !== 14) {
-      setCpfError('invalid cpf')
+      setCpfError('CPF inválido')
       return
     }
     
+    
     // CREATE CLIENTE
-    const apiKey = 'minha_chave_secreta';
+    
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
     const clienteData = {apiKey, nome, email, cpf};
-    const url = `http://localhost/api/createCliente.php`;
+    const token = process.env.NEXT_PUBLIC_DB_URL;
+    const url = token+`createCliente.php`;
     
     await fetch(url, {
       method: 'POST',
@@ -106,16 +115,17 @@ const index = () => {
     .then((data) => {
       //console.log(data)
 
+      const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
       //create preference
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", "Bearer APP_USR-8863321753051093-112114-41a86e2093152d19ff5b839604fa15b9-2108742539");
+      myHeaders.append("Authorization", token);
       const raw = JSON.stringify({
         "auto_return": "approved",
         "back_urls": {
-          "success": "http://localhost:3000/Successo",
-          "failure": "http://localhost:3000/Erro",
-          "pending": "http://localhost:3000/Erro"
+          "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Successo",
+          "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
+          "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
         },
         "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
         "items": [
@@ -123,7 +133,7 @@ const index = () => {
             "id": "010983098",
             "title": "Ingresso",
             "quantity": quant,
-            "unit_price": 1000,
+            "unit_price": 340,
             "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
           }
         ],
@@ -136,10 +146,8 @@ const index = () => {
           "excluded_payment_methods": [{ id: "bolbradesco" },],
           "installments": 1
         },
-        "notification_url": "https://www.your-site.com/webhook",
-        "expires": true,
-        "expiration_date_from": "2024-01-01T12:00:00.000-04:00",
-        "expiration_date_to": "2024-12-31T12:00:00.000-04:00"
+        "notification_url": "",
+        "expires": false
       });
       const requestOptions = {
         method: "POST",
@@ -148,7 +156,7 @@ const index = () => {
         redirect: "follow"
       };
 
-      console.log(raw)
+      //console.log(raw)
 
       fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
         .then((response) => response.json())
@@ -165,12 +173,12 @@ const index = () => {
           var link = result.init_point;
 
           //console.log(idPreference)
-          const apiKey = 'minha_chave_secreta';
+          const apiKey = process.env.NEXT_PUBLIC_DB_API;
           const preferenceData = {apiKey, idPreference, cpf, quant};
 
-          console.log(preferenceData)
-          console.log(clienteData)
-          const url2 = `http://localhost/api/createPreference.php`;
+          //console.log(preferenceData)
+          //console.log(clienteData)
+          const url2 = process.env.NEXT_PUBLIC_DB_URL+`createPreference.php`;
 
           fetch(url2, {
             method: 'POST',
@@ -189,13 +197,13 @@ const index = () => {
             // console.log(data)
             // console.log('consegui cadastrar cliente e preference')
             // console.log(initPoint)
-            window.location.replace(initPoint)
+            window.location.href = initPoint;
           })
-          .catch((error) => console.error(error.message));
+          .catch((error) => console.error('erro cadastro preferencia'));
         })
-        .catch((error) => console.error(error.message));
-      })
-      .catch((error) => console.log(error.message));
+        .catch((error) => console.error('erro api mercado pago'));
+    })
+    .catch((error) => console.log('erro cadastro cliente'));
 
   };
 

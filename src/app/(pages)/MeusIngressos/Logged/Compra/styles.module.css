@@ -5,7 +5,7 @@
   justify-content: space-evenly;
 
   border-radius: 25px;
-  background-color: gray;
+  background-color: #F4016A;
 
   min-height: 100px;
   text-align: center;
@@ -18,11 +18,47 @@
 }
 
 .Item p{
+  color: white;  
   margin: 0;
 }
 
+
 .Valor{
   background-color: white;
+  color: black !important;
   border-radius: 25px;
   padding: 3px;
+}
+
+
+.button{
+  width:25%;
+}
+
+
+@media screen and (max-width: 600px) {
+  .Card{
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px 10px;
+  }
+  
+  .Item{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0px;
+  }
+  
+  .Valor{
+    width: 30%;
+  }
+
+  .button{
+    justify-content: center;
+    text-align: center;
+    width:100%;
+  }
+
 }

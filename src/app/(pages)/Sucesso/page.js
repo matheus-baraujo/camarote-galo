@@ -16,6 +16,24 @@ const Ingressos = () => {
   window.location.href = '/MeusIngressos';
 }  
 
+async function enviarEmail(email, codigo) {
+  try {
+      const url = `https://sevcnaoforeuvou.com.br/enviar_email.php?email=${encodeURIComponent(email)}&codigo=${encodeURIComponent(codigo)}`;
+      
+      const response = await fetch(url);
+      
+      if (response.ok) {
+          const textoResposta = await response.text();
+          console.log("email enviado com sucesso");
+      } else {
+          console.error("Erro ao realizar a requisição");
+      }
+  } catch (erro) {
+      console.error("Erro na requisição");
+  }
+}
+
+
 export default function Home() {
 
   const [cod,setCod] = useState('');
@@ -34,7 +52,8 @@ export default function Home() {
 
   async function fetchData() {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer APP_USR-8863321753051093-112114-41a86e2093152d19ff5b839604fa15b9-2108742539");
+    const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+    myHeaders.append("Authorization", token);
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
@@ -60,7 +79,8 @@ export default function Home() {
         // CREATE COMPRA
         const apiKey = 'minha_chave_secreta';
         const clienteData = {apiKey, idPreference, idPagamento, status};
-        const url = `http://localhost/api/createCompra.php`;
+        const token = process.env.NEXT_PUBLIC_DB_URL;
+        const url = token+`createCompra.php`;
 
         fetch(url, {
           method: 'POST',
@@ -79,14 +99,13 @@ export default function Home() {
           //console.log('compra criada com sucesso')
 
           // UPDATE COMPRA
-          const apiKey = 'minha_chave_secreta';
           const updateCompraData = {apiKey, idPagamento, status, codigo};
 
           //console.log(updateCompraData)
 
-          const url = `http://localhost/api/updateCompra.php`;
+          const url = token+`updateCompra.php`;
 
-          console.log(url)
+          //console.log(url)
           fetch(url, {
             method: 'POST',
             headers: {
@@ -101,7 +120,30 @@ export default function Home() {
               return response.json();
           })
           .then((data) => {
-            //console.log('compra atualizada com sucesso')
+
+            const url = `http://localhost/enviar_email.php?preference=${encodeURIComponent(idPreference)}&api_key=${encodeURIComponent(apiKey)}`;
+
+            try {
+              const response = fetch(url, {
+                  method: "GET",
+                  headers: {
+                      "Content-Type": "application/json"
+                  }
+              });
+      
+              if (response.ok) {
+                  const cliente =  response.json();
+                  enviarEmail( cliente.email, codigo)
+              } else {
+                  const erro = response.json();
+                  console.error("Erro:", erro.error || "Erro desconhecido");
+              }
+          } catch (erro) {
+              console.error("Erro na requisição:", erro);
+          }
+
+
+            
           })
           .catch((error) => console.log('erro de atulalização'));
 

@@ -21,7 +21,6 @@ const index = () => {
 
       <Col xs={12} md={6} className={style.leftSide}>
         <img src="/assets/Logo.png" className={style.logo} alt="logo" />
-        <img src="/assets/Points.png" className={style.points} alt="logo" />
       </Col>
 
       <Col xs={12}  md={6} className={style.rightSide}>
