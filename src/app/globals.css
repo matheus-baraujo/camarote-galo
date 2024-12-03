@@ -9,6 +9,28 @@ body{
   overflow-x: hidden;
 }
 
+
+/* gallery */
+
+.react-photo-album--photo {
+  background-color: white !important;
+  box-shadow: purple 3px 3px 2px;
+  transition: ease-in-out .3s;
+  border: 1px solid purple !important;
+}
+
+.react-photo-album--photo:hover {
+  opacity: .7;
+}
+
+.react-photo-album--image {
+}
+
+
+
+/* gallery */
+
+
 nextjs-portal {
   display: none;
 }

@@ -1,0 +1,33 @@
+.selector{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.selector button{
+  background-color: #F4016A;
+  border: none;
+  padding: 5px 10px;
+  transition: ease-in-out .3s;
+  border: 1px solid purple;
+  font-size: 20px;
+}
+
+.selector button:hover, .selector .active{
+  color: white;
+  border: 1px solid white;
+  transform: translate(-3px, -3px);
+  box-shadow: purple 3px 3px 2px;
+}
+
+@media screen and (max-width: 600px) {
+  .selector{
+    padding: 10px 25px;
+  }
+
+  .selector button{
+    margin: 5px 0px;
+  }
+}
