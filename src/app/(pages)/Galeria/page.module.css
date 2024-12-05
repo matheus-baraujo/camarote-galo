@@ -1,0 +1,32 @@
+.title{
+  text-align: center;
+  font-size: 48px;
+  color: #F4016A;
+  text-shadow: #F9F921 3px 3px 4px;
+  margin-top: 20%;
+  margin-bottom: 50px;
+}
+
+.voltar{
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  background-color: #F4016A;
+  padding: 5px 10px;
+  transition: ease-in-out .3s;
+  border: 1px solid purple;
+  font-size: 20px;
+}
+
+.voltar:hover{
+  color: white;
+  border: 1px solid white;
+  transform: translate(-3px, -3px);
+  box-shadow: purple 3px 3px 2px;
+}
+
+@media screen and (max-width:600px) {
+  .title{
+      margin-bottom: 25px;
+  }
+}

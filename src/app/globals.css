@@ -3,12 +3,11 @@ body{
   background-image: url('/background/fundo1.png');
   background-position: center;
   
-  background-size: cover;
+  background-size: 100% auto;
   background-repeat: repeat;
 
   overflow-x: hidden;
 }
-
 
 /* gallery */
 

@@ -1,0 +1,19 @@
+.item{
+  padding-bottom: 40px;
+}
+
+.video{
+  width:50%;
+  height:auto;
+}
+
+.Carousel{
+  background-color: rgba(0,0,0,.6);
+}
+
+.videoContainer{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}

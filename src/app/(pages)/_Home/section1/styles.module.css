@@ -39,14 +39,14 @@
   margin:auto;
   display:inherit;
   flex-direction:inherit;
-  gap:50px;
+  gap:20px;
 }
 
 .button2{
   font-size: 48px;
 }
 .button3{
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .points{
@@ -63,13 +63,13 @@
   color: white;
   text-decoration: none;
   border-radius: 25px;
-  border: solid 8px  #f9f921;
+  border: solid 5px  #f9f921;
   transition: ease-in-out .3s;
 }
 
 .button:hover{
   background-color:#F4016A;
-  border: solid 8px  #f9f921;
+  border: solid 5px  #f9f921;
   opacity: .6;
 }
 
