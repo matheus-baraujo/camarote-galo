@@ -5,11 +5,10 @@ import styles from './styles.module.css'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 
-import { makeCod } from "@/app/database/utilidades";
-
 const index = (props) => {
 
-  const [cod, setCod] = useState('');
+  const [given, setGiven] = useState(0);
+  const [cod, setCod] = useState(0);
   const [buttonAllow, setButtonAllow] = useState('');
 
   const checarStatus = async (id) => {
@@ -22,23 +21,21 @@ const index = (props) => {
       redirect: "follow"
     };
     const url = 'https://api.mercadopago.com/v1/payments/'+id;
+    //console.log(url)
     await fetch(url, requestOptions)
       .then((response) => response.json())
       .then((data)=> {
         //console.log(result)
-        var codigo = '';
-        if(result.status == 'approved'){
-          codigo = makeCod()
-          setCod(codigo)
-        }
-        const status = result.status;
+        var entregue = 1;
+        setGiven(1);
+        
         const apiKey = process.env.NEXT_PUBLIC_DB_API;
 
-        let idPagamento = id;
-        const updateCompraData = {apiKey, idPagamento, status, codigo};
+        let codigo = props.codigo;
+        const updateCompraData = {apiKey, id, codigo, entregue};
 
         //console.log(updateCompraData)
-        const url2 = process.env.NEXT_PUBLIC_DB_URL+`updateCompra.php`;
+        const url2 = process.env.NEXT_PUBLIC_DB_URL+`updateRecebimento.php`;
         fetch(url2, {
           method: 'POST',
           headers: {
@@ -55,18 +52,23 @@ const index = (props) => {
         .then((data) => {
           props.action();
         })
-        .catch((error) => console.log('erro de atulalização'));
+        .catch((error) => console.log('erro de atualização'));
       })
-      .catch((error) => console.error('erro api - busca do pagamento'));
+      .catch((error) => console.error(error));
   }
 
   useEffect(()=>{
     if(props.status != 'approved' || props.codigo == '' ||  props.codigo == null){
       setCod('*******')
-      setButtonAllow(true)
+      setButtonAllow(0)
     }else{
       setCod(props.codigo)
-      setButtonAllow(false)
+
+      if (props.recebimento == 0) {
+        setButtonAllow(1)
+      } else {
+        setButtonAllow(0)
+      }
     }
   }, [props])
   
@@ -90,7 +92,7 @@ const index = (props) => {
 
       <div className={styles.Item +' '+styles.button} >
 
-        {buttonAllow ? <Button onClick={() => checarStatus(props.id)}>Checar Pagamento</Button> : <Button disabled={true}>Checar Pagamento</Button>}
+        {buttonAllow ? <Button onClick={() => checarStatus(props.id)}>Entregar</Button> : <Button disabled={true}>Entregue</Button>}
         
       </div>
       

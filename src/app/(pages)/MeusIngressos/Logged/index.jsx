@@ -54,8 +54,6 @@ const index = (props) => {
 
         </Col>
       </Row>
-
-      
     </>
   )
 }

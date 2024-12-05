@@ -3,6 +3,16 @@
   margin: auto;
 }
 
+.label{
+  color: #F4016A;
+}
+
+.error{
+  text-align: end;
+  width: 100%;
+  color: red;
+}
+
 @media screen and (max-width:600px) {
   .form{
     width: 100%;

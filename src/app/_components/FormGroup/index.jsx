@@ -7,11 +7,13 @@ import styles from './styles.module.css'
 
 const index = (props) => {
 
-    const types = [["Nome Completo", "text",''],["Email", "email",'example@email.com'],["Confirmar Email", "confirmarEmail",'example@email.com'],["CPF", "text",'xxx.xxx.xxx-xx'],["Quantidade", "number",'1']];
+    const types = [["Nome Completo", "text",''],["Email", "email",'example@email.com'],["Confirmar Email", "confirmarEmail",'example@email.com'],["CPF", "text",'xxx.xxx.xxx-xx'],["Quantidade", "number",'1'],["Senha", "password",''],["Usuário", "text",'']];
 
     var aux = '';
 
-    if(props.type == 3){
+    if(props.type == 5){
+        aux = <Form.Control type={types[props.type][1]} placeholder={types[props.type][2]} value={props.valor} onChange={(ev) => props.setting(ev.target.value)}/>;
+    }else if(props.type == 3){
         aux = <Form.Control type={types[props.type][1]} placeholder={types[props.type][2]} maxLength='14' value={props.valor} onChange={(ev) => props.setting(ev.target.value)}/>;
     }else if(props.type != 4){
         aux = <Form.Control type={types[props.type][1]} placeholder={types[props.type][2]} value={props.valor} onChange={(ev) => props.setting(ev.target.value)}/>;

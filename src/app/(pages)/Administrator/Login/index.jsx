@@ -1,33 +1,86 @@
+'use client'
+
 import React from 'react'
 import { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 
 import styles from './styles.module.css'
+
+import FormGroup from '../../../_components/FormGroup'
+import StyledButton from '../../../_components/StyledButton'
+
+import { hashPassword2 } from '../../../database/utilidades'
 
 const index = (props) => {
   const [data, setData] = useState([]);
 
+  const [login, setLogin] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+  const onButtonClick = async () => {
+    // Set initial error values to empty
+    setEmailError('')
+    setPasswordError('')
+
+    // Check if the user has entered both fields correctly
+    if ('' === login) {
+      setEmailError('Campo vazio')
+      return
+    }
+
+    if ('' === password) {
+      setPasswordError('Campo vazio')
+      return
+    }
+
+    if (password.length < 7) {
+      setPasswordError('Senha Inválida')
+      return
+    }
+
+
+    // URL do endpoint com a chave de API
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
+    
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getAdmin.php?api_key=${apiKey}&login=${login}`;
+    console.log(url)
+    await fetch(url)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+      setData(data)
+      if(data.length == 1){
+        
+        var senha = hashPassword2(data[0].salt, password)
+        
+        if(data[0].hash == senha){
+          console.log('logado!!')
+          props.setLoggedIn(true)
+          console.log(props.loggedIn)
+        }else{
+          setPasswordError('Credenciais incorretas')
+        }
+      }else{
+        setEmailError("login não encontrado")
+      }
+    })
+    .catch((error) => console.log(error));
+      
+  };
+
   
   return (
     <Form className={styles.form}>
+      <FormGroup type={6} valor={login}  setting={setLogin}    error={emailError}/>
+      <FormGroup type={5} valor={password}  setting={setPassword}  error={passwordError}/>
 
-      <Form.Group className="mb-3">
-          <Form.Label>Senha</Form.Label>
-            <Form.Control type={'text'} placeholder={'login'}  id='login' onChange={(ev) => props.setLogin(ev.target.value)}/>
-          <Form.Label>{props.loginError}</Form.Label>
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-          <Form.Label>Senha</Form.Label>
-            <Form.Control type={'password'} placeholder={'senha'}  id='senha' onChange={(ev) => props.setSenha(ev.target.value)}/>
-          <Form.Label>{props.senhaError}</Form.Label>
-      </Form.Group>
-
-      <Button 
-        onClick={props.logar} 
-        style={{width: '50%', margin: 'auto 25%'}}>
-        Acessar
-      </Button>
+      <StyledButton texto={'Acessar'} action={onButtonClick}/>
 
     </Form>
   )

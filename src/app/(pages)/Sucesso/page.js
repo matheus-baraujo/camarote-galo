@@ -143,7 +143,7 @@ export default function Home() {
           const idPagamento = paymentId
           const status = result.status;
           // CREATE COMPRA
-          const apiKey = 'minha_chave_secreta';
+          const apiKey = process.env.NEXT_PUBLIC_DB_API;
           const clienteData = {apiKey, idPreference, idPagamento, status};
           const token = process.env.NEXT_PUBLIC_DB_URL;
           const url = token+`createCompra.php`;
