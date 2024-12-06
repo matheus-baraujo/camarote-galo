@@ -91,16 +91,34 @@ export default function Home() {
 
     async function enviarEmail(email, codigo) {
       try {
-          const url = `https://sevcnaoforeuvou.com.br/enviar_email.php?email=${encodeURIComponent(email)}&codigo=${encodeURIComponent(codigo)}`;
+          // const url = `https://sevcnaoforeuvou.com.br/send_email.php?email=${encodeURIComponent(email)}&codigo=${encodeURIComponent(codigo)}`;
           
-          const response = await fetch(url);
+          // const response = await fetch(url);
           
-          if (response.ok) {
-              const textoResposta = await response.text();
-              console.log("email enviado com sucesso");
-          } else {
-              console.error("Erro ao realizar a requisição");
-          }
+          // if (response.ok) {
+          //     const textoResposta = await response.text();
+          //     console.log("email enviado com sucesso");
+          // } else {
+          //     console.error("Erro ao realizar a requisição");
+          // }
+
+
+          const url = 'https://sevcnaoforeuvou.com.br/send_email.php'
+
+          await fetch('https://seudominio.com/send_email.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                email: email,
+                codigo: codigo,
+            }),
+          })
+          .then(response => response.text())
+          .then(data => console.log(data))
+          .catch(error => console.error('Erro:', error));
+
       } catch (erro) {
           console.error("Erro na requisição");
       }
@@ -199,7 +217,7 @@ export default function Home() {
         
                 if (response.ok) {
                     const cliente =  response.json();
-                    enviarEmail( cliente.email, codigo)
+                    enviarEmail(cliente.email, codigo)
                 } else {
                     const erro = response.json();
                     console.error("Erro:", erro.error || "Erro desconhecido");
