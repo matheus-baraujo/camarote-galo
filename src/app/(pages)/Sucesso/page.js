@@ -91,17 +91,6 @@ export default function Home() {
 
     async function enviarEmail(email, codigo) {
       try {
-          // const url = `https://sevcnaoforeuvou.com.br/send_email.php?email=${encodeURIComponent(email)}&codigo=${encodeURIComponent(codigo)}`;
-          
-          // const response = await fetch(url);
-          
-          // if (response.ok) {
-          //     const textoResposta = await response.text();
-          //     console.log("email enviado com sucesso");
-          // } else {
-          //     console.error("Erro ao realizar a requisição");
-          // }
-
 
           const url = 'https://sevcnaoforeuvou.com.br/send_email.php'
 
