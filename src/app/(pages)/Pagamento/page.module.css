@@ -6,9 +6,52 @@
     margin-bottom: 50px;
 }
 
+.selector{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.option{
+    padding: 30px;
+    background-color: #F4016A;
+    color: white;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    font-size: 18px;
+    border: 2px solid purple;
+    transition: ease-in-out .3s;
+}
+
+.option p{
+    margin: auto;
+}
+
+
+.option:hover{
+    transform: translate(-3px,-3px);
+    box-shadow: 3px 3px 3px purple;
+    text-shadow: 3px 3px 3px purple;
+    border: 2px solid white;
+}
+
 @media screen and (max-width:600px) {
     .title{
         margin-bottom: 25px;
+    }
+
+    .selector{
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .option{
+        margin: auto;
     }
 }
 

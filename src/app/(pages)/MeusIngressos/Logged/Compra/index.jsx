@@ -74,7 +74,7 @@ const index = (props) => {
   return (
     <div className={styles.Card}>
       <div className={styles.Item}>
-        <p>Quant</p>
+        <p>Ingressos</p>
         <p className={styles.Valor}>{props.quant}</p>
       </div>
 

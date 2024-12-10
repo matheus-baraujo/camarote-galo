@@ -9,15 +9,17 @@ import styles from './styles.module.css'
 import FormGroup from '../../../_components/FormGroup'
 import StyledButton from '../../../_components/StyledButton'
 
+import { hashPassword2 } from '@/app/database/utilidades';
+
 const index = (props) => {
 
   const [data, setData] = useState([]);
 
-  const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('')
-
   const [cpf, setCpf] = useState('')
   const [cpfError, setCpfError] = useState('')
+  
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const cpfMask = (value) => {
     return value
@@ -36,20 +38,12 @@ const index = (props) => {
 
   const onButtonClick = async () => {
     // Set initial error values to empty
-    setEmailError('')
     setCpfError('')
+    setPasswordError('')
 
 
     // Check if the user has entered fields correctly
     
-    if ('' === email) {
-      setEmailError('Campo vazio')
-      return
-    }
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError('Email inválido')
-      return
-    }
     if ('' === cpf) {
       setCpfError('Campo vazio')
       return
@@ -58,7 +52,14 @@ const index = (props) => {
       setCpfError('CPF inválido')
       return
     }
-
+    if ('' === password) {
+      setPasswordError('Campo vazio')
+      return
+    }
+    if (password.length < 6) {
+      setPasswordError('Senha deve ter 6 ou mais caracteres')
+      return
+    }
     
 
     // URL do endpoint com a chave de API
@@ -76,15 +77,18 @@ const index = (props) => {
     .then((data) => {
       setData(data)
       //console.log(data)
-      var count = Object.keys(data).length / 4;
+      var count = Object.keys(data).length / 8;
       //console.log(count)
       //console.log(cpf)
       //console.log(email)
       
       if(count == 1){
-        if(data.cpf == cpf && data.email == email){
+
+        var hash = hashPassword2(data.salt, password)
+
+        if(data.cpf == cpf && data.senha == hash){
           //console.log('logado!!')
-          props.lembrarCliente(data.nome, data.cpf, data.email)
+          props.lembrarCliente(data.nome, data.cpf, data.email, data.cep, data.telefone)
           props.setLogin(true);
         }else{
           //console.log('credenciais incorretas')
@@ -102,8 +106,9 @@ const index = (props) => {
 
   return (
     <Form className={styles.form}>
-      <FormGroup type={1} valor={email}   setting={setEmail}    error={emailError}/>
       <FormGroup type={3} valor={cpf}     setting={alterarCpf}  error={cpfError}/>
+      <FormGroup type={5} valor={password}   setting={setPassword}    error={passwordError}/>
+
 
       <StyledButton texto={'Acessar'} action={onButtonClick}/>
 

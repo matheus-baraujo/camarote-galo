@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Row, Col } from 'react-bootstrap'
 
 import Compra from './Compra'
+import styles from './styles.module.css'
 
 const index = (props) => {
 
@@ -37,11 +38,22 @@ const index = (props) => {
   return (
     <>
       <Row style={{margin:'auto'}}>
-        <Col xs={12}>
-          <div>
-            <p>Cliente: {props.cliente}</p>
-            <p>CPF: {props.clienteCpf}</p>
-            <p>Email: {props.clienteEmail}</p>
+        <Col xs={12} style={{padding: 0}}>
+          <div className={styles.clientInfo}>
+            <label className={styles.label} htmlFor="cliente">Cliente</label>
+            <p id='cliente'> {props.cliente}</p>
+
+            <label className={styles.label} htmlFor="cpf">CPF</label>
+            <p id='cpf'>{props.clienteCpf}</p>
+
+            <label className={styles.label} htmlFor="email">Email</label>
+            <p id='email'>{props.clienteEmail}</p>
+
+            <label className={styles.label} htmlFor="cep">Cep</label>
+            <p id='cep'>{props.clienteCep}</p>
+
+            <label className={styles.label} htmlFor="tel">Telefone</label>
+            <p id='tel'>{props.clienteTelefone}</p>
           </div>
 
           {
