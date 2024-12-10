@@ -155,6 +155,9 @@ export default function Home() {
           const token = process.env.NEXT_PUBLIC_DB_URL;
           const url = token+`createCompra.php`;
 
+          //console.log(url)
+          //console.log(clienteData)
+
           fetch(url, {
             method: 'POST',
             headers: {
@@ -178,7 +181,9 @@ export default function Home() {
 
             const url = token+`updateCompra.php`;
 
-            //console.log(url)
+            console.log(url)
+            console.log(updateCompraData)
+
             fetch(url, {
               method: 'POST',
               headers: {
@@ -194,34 +199,17 @@ export default function Home() {
             })
             .then((data) => {
 
-              const url = `http://localhost/enviar_email.php?preference=${encodeURIComponent(idPreference)}&api_key=${encodeURIComponent(apiKey)}`;
-
               try {
-                const response = fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-        
-                if (response.ok) {
-                    const cliente =  response.json();
-                    enviarEmail(cliente.email, codigo)
-                } else {
-                    const erro = response.json();
-                    console.error("Erro:", erro.error || "Erro desconhecido");
-                }
-            } catch (erro) {
-                console.error("Erro na requisição:", erro);
-            }
+                enviarEmail(cliente.email, codigo)
+              } catch (erro) {
+                  console.error("Erro no email");
+              }
 
-
-              
             })
-            .catch((error) => console.log('erro de atulalização'));
+            .catch((error) => console.error(error.message));
 
           })
-          .catch((error) => console.log('erro no banco'));
+          .catch((error) => console.error(error.message));
 
         })
         .catch((error) => console.error('erro api - busca do pagamento'));
@@ -239,6 +227,7 @@ export default function Home() {
             <p> <span>{cod}</span> </p>
             <p>Orientamos que guarde este código.</p>
             <p>Você receberá uma cópia do código de recebimento do kit em seu email.</p>
+            <p>Caso não receba o email, por favor verifique sua caixa de spam.</p>
             <p>Ou poderá acessar seus ingressos e códigos em:</p>
 
             <StyledButton texto={'Meus ingressos'} action={Ingressos} />

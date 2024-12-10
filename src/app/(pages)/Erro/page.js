@@ -18,7 +18,6 @@ const Ingressos = () => {
 
 export default function Erro() {
 
-  
 
   useEffect(()=>{
     
@@ -143,57 +142,37 @@ export default function Erro() {
                 return response.json();
             })
             .then((data) => {
-              //console.log('compra criada com sucesso')
-  
-              // UPDATE COMPRA
-              const updateCompraData = {apiKey, idPagamento, status, codigo};
-  
-              //console.log(updateCompraData)
-  
-              const url = token+`updateCompra.php`;
-  
-              //console.log(url)
-              fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updateCompraData),
-              })
-              .then((response) => {
-                  if (!response.ok) {
-                      throw new Error(`Erro: ${response.status}`);
-                  }
-                  return response.json();
-              })
-              .then((data) => {
-  
-                const url = `http://localhost/enviar_email.php?preference=${encodeURIComponent(idPreference)}&api_key=${encodeURIComponent(apiKey)}`;
-  
-                try {
-                  const response = fetch(url, {
-                      method: "GET",
-                      headers: {
-                          "Content-Type": "application/json"
-                      }
-                  });
-          
-                  if (response.ok) {
-                      const cliente =  response.json();
-                      enviarEmail( cliente.email, codigo)
-                  } else {
-                      const erro = response.json();
-                      console.error("Erro:", erro.error || "Erro desconhecido");
-                  }
-              } catch (erro) {
-                  console.error("Erro na requisição:", erro);
-              }
-  
-  
+              if(status == 'approved'){
                 
-              })
-              .catch((error) => console.log('erro de atulalização'));
-  
+                const updateCompraData = {apiKey, idPagamento, status, codigo};
+
+                //console.log(updateCompraData)
+
+                const url = token+`updateCompra.php`;
+
+                //console.log(url)
+                //console.log(updateCompraData)
+
+                fetch(url, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(updateCompraData),
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+
+                  console.log('compra atualizada')
+
+                })
+                .catch((error) => console.error(error.message));
+              }
             })
             .catch((error) => console.log('erro no banco'));
   
