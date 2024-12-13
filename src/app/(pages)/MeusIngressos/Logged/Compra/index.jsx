@@ -22,16 +22,19 @@ const index = (props) => {
       redirect: "follow"
     };
     const url = 'https://api.mercadopago.com/v1/payments/'+id;
+
+    //console.log(url)
+    //console.log(token)
     await fetch(url, requestOptions)
       .then((response) => response.json())
       .then((data)=> {
         //console.log(result)
         var codigo = '';
-        if(result.status == 'approved'){
+        if(data.status == 'approved'){
           codigo = makeCod()
           setCod(codigo)
         }
-        const status = result.status;
+        const status = data.status;
         const apiKey = process.env.NEXT_PUBLIC_DB_API;
 
         let idPagamento = id;
@@ -57,7 +60,7 @@ const index = (props) => {
         })
         .catch((error) => console.log('erro de atulalização'));
       })
-      .catch((error) => console.error('erro api - busca do pagamento'));
+      .catch((error) => console.error(error));
   }
 
   useEffect(()=>{

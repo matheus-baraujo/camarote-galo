@@ -13,15 +13,21 @@ const index = () => {
   const [cpf, setCpf] = useState('')
   const [cpfError, setCpfError] = useState('')
 
+  const [searched, setSearched] = useState(false)
   const [found, setFound] = useState(false)
+
   const [cliente,setCliente] = useState('');
   const [clienteCpf,setClienteCpf] = useState('');
   const [clienteEmail,setClienteEmail] = useState('');
+  const [clienteCep,setClienteCep] = useState('');
+  const [clienteTelefone,setClienteTelefone] = useState('');
 
-  const lembrarCliente = (nome, cpf, email) =>{
+  const lembrarCliente = (nome, cpf, email, cep, telefone) =>{
     setCliente(nome);
     setClienteCpf(cpf);
     setClienteEmail(email);
+    setClienteCep(cep);
+    setClienteTelefone(telefone);
   }
 
   const cpfMask = (value) => {
@@ -73,16 +79,22 @@ const index = () => {
         return response.json();
     })
     .then((data) => {
-      var count = Object.keys(data).length / 4;
+      var count = Object.keys(data).length / 8;
       
       if(count == 1){
-        lembrarCliente(data.nome, data.cpf, data.email)
+        lembrarCliente(data.nome, data.cpf, data.email, data.cep, data.telefone)
         setFound(true)
+        
       }else{
-        console.log("registro não encontrado")
+        //console.log("registro não encontrado")
+        setFound(false)
       }
+      setSearched(true)
     })
-    .catch((error) => console.log(error.message));
+    .catch((error) => {
+      setFound(false)
+      setSearched(true)
+    });
   }
 
   const onButtonClick = async () => {
@@ -113,18 +125,32 @@ const index = () => {
       </Form>
 
       {found ? 
-          <div>
-            <p>Cliente: {cliente}</p>
-            <p>CPF: {clienteCpf}</p>
-            <p>Email: {clienteEmail}</p>
-          </div> : <></>}
+          <div className={styles.clientInfo}>
+            <label htmlFor="client" className={styles.label}>Nome</label>
+            <p id='client'>{cliente}</p>
+            <label htmlFor="cpf" className={styles.label}>Cpf</label>
+            <p id='cpf'>{clienteCpf}</p>
+            <label htmlFor="email" className={styles.label}>Email</label>
+            <p id='email'>{clienteEmail}</p>
+            <label htmlFor="cep" className={styles.label}>Cep</label>
+            <p id='cep'>{clienteCep}</p>
+            <label htmlFor="telefone" className={styles.label}>Telefone</label>
+            <p id='telefone'>{clienteTelefone}</p>
+          </div> 
+          : searched ? 
+          <>
+            <p className={styles.notFound}>Registro não encontrado</p>
+          </> : <></>}
 
       {
-        data.map((item) =>{
-          return(
-            <Compra key={item.id} codigo={item.codigoRecebimento} id={item.idPagamento} status={item.status} quant={item.quant} recebimento={item.statusRecebimento} action={fetchData}/>
-          )
-        })
+        found ?
+          data.map((item) =>{
+            return(
+              <Compra key={item.id} codigo={item.codigoRecebimento} id={item.idPagamento} status={item.status} quant={item.quant} recebimento={item.statusRecebimento} action={fetchData}/>
+            )
+          })
+          :
+          <></>
       }
     
     </>
