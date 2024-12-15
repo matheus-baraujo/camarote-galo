@@ -7,8 +7,68 @@ import FormGroup from '../../../_components/FormGroup'
 import StyledButton from '../../../_components/StyledButton'
 import Compra from './Compra'
 
+import DataTable from 'react-data-table-component';
+
 const index = () => {
   const [data, setData] = useState([]);
+
+  const [lista, setLista] = useState(false);
+  const columns = [
+    {
+      name: 'ID',
+      selector: row => row.id,
+      width: '60px',
+      sortable: true,
+    },
+    {
+      name: 'Nome',
+      selector: row => row.nome,
+      grow: 2,
+    },
+    {
+      name: 'Cpf',
+      selector: row => row.cpf,
+      grow: 2,
+    },
+    {
+      name: 'Ingressos',
+      selector: row => row.ingressos,
+      width: '120px',
+      sortable: true,
+    },
+  ];
+  const data2 = [
+  	{
+      id: 2,
+      nome: 'Matheus Batista de Araújo',
+      cpf: '702.220.304-02',
+      ingressos: '20',
+    },
+    {
+      id: 1,
+      nome: 'Teste2',
+      cpf: '702.220.304-02',
+      ingressos: '20',
+    },
+  ]
+  const customStyles = {
+    cells: {
+      style: {
+        // padding: '8px', // Ajusta o espaçamento interno
+        justifyContent: 'center',
+      },
+    },
+    headCells: {
+      style: {
+        // fontSize: '16px', // Personaliza o cabeçalho
+        color: "#F4016A",
+        fontWeight: "bold",
+        padding: 0,
+        justifyContent: 'center',
+      },
+    },
+  };
+
 
   const [cpf, setCpf] = useState('')
   const [cpfError, setCpfError] = useState('')
@@ -111,17 +171,35 @@ const index = () => {
       return
     }
 
+    setLista(false);
     getCliente();
     fetchData();
   };
 
+  const listar = async () => {
+    setData([]);
+    setSearched(false);
+    setFound(false);
+    setLista(true);
+  }
+  
   return (
     <>
       <Form className={styles.form}>
         <FormGroup className={styles.formGroup} type={3} valor={cpf}  setting={alterarCpf}   error={cpfError}/>
 
-        <Button className={styles.busca} onClick={onButtonClick}>Buscar Cliente</Button>
 
+        <div className={styles.buttons}>
+          <Button className={styles.busca} onClick={onButtonClick}>Buscar Cliente</Button>
+
+          {
+            lista ? 
+            <><Button className={styles.lista} onClick={() => setLista(false)}>Esconder lista</Button></>
+            : 
+            <><Button className={styles.lista} onClick={listar}>Listar todos</Button></> 
+          }
+          
+        </div>
       </Form>
 
       {found ? 
@@ -140,7 +218,8 @@ const index = () => {
           : searched ? 
           <>
             <p className={styles.notFound}>Registro não encontrado</p>
-          </> : <></>}
+          </> : <></>
+      }
 
       {
         found ?
@@ -152,9 +231,28 @@ const index = () => {
           :
           <></>
       }
+
+      {
+        lista ? 
+          <>
+            <DataTable
+              columns={columns}
+              data={data2}
+              customStyles={customStyles}
+              direction="auto"
+              fixedHeader
+              fixedHeaderScrollHeight="300px"
+              pagination
+              responsive
+              striped
+              subHeaderAlign="right"
+              subHeaderWrap
+            /> 
+          </> : 
+          <></>
+      }
     
     </>
-    
   )
 }
 
