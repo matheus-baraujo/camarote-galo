@@ -32,25 +32,28 @@ const index = () => {
     },
     {
       name: 'Ingressos',
-      selector: row => row.ingressos,
+      selector: row => row.quantidade_total,
       width: '120px',
       sortable: true,
     },
   ];
-  const data2 = [
-  	{
-      id: 2,
-      nome: 'Matheus Batista de Araújo',
-      cpf: '702.220.304-02',
-      ingressos: '20',
-    },
-    {
-      id: 1,
-      nome: 'Teste2',
-      cpf: '702.220.304-02',
-      ingressos: '20',
-    },
-  ]
+  // const data2 = [
+  // 	{
+  //     id: 2,
+  //     nome: 'Matheus Batista de Araújo',
+  //     cpf: '702.220.304-02',
+  //     ingressos: '20',
+  //   },
+  //   {
+  //     id: 1,
+  //     nome: 'Teste2',
+  //     cpf: '702.220.304-02',
+  //     ingressos: '20',
+  //   },
+  // ]
+
+  const [data2, setData2] = useState();
+
   const customStyles = {
     cells: {
       style: {
@@ -177,6 +180,25 @@ const index = () => {
   };
 
   const listar = async () => {
+
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
+    const url = process.env.NEXT_PUBLIC_DB_URL+`listAll.php?api_key=${apiKey}`;
+    
+    await fetch(url)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+      //console.log(data)
+      setData2(data);
+    })
+    .catch((error) => console.log(error.message));
+
+
+
     setData([]);
     setSearched(false);
     setFound(false);
