@@ -257,7 +257,7 @@ const index = () => {
                 "id": "010983098",
                 "title": "Ingresso - Se você não for eu vou",
                 "quantity": quant,
-                "unit_price": 1,
+                "unit_price": 340,
                 "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
               }
             ],
@@ -268,7 +268,7 @@ const index = () => {
             "payment_methods": {
               "excluded_payment_types": [{ id: "ticket" },],
               "excluded_payment_methods": [{ id: "bolbradesco" },],
-              "installments": 340
+              "installments": 1
             },
             "notification_url": "",
             "expires": false
