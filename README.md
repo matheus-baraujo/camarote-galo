@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ticket Sale Platform for a Camarote
+
+This project is a website/platform developed to facilitate ticket sales for a camarote (VIP lounge) during events. The application was built with Next.js and JavaScript for the frontend and utilizes PHP and MySQL for backend operations. Communication between the frontend and backend is handled via REST API calls.
+
+---
+
+## Features
+
+- **Ticket sales and management**: Users can browse available tickets and make purchases.
+- **Interactive user interface**: Built using `react-bootstrap` and other React libraries for a dynamic and responsive user experience.
+- **Data security**: Passwords are securely hashed using `bcrypt`.
+- **Photo galleries and lightbox**: Users can view event photos through a visually appealing gallery.
+- **Smooth navigation**: Implemented scroll-spy for seamless navigation across sections.
+
+---
+
+## Technologies Used
+
+### Frontend
+- **Next.js**: Framework for server-rendered React applications.
+- **JavaScript**: Core language for frontend logic.
+
+### Backend
+- **PHP**: Handles API routes for database operations.
+- **MySQL**: Relational database for storing user and ticket data.
+
+### REST API
+- APIs are implemented in PHP and maintained separately from the Next.js project. The frontend communicates with the backend via `fetch` calls for CRUD operations.
+
+---
+
+## NPM Packages
+
+The following npm packages were utilized in this project:
+
+- **bcrypt**: For hashing user passwords securely.
+- **react-bootstrap**: For building responsive and modern UI components.
+- **dotenv**: For managing environment variables securely.
+- **md5**: Used for generating unique hashes.
+- **mysql2**: For interacting with the MySQL database.
+- **react-photo-album**: For creating photo galleries.
+- **react-ui-scrollspy**: To implement smooth navigation with scroll-spy functionality.
+- **react-data-table-component**: For displaying tabular data interactively.
+- **yet-another-react-lightbox**: For creating a responsive and interactive lightbox for images.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+Ensure you have the following installed on your system:
+- Node.js
+- npm or yarn
+- PHP (with a server such as Apache or Nginx)
+- MySQL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create a `.env` file in the root directory and define your environment variables. Follow the example
 
-## Learn More
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. Ensure the backend PHP server is running and accessible at the API URL specified in your `.env` file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Folder Structure
 
-## Deploy on Vercel
+- **`(pages)/`**: Contains all Next.js pages.
+- **`_components/`**: Reusable React components.
+- **`database/`**: Utility functions for the application (in majority associated with password creation).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+The backend API handles operations such as:
+- **User Authentication**: Registration and login with secure password handling.
+- **Ticket Management**: CRUD operations for tickets.
+- **Order Management**: Handling purchase orders.
+
+---
+
+## Deployment
+
+1. Build the Next.js application:
+   ```bash
+   npm run build
+   ```
+2. Deploy the application to your preferred hosting service (e.g., Vercel, Netlify, or your own server).
+3. Deploy the backend PHP API to a web server and ensure it connects to the MySQL database.
+
+---
