@@ -1,6 +1,6 @@
-# Ticket Sale Platform for a Camarote
+# Ticket Sale Platform
 
-This project is a website/platform developed to facilitate ticket sales for a camarote (VIP lounge) during events. The application was built with Next.js and JavaScript for the frontend and utilizes PHP and MySQL for backend operations. Communication between the frontend and backend is handled via REST API calls.
+This project is a website/platform developed to facilitate ticket sales for a camarote (VIP lounge) during an event. The application was built with Next.js and JavaScript for the frontend and utilizes PHP and MySQL for backend operations. Communication between the frontend and backend is handled via REST API calls.
 
 ---
 
