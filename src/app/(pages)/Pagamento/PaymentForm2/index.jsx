@@ -121,7 +121,8 @@ const index = () => {
               "excluded_payment_methods": [{ id: "bolbradesco" },],
               "installments": 1
             },
-            "notification_url": "",
+            "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
+            "external_reference":cpf,
             "expires": false
           });
           const requestOptions = {
