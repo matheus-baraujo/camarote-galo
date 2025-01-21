@@ -15,7 +15,7 @@ const index = () => {
         <li>ICE</li>
         <li>Energético</li>
         <li>Água de coco</li>
-        <li>Guaraná</li>
+        <li>Refrigerante</li>
         <li>Água mineral</li>
       </ul>
       
