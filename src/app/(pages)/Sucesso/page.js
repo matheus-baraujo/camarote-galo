@@ -138,7 +138,7 @@ export default function Home() {
         .then((response) => response.json())
         .then((result) => {
         
-          console.log(result)
+          //console.log(result)
       
           var codigo = '';
           if(result.status == 'approved'){
@@ -181,8 +181,8 @@ export default function Home() {
 
             const url = token+`updateCompra.php`;
 
-            console.log(url)
-            console.log(updateCompraData)
+            //console.log(url)
+            //console.log(updateCompraData)
 
             fetch(url, {
               method: 'POST',

@@ -96,7 +96,7 @@ const index = () => {
           myHeaders.append("Content-Type", "application/json");
           myHeaders.append("Authorization", token);
           const raw = JSON.stringify({
-            "auto_return": "approved",
+            "auto_return": "",
             "back_urls": {
               "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
               "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
@@ -121,6 +121,7 @@ const index = () => {
               "excluded_payment_methods": [{ id: "bolbradesco" },],
               "installments": 1
             },
+            //"notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
             "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
             "external_reference": cpf,
             "expires": false
@@ -131,7 +132,7 @@ const index = () => {
             body: raw,
             redirect: "follow"
           };
-
+          
           //console.log(raw)
 
           fetch("https://api.mercadopago.com/checkout/preferences", requestOptions)
