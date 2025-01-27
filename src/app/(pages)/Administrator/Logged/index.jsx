@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
 import styles from './styles.module.css'
@@ -36,23 +36,33 @@ const index = () => {
       width: '120px',
       sortable: true,
     },
+    {
+      name: "Status da Compra",
+      selector: (row) => row.status_compra, // Para acesso no styling
+      omit: true, // Oculta a coluna na tabela
+    },
   ];
+
   // const data2 = [
-  // 	{
-  //     id: 2,
-  //     nome: 'Matheus Batista de Araújo',
-  //     cpf: '702.220.304-02',
-  //     ingressos: '20',
+  //   {
+  //     "id": 1,
+  //     "nome": "Cliente 1",
+  //     "cpf": "123.456.789-00",
+  //     "quantidade_total": 10,
+  //     "status_compra": "approved"
   //   },
   //   {
-  //     id: 1,
-  //     nome: 'Teste2',
-  //     cpf: '702.220.304-02',
-  //     ingressos: '20',
-  //   },
+  //     "id": 2,
+  //     "nome": "Cliente 2",
+  //     "cpf": "987.654.321-00",
+  //     "quantidade_total": 0,
+  //     "status_compra": "none"
+  //   }
   // ]
 
   const [data2, setData2] = useState();
+
+  const [totalIngressos, setTotalIngressos] = useState();
 
   const customStyles = {
     cells: {
@@ -72,6 +82,23 @@ const index = () => {
     },
   };
 
+  const conditionalRowStyles = [
+    {
+      when: (row) => row.status_compra === "approved",
+      style: {
+        backgroundColor: "#d4edda", // Verde claro
+        color: "#155724", // Verde escuro
+      },
+    },
+    {
+      when: (row) => row.status_compra === "pending",
+      style: {
+        backgroundColor: "#fff3cd", // Amarelo claro
+        color: "#856404", // Amarelo escuro
+      },
+    },
+    
+  ];
 
   const [cpf, setCpf] = useState('')
   const [cpfError, setCpfError] = useState('')
@@ -124,6 +151,25 @@ const index = () => {
     .then((data) => {
       setData(data)
       //console.log(data)
+    })
+    .catch((error) => console.log(error.message));
+  }
+
+  async function totalCompras(){
+    // URL do endpoint com a chave de API
+    const apiKey = process.env.NEXT_PUBLIC_DB_API;
+    
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getTotalCompras.php?api_key=${apiKey}`;
+    
+    await fetch(url)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+      setTotalIngressos(data.total_ingressos)
     })
     .catch((error) => console.log(error.message));
   }
@@ -204,6 +250,12 @@ const index = () => {
     setFound(false);
     setLista(true);
   }
+
+
+  useEffect(() => {
+    totalCompras();
+    //console.log(totalIngressos)
+  },[data2]);
   
   return (
     <>
@@ -257,6 +309,8 @@ const index = () => {
       {
         lista ? 
           <>
+            <p className={styles.totalIngressos}> Total de ingressos vendidos (aprovados) : <span>{totalIngressos}</span> </p>
+
             <DataTable
               columns={columns}
               data={data2}
@@ -269,6 +323,7 @@ const index = () => {
               striped
               subHeaderAlign="right"
               subHeaderWrap
+              conditionalRowStyles={conditionalRowStyles}
             /> 
           </> : 
           <></>

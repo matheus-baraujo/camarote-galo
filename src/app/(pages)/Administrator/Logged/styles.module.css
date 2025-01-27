@@ -43,6 +43,20 @@
   border-radius: 10px 10px 0px 0px;
 }
 
+.totalIngressos{
+  text-align: center;
+  background-color: rgba(255, 255, 255, .8);
+  padding: 3px;
+  font-weight: 300;
+  color: #F4016A;
+  border-radius: 10px;
+}
+
+.totalIngressos span{
+  color: black;
+  font-weight: bold;
+}
+
 .notFound{
   text-align: center;
   font-size: 20px;
