@@ -73,6 +73,10 @@
   opacity: .6;
 }
 
+.arrow{
+  height: auto;
+  width: 100%;
+}
 
 @media screen and (max-width: 600px ){
 
@@ -84,12 +88,14 @@
   
   .rightSide{
     min-height:200px; 
+    padding: 20px 0px;
   }
 
 
   .logo{
-    width: 100%;
-    left: 0%;
+    width: 75%;
+    left: 12.5%;
+    top: 37%;
   }
 
   .banner{
@@ -123,5 +129,10 @@
   }
   .button3{
     font-size: 17px;
+  }
+
+  .arrow{
+    width: 60%;
+    margin: auto;
   }
 }

@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import style from './styles.module.css'
+import style from './styles.module.css?v=7'
 import { Row, Col, Button } from 'react-bootstrap';
 
 const index = () => {
@@ -20,7 +20,7 @@ const index = () => {
           <a href='/Pagamento' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a>
           <a href='/MeusIngressos' className={style.button +' '+ style.button3} >Meus ingressos</a>
           <a href='/Galeria' className={style.button +' '+ style.button3} >Galeria</a>
-          <img src="/assets/arrows.png" height={'auto'} width={'100%'} alt="arrows" />
+          <img className={style.arrow} src="/assets/arrows.png"  alt="arrows" />
         </div>
         
       </Col>

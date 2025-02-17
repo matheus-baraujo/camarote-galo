@@ -45,7 +45,7 @@ var ano16 ={nome:'2016', fotos:['','h','','','','','h','','','',
 
 var outros ={nome:'outros', fotos:['h','h','','h','s','s','','','h','',
                                    'h','h','','h','h','h','h','','h','',
-                                   'h','h','h','','','h','','']}
+                                   'h','h','h','','','h','','','h']}
 
 const anos = [outros, ano16, ano17, ano18, ano19, ano20, ano24]
 

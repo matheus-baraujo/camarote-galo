@@ -12,7 +12,7 @@ const index = () => {
   };
 
   var videos = []
-  for (let index = 1; index < 13; index++) {
+  for (let index = 1; index < 17; index++) {
     let source = '/videos/video ('+index+').mp4'
     videos.push(source)
   }
