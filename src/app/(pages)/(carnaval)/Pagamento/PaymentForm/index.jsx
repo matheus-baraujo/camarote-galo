@@ -6,8 +6,8 @@ import React from 'react'
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './styles.module.css'
-import FormGroup from '../../../_components/FormGroup'
-import StyledButton from '../../../_components/StyledButton'
+import FormGroup from '../../../../_components/FormGroup'
+import StyledButton from '../../../../_components/StyledButton'
 
 import { hashPassword } from '@/app/database/utilidades';
 
@@ -257,7 +257,7 @@ const index = () => {
                 "id": "010983098",
                 "title": "Ingresso - Se você não for eu vou",
                 "quantity": quant,
-                "unit_price": 340,
+                "unit_price": 360,
                 "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
               }
             ],

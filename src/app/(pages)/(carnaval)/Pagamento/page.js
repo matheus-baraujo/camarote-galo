@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 
 import PaymentForm from './PaymentForm'
 import PaymentForm2 from './PaymentForm2'
-import BackgroundAssets from '../../_components/BackgroundAssets'
+import BackgroundAssets from '../../../_components/BackgroundAssets'
 
 export default function Pagamento() {
   

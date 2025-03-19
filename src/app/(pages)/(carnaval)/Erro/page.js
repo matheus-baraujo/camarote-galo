@@ -9,8 +9,8 @@ import { useSearchParams } from 'next/navigation'
 import { makeCod } from "@/app/database/utilidades";
 import { useEffect, useState } from "react";
 
-import BackgroundAssets from '../../_components/BackgroundAssets'
-import StyledButton from '../../_components/StyledButton'
+import BackgroundAssets from '../../../_components/BackgroundAssets'
+import StyledButton from '../../../_components/StyledButton'
 
 const Ingressos = () => {
   window.location.href = '/MeusIngressos';

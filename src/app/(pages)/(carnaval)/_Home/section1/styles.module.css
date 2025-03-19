@@ -78,6 +78,13 @@
   width: 100%;
 }
 
+.buttonSold, .buttonSold:hover{
+  opacity: .8;
+  background-color: #f9f921;
+  color: #F4016A;
+  border: solid 5px #F4016A;
+}
+
 @media screen and (max-width: 600px ){
 
 
@@ -134,5 +141,14 @@
   .arrow{
     width: 60%;
     margin: auto;
+  }
+
+  .buttonSold{
+    font-size: 25px;
+    border: solid 3px #F4016A;
+  }
+
+  .buttonSold:hover{
+    border: solid 3px #F4016A;
   }
 }
