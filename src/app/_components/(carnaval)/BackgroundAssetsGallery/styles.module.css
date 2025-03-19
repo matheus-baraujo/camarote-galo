@@ -1,0 +1,90 @@
+.Logo{
+  position: fixed;
+  z-index: -2;
+  height: auto;
+  width: 300px;
+  top: 5%;
+  left: 5%;
+}
+
+
+.cornerBottom, .cornerTop{
+  position: fixed;
+  z-index: -1;
+}
+
+.cornerBottom{
+  bottom: 0;
+  left: 0;
+}
+
+.cornerTop{
+  transform: rotate(180deg);
+  top: 0;
+  right: 0;
+}
+
+.points, .points2, .points3, .arrows{
+  position: fixed;
+  z-index: -3;
+}
+
+.points, .points2, .points3{
+  height: auto;
+  width: 250px;
+}
+
+.points{
+  bottom: 15%;
+  left: 10%;
+  rotate: 90deg;
+}
+
+.points2{
+  right: 1%;
+  bottom: 1%;
+  rotate: 180deg;
+}
+
+.points3{
+  top: 18%;
+  right: 12%;
+}
+
+.arrows{
+  right: 2%;
+  bottom: 25%;
+  rotate: 180deg;
+}
+
+@media screen and (max-width:600px) {
+  .Logo{
+      z-index: -3;
+      top: 30%;
+      opacity: 50%;
+  }
+  
+  .cornerBottom, .cornerTop{
+      z-index: -3;
+      width: 150px;
+  }
+
+  .points, .points2, .points3, .arrows{
+      z-index: -3;
+  }
+
+  .points, .points2, .points3{
+      width: 100px;
+  }
+
+  .arrows{
+      width: 150px;
+  }
+}
+
+
+@media screen and (min-width:1441px) {
+  .Logo{
+    width: 350px;
+  }
+}

@@ -1,0 +1,30 @@
+.Card{
+  margin: 0 auto 50px;
+  margin-bottom: 50px;
+  background-color: #F4016A;
+  border: 5px solid #F9F921;
+  color: white;
+  border-radius: 25px;
+  align-items: center;
+  padding: 5px;
+  width: 45%;
+}
+
+.Card p{
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .Card{
+    width: 100%;
+    border: 2px solid #F9F921;
+  }
+
+  
+  .Card p{
+    font-size: 15px;
+  }
+}

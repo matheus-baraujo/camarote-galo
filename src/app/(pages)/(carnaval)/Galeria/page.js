@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import styles from './page.module.css'
 import { Container, Row, Col } from "react-bootstrap";
-import BackgroundAssetsGallery from '../../../_components/BackgroundAssetsGallery'
+import BackgroundAssetsGallery from '../../../_components/(carnaval)/BackgroundAssetsGallery'
 
 
 import Gallery from './Gallery'

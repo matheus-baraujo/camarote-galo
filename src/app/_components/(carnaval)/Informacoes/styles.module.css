@@ -1,0 +1,35 @@
+.Card{
+  margin: 60px auto;
+  background-color: #F9F921;
+  border-radius: 25px;
+  box-shadow: #962FBF -5px 10px 4px;
+  text-align: center;
+  padding: 5px;
+  width: 45%;
+}
+
+.Card h2{
+  color: #962FBF;
+  font-size: 60px;
+}
+
+.Card p{
+  color: #F4016A;
+  font-size: 40px;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .Card{
+    width: 60%;
+  }
+
+  .Card h2{
+    font-size: 25px;
+  }
+  
+  .Card p{
+    font-size: 20px;
+  }
+}
