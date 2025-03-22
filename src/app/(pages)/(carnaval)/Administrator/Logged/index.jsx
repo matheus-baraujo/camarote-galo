@@ -3,8 +3,8 @@ import { Button, Form } from 'react-bootstrap'
 
 import styles from './styles.module.css'
 
-import FormGroup from '../../../../_components/(carnaval)/FormGroup'
-import StyledButton from '../../../../_components/(carnaval)/StyledButton'
+import FormGroup from '../../../../../components/(carnaval)/FormGroup'
+import StyledButton from '../../../../../components/(carnaval)/StyledButton'
 import Compra from './Compra'
 
 import DataTable from 'react-data-table-component';

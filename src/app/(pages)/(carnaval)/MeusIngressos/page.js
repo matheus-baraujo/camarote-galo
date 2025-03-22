@@ -10,8 +10,8 @@ import Login from './Login'
 import Logged from './Logged'
 import { Button, Col } from "react-bootstrap";
 
-import BackgroundAssets from '../../../_components/(carnaval)/BackgroundAssets'
-import StyledButton from '../../../_components/(carnaval)/StyledButton'
+import BackgroundAssets from '../../../../components/(carnaval)/BackgroundAssets'
+import StyledButton from '../../../../components/(carnaval)/StyledButton'
 
 export default function MeusIngressos() {
 

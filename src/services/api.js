@@ -1,6 +1,6 @@
 const md5 = require('md5');
 
-import { hashPassword } from '@/app/utils/database';
+import { hashPassword } from '@/services/database';
 
 const apiKey = process.env.NEXT_PUBLIC_DB_API;
 const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;

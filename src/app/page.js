@@ -9,7 +9,7 @@ import Section1 from './(pages)/(carnaval)/_Home/section1'
 import Section2 from './(pages)/(carnaval)/_Home/section2'
 import Section3 from './(pages)/(carnaval)/_Home/section3'
 
-import BackroundAssetsHome from './_components/(carnaval)/BackgroundAssetsHome'
+import BackroundAssetsHome from '../components/(carnaval)/BackgroundAssetsHome'
 
 import { useState } from "react";
 
