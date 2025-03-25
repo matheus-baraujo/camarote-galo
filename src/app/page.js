@@ -5,11 +5,11 @@ import styles from "./page.module.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import Section1 from './(pages)/(carnaval)/_Home/section1'
-import Section2 from './(pages)/(carnaval)/_Home/section2'
-import Section3 from './(pages)/(carnaval)/_Home/section3'
+import Section1 from './(pages)/_Home/section1'
+import Section2 from './(pages)/_Home/section2'
+import Section3 from './(pages)/_Home/section3'
 
-import BackroundAssetsHome from '../components/(carnaval)/BackgroundAssetsHome'
+import BackroundAssetsHome from '../components/carnaval/BackgroundAssetsHome'
 
 import { useState } from "react";
 

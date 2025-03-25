@@ -9,12 +9,11 @@ import Login from './Login'
 import Logged from './Logged'
 import {Col, Row } from "react-bootstrap";
 
-import BackgroundAssets from '../../../../components/(carnaval)/BackgroundAssets'
-import StyledButton from '../../../../components/(carnaval)/StyledButton'
+import BackgroundAssets from '../../../components/carnaval/BackgroundAssets'
+import StyledButton from '../../../components/carnaval/StyledButton'
 
 export default function Administrator() {
 
-  const [data, setData] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false)
 
   const deslogar = () =>{

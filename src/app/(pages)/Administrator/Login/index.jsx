@@ -6,10 +6,10 @@ import { Form } from 'react-bootstrap'
 
 import styles from './styles.module.css'
 
-import FormGroup from '../../../../../components/(carnaval)/FormGroup'
-import StyledButton from '../../../../../components/(carnaval)/StyledButton'
+import FormGroup from '../../../../components/carnaval/FormGroup'
+import StyledButton from '../../../../components/carnaval/StyledButton'
 
-import { hashPassword2 } from '../../../../database/utilidades'
+import { hashPassword2 } from '../../../database/utilidades'
 
 const index = (props) => {
   const [data, setData] = useState([]);
