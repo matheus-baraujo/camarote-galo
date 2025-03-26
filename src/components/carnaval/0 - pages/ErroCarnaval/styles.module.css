@@ -1,0 +1,37 @@
+.title{
+  text-align: center;
+  font-size: 48px;
+  color: #F4016A;
+  text-shadow: #F9F921 3px 3px 4px;
+  margin-bottom: 50px;
+}
+
+.info{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.info p{
+  color: #F4016A;
+  font-size: 22px;
+}
+
+.info span{
+  color: black;
+  font-size: 36px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width:600px) {
+  .title{
+      margin-bottom: 25px;
+  }
+
+  .info{
+    width: 100%;
+  }
+}

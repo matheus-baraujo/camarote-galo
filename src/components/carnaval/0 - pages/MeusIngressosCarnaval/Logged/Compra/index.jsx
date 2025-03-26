@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 
-import { makeCod } from "@/app/database/utilidades";
+import { makeCod } from "@/services/database";
 
 const index = (props) => {
 
