@@ -30,9 +30,7 @@ export default function RootLayout({ children }) {
 
       <ContextoProvider>    
 
-        <body className={roboto.className} style={{position: 'relative'}}>
-          
-          <div style={{backgroundColor: 'rgba(224, 215, 223, 0.6)', position: 'absolute', width:'100%', height:'100%', zIndex:'-2'}}></div>
+        <body className={roboto.className}>
           {children}
         </body>
 
