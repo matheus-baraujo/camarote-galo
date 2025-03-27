@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { usarContexto } from '@/context/contexto';
 
-import ErroCarnaval from '../../../components/carnaval/0 - pages/ErroCarnaval'
+import ErroCarnaval from '@/components/carnaval/0 - pages/ErroCarnaval'
 
 export default function Erro() {
 
-  const [evento, setEvento] = useState("saojoao");
+  const { evento, setEvento } = usarContexto();
 
   return (
     evento == "carnaval" ?

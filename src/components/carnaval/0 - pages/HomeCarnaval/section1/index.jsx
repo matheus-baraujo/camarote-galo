@@ -10,18 +10,18 @@ const index = () => {
     <Row className={style.section+' px-3 px-md-5'} >
 
       <Col xs={12} md={6} className={style.leftSide}>
-        <img src="/assets/Logo.png" className={style.logo} alt="logo" />
+        <img src="/(carnaval)/assets/Logo.png" className={style.logo} alt="logo" />
       </Col>
 
       <Col xs={12}  md={6} className={style.rightSide}>
 
-        <img src="/assets/banner.jpg" className={style.banner} alt="banner" />
+        <img src="/(carnaval)/assets/banner.jpg" className={style.banner} alt="banner" />
         <div className={style.buttons}>
           {/* <a href='/Pagamento' className={style.button +' '+ style.button2} >Garanta já seu ingresso !!</a> */}
           <a href='/' className={style.button +' '+ style.button2 + ' ' + style.buttonSold} >INGRESSOS ESGOTADOS</a>
           <a href='/MeusIngressos' className={style.button +' '+ style.button3} >Meus ingressos</a>
           <a href='/Galeria' className={style.button +' '+ style.button3} >Galeria</a>
-          <img className={style.arrow} src="/assets/arrows.png"  alt="arrows" />
+          <img className={style.arrow} src="/(carnaval)/assets/arrows.png"  alt="arrows" />
         </div>
         
       </Col>

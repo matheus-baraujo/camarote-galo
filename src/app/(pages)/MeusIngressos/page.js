@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { usarContexto } from '@/context/contexto';
 
-import MeusIngressosCarnaval from '../../../components/carnaval/0 - pages/MeusIngressosCarnaval'
+import MeusIngressosCarnaval from '@/components/carnaval/0 - pages/MeusIngressosCarnaval'
 
 export default function MeusIngressos() {
 
-  const [evento, setEvento] = useState("saojoao");
+  const { evento, setEvento } = usarContexto();
 
   return(
     evento == "carnaval" ?

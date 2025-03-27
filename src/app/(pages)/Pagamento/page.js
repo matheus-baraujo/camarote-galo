@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { usarContexto } from '@/context/contexto';
 
-import PagamentoCarnaval from '../../../components/carnaval/0 - pages/PagamentoCarnaval'
+import PagamentoCarnaval from '@/components/carnaval/0 - pages/PagamentoCarnaval'
 
 export default function Pagamento() {
   
-  const [evento, setEvento] = useState("saojoao");
+  const { evento, setEvento } = usarContexto();
 
   return (
     evento == "carnaval" ?

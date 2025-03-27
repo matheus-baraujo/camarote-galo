@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { usarContexto } from '@/context/contexto';
 
-import GaleriaCarnaval from '../../../components/carnaval/0 - pages/GaleriaCarnaval'
+import GaleriaCarnaval from '@/components/carnaval/0 - pages/GaleriaCarnaval'
 
 export default function Galeria() {
 
-  const [evento, setEvento] = useState("carnaval");
+  const { evento, setEvento } = usarContexto();
 
   return(
     evento == "carnaval" ?

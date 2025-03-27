@@ -22,14 +22,14 @@ const index = () => {
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/faringes.png" className={style.Atracao1} alt="faringes" />
+          <img src="/(carnaval)/assets/faringes.png" className={style.Atracao1} alt="faringes" />
         </Col>
       </Row>
     
       <Row className={style.Atracao}>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/patusco.png" className={style.Atracao2} alt="patusco" />
+          <img src="/(carnaval)/assets/patusco.png" className={style.Atracao2} alt="patusco" />
         </Col>
 
         <Col xs={6}>
@@ -44,7 +44,7 @@ const index = () => {
         </Col>
 
         <Col xs={6} style={{position:'relative'}}>
-          <img src="/assets/chicadan.png" className={style.Atracao1} alt="chicadan" />
+          <img src="/(carnaval)/assets/chicadan.png" className={style.Atracao1} alt="chicadan" />
         </Col>
       </Row>
     </Row>

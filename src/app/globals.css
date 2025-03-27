@@ -1,12 +1,17 @@
+html, body{
+  overflow-x: hidden;
+}
+
+
 body{
+  position: relative;
+
   background-color:rgba(224, 215, 223, 0.6);
-  background-image: url('/background/fundo1.png');
+  background-image: url('/(carnaval)/background/fundo1.png');
   background-position: center;
   
   background-size: 100% auto;
   background-repeat: repeat;
-
-  overflow-x: hidden;
 }
 
 /* gallery */

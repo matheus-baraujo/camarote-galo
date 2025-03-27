@@ -27,7 +27,7 @@ const index = () => {
 
         <BackgroundAssetsHome />
 
-        <img className={styles.Waves} src="/assets/waves.png" alt="waves" />
+        <img className={styles.Waves} src="/(carnaval)/assets/waves.png" alt="waves" />
       </>
   )
 }

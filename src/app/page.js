@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { usarContexto } from '@/context/contexto';
 
 import HomeCarnaval from '../components/carnaval/0 - pages/HomeCarnaval'
 
 export default function Home() {
 
-  const [evento, setEvento] = useState("saojoao");
+  const { evento, setEvento } = usarContexto();
 
   return (
     evento == "carnaval" ?
