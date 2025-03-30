@@ -8,8 +8,8 @@ import Row from 'react-bootstrap/Row';
 import { makeCod } from "@/services/database";
 import { useEffect, useState } from "react";
 
-import BackgroundAssets from '../../1 - assets/BackgroundAssets'
-import StyledButton from '../../1 - assets/StyledButton'
+import BackgroundAssets from '../../1 - others/BackgroundAssets'
+import StyledButton from '../../1 - others/StyledButton'
 
 const Ingressos = () => {
   window.location.href = '/MeusIngressos';

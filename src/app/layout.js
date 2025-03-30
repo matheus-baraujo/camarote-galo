@@ -3,9 +3,15 @@ import "./globals.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Joti_One , Roboto} from 'next/font/google'
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
+import { Roboto, Chau_Philomene_One} from 'next/font/google'
 
 import { ContextoProvider } from "@/context/contexto";
+
+import Header from "@/components/saojoao/1 - others/header"
 
 export const metadata = {
   title: "Camarote - Se vc não for eu vou",
@@ -13,12 +19,12 @@ export const metadata = {
   keywords: "Camarote, ingresso, Se vc não for eu vou, carnaval Recife, camarote Galo da Madrugada, Se Você Não For Eu Vou, Chicadan, Faringes da Paixão, Patusco, carnaval 2025, camarote premium Recife, festas de carnaval Recife, atrações Galo da Madrugada",
 };
 
-const jotiOne = Joti_One({
+const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
 })
 
-const roboto = Roboto({
+const chau_Philomene_One = Chau_Philomene_One({
   weight: '400',
   subsets: ['latin'],
 })
@@ -30,7 +36,8 @@ export default function RootLayout({ children }) {
 
       <ContextoProvider>    
 
-        <body className={roboto.className}>
+        <Header />
+        <body className={chau_Philomene_One.className}>
           {children}
         </body>
 

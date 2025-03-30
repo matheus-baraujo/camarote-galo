@@ -7,8 +7,8 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './styles.module.css'
 
-import FormGroup from '../../../1 - assets/FormGroup'
-import StyledButton from '../../../1 - assets/StyledButton'
+import FormGroup from '../../../1 - others/FormGroup'
+import StyledButton from '../../../1 - others/StyledButton'
 
 import { hashPassword } from '@/services/database';
 

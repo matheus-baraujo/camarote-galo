@@ -10,8 +10,8 @@ import Login from './Login'
 import Logged from './Logged'
 import { Button, Col } from "react-bootstrap";
 
-import BackgroundAssets from '../../1 - assets/BackgroundAssets'
-import StyledButton from '../../1 - assets/StyledButton'
+import BackgroundAssets from '../../1 - others/BackgroundAssets'
+import StyledButton from '../../1 - others/StyledButton'
 
 const index = () => {
 

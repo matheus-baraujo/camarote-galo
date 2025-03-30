@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 
 import PaymentForm from './PaymentForm'
 import PaymentForm2 from './PaymentForm2'
-import BackgroundAssets from '../../1 - assets/BackgroundAssets'
+import BackgroundAssets from '../../1 - others/BackgroundAssets'
 
 
 const index = () => {

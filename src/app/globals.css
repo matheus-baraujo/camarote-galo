@@ -2,7 +2,6 @@ html, body{
   overflow-x: hidden;
 }
 
-
 body{
   position: relative;
   background-image: url('/(carnaval)/background/fundo1.png');
@@ -10,6 +9,13 @@ body{
   
   background-size: 100% auto;
   background-repeat: repeat;
+}
+
+:root {
+  --highlight: #F3E601;
+  --dark: #222222;
+  --lightBlue: rgba(121, 173, 220, .5);
+  --darkBlue: rgba(65, 93, 118, 1);
 }
 
 /* gallery */

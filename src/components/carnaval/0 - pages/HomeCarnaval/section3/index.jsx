@@ -3,8 +3,8 @@ import React from 'react'
 import style from './styles.module.css'
 import { Row, Col } from 'react-bootstrap';
 
-import Informacoes from '../../../1 - assets/Informacoes'
-import Localizacao from '../../../1 - assets/Localizacao'
+import Informacoes from '../../../1 - others/Informacoes'
+import Localizacao from '../../../1 - others/Localizacao'
 import OpenBar from './OpenBar'
 import OpenFood from './OpenFood'
 

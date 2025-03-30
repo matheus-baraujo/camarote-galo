@@ -11,7 +11,7 @@ export const usarContexto = () => {
 export const ContextoProvider = ({ children }) => {
 
   //carnaval ou saojoao
-  const [evento, setEvento] = useState('carnaval');
+  const [evento, setEvento] = useState('saojoao');
 
   return (
     <Contexto.Provider value={{ evento, setEvento }}>

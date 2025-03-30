@@ -1,0 +1,24 @@
+.bg{
+  background-image: url('/saojoao/background/bg1.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  
+}
+
+.wrapper{
+  min-height: 237px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.h1{
+  font-size: 80px;
+  color: var(--highlight);
+  text-align: center;
+  -webkit-text-stroke: 2px var(--dark);
+}

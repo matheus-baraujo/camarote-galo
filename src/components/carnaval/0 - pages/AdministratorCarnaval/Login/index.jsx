@@ -6,8 +6,8 @@ import { Form } from 'react-bootstrap'
 
 import styles from './styles.module.css'
 
-import FormGroup from '../../../1 - assets/FormGroup'
-import StyledButton from '../../../1 - assets/StyledButton'
+import FormGroup from '../../../1 - others/FormGroup'
+import StyledButton from '../../../1 - others/StyledButton'
 
 import { hashPassword2 } from '@/services/database'
 
