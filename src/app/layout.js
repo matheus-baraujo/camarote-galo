@@ -12,6 +12,7 @@ import { Roboto, Chau_Philomene_One} from 'next/font/google'
 import { ContextoProvider } from "@/context/contexto";
 
 import Header from "@/components/saojoao/1 - others/header"
+import Footer from "@/components/saojoao/1 - others/footer"
 
 export const metadata = {
   title: "Camarote - Se vc não for eu vou",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         <body className={chau_Philomene_One.className}>
           {children}
         </body>
+        <Footer />
 
       </ContextoProvider> 
 

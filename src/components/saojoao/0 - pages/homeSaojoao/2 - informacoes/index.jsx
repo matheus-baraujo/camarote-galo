@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-import { faLocationDot, faMusic } from '@fortawesome/free-solid-svg-icons';
-import { faClock , faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { scroll } from '@/services/database'
 
 import Flag from './flag';
 
@@ -16,7 +15,7 @@ const index = () => {
       <div className={styles.wrapper2}>
         <h2 className={styles.title}>Informações do evento</h2>
 
-        <button className={styles.button}>Comprar agora</button>
+        <button className={styles.button} onClick={()=> scroll("ingressos")}>Comprar agora</button>
       </div>
 
       <div className={styles.wrapper3}>

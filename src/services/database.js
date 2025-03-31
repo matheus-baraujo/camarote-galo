@@ -133,6 +133,11 @@ function getAllUrlParams(url) {
   return obj;
 }
 
+function scroll(element){   
+  var ele = document.getElementById(element);   
+  window.scrollTo(ele.offsetLeft,ele.offsetTop); 
+}
+
 async function sendEmail(email, codigo) {
 
   var mensagem = "Obrigado pela compra! Aqui está uma cópia do seu código :"+codigo;
@@ -158,5 +163,6 @@ module.exports = {
   hashPassword,
   hashPassword2,
   getAllUrlParams,
+  scroll,
   sendEmail,
 };

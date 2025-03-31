@@ -8,12 +8,16 @@ export default function Galeria() {
 
   const { evento, setEvento } = usarContexto();
 
+  if(evento != "carnaval"){
+    window.location.href = "/"
+  }
+
   return(
     evento == "carnaval" ?
       <GaleriaCarnaval />
     :
-      <>
-        <p>sao joao</p>
-      </>
+      <div style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center", minHeight: "100%"}}>
+        <h2>ERRO 404</h2>
+      </div>
   );
 }

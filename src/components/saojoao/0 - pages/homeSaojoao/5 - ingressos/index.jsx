@@ -4,7 +4,7 @@ import CardIngresso from './cardIngresso'
 
 const index = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id='ingressos'>
       <h1 className={styles.title}>Ingressos</h1>
       
       <div className={styles.wrapper2}>

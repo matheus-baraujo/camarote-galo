@@ -3,6 +3,7 @@
 import { usarContexto } from '@/context/contexto';
 
 import PagamentoCarnaval from '@/components/carnaval/0 - pages/PagamentoCarnaval'
+import PagamentoSaojoao from '@/components/saojoao/0 - pages/pagamentoSaojoao';
 
 export default function Pagamento() {
   
@@ -12,8 +13,6 @@ export default function Pagamento() {
     evento == "carnaval" ?
       <PagamentoCarnaval />
     :
-      <>
-        <p>sao joao</p>
-      </>
+      <PagamentoSaojoao />
   );
 }

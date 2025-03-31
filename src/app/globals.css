@@ -3,12 +3,17 @@ html, body{
 }
 
 body{
-  position: relative;
-  background-image: url('/(carnaval)/background/fundo1.png');
-  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  /* position: relative;
+  /* background-image: url('/carnaval/background/fundo1.png'); */
+  /* background-position: center;
   
   background-size: 100% auto;
-  background-repeat: repeat;
+  background-repeat: repeat;  */
 }
 
 :root {
@@ -16,6 +21,7 @@ body{
   --dark: #222222;
   --lightBlue: rgba(121, 173, 220, .5);
   --darkBlue: rgba(65, 93, 118, 1);
+  --lightYellow: #F3E60130;
 }
 
 /* gallery */

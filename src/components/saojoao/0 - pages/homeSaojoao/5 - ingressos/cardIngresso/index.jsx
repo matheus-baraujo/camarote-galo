@@ -18,7 +18,7 @@ const index = (params) => {
 
       <h2>RS {ingressos[params.item][2]}</h2>
 
-      <button className={styles.button}>Comprar</button>
+      <button className={styles.button} onClick={() => window.location = '/Pagamento' }>Comprar</button>
     </div>
   )
 }

@@ -1,0 +1,55 @@
+.card{
+  background-color: white;
+  
+  border: 1px solid var(--dark);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card h3, .wrapper{
+  padding: 16px 32px; 
+}
+
+.card h3{
+  background-color: var(--dark);
+  color: var(--highlight);
+}
+
+.wrapper{
+  width: 670px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.contador{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.contador h3{
+  margin: 0;
+  background-color: transparent;
+  color: black;
+  padding: 0;
+}
+
+.contador button{
+  background-color: var(--highlight);
+  color: black;
+  border: none;
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+}
+
+.contador button:hover{
+  opacity: .8;
+}
+
+.contador button:disabled, .contador button:disabled:hover{
+  background-color: gray;
+  opacity: 1;
+} 

@@ -1,0 +1,22 @@
+.numeroContato{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+}
+
+.numeroContato a{
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  gap: 0px 10px;
+
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.numeroContato:hover{
+  scale: 1.05;
+}
