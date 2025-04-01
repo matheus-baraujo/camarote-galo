@@ -1,0 +1,26 @@
+
+
+.backdrop{
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+
+.container{
+  position: fixed;
+
+  --largura: 600px;
+  --altura: 451px;
+  
+  top: calc(50% - var(--altura) / 2);
+  left: calc(50% - var(--largura) / 2);
+  
+  width: var(--largura);
+  height: var(--altura);
+}

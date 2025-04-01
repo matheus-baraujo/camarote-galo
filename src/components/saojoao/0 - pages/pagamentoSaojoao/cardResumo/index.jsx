@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles.module.css'
 import Conteudo from './conteudo'
 
-const index = ({number, tickets}) => {
+const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
   return (
     <div className={styles.wrapper}>
       
@@ -19,7 +19,10 @@ const index = ({number, tickets}) => {
         <h4>R$ {tickets[0].preco*tickets[0].quantidade + tickets[1].preco*tickets[1].quantidade},00</h4>
       </div>      
       
-      <button className={styles.button} disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} onClick={() => console.log('ok')}>Finalizar Compra</button>
+      <button className={styles.button} disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
+        onClick={() => {login ? alert('Compra finalizada com sucesso!') : setLogar(true)}}>
+        Finalizar Compra
+      </button>
 
     </div>
   )

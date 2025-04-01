@@ -1,0 +1,104 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--dark);
+  overflow: clip;
+}
+
+.loginBox {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.loginTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--highlight);
+  margin-bottom: 16px;
+  border-radius: 8px 8px 0px 0px;
+  padding: 24px 24px 24px 24px;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  background-color: var(--dark);
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+}
+
+.inputGroup label {
+  font-weight: bold;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+}
+
+.passwordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgotPassword {
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.rememberMe label {
+  margin-left: 8px;
+  color: #374151;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--highlight);
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: ease-in-out 0.3s;
+}
+
+.registerLink {
+  margin-top: 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.registerLink a {
+  font-weight: bold;
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.loginButton:hover {
+  background-color: var(--dark);
+  color: var(--highlight);
+  scale: 1.05;
+}
+
+.forgotPassword:hover, .registerLink a:hover {
+  transition: ease-in-out 0.3s;
+  text-shadow: var(--highlight) 1px 1px 0px;
+}
