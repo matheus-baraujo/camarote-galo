@@ -7,9 +7,9 @@ const index = ({setLogar}) => {
     <>
     <div className={styles.backdrop} onClick={() => setLogar(false)}></div>
 
-      <div className={styles.container}>
-        <LoginForm />
-      </div>
+    <div className={styles.container}>
+      <LoginForm />
+    </div>
 
     </>
   )

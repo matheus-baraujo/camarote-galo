@@ -16,6 +16,7 @@ const index = () => {
         <div className={styles.title}><h3>Confirmação de compra</h3></div>
 
         <div className={styles.content}>
+          
           <MensagemCompra />
 
           <DisplayTicket />
