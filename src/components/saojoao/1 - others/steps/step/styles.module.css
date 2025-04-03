@@ -1,0 +1,36 @@
+.number{
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.done{
+  background-color: var(--dark);
+  color: var(--highlight);
+}
+
+.now{
+  background-color: var(--highlight);
+  color: var(--dark);
+}
+
+.todo{
+  background-color: lightgray;
+  color: var(--dark);
+}
+
+.step{
+  width: 84px;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+}
+
+.step p{
+  margin: 0%;
+}

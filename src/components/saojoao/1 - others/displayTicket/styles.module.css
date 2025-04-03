@@ -1,0 +1,62 @@
+.wrapper{
+  width: 735px;
+  text-align: center;
+  margin: auto;
+}
+
+
+.accessCodeContainer {
+  margin-bottom: 20px;
+}
+
+.codeBoxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.codeBox {
+  background: #222;
+  color: #ff0;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.eventDetails {
+  border-top: 1px solid #555;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.eventDetails h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.actions button {
+  background: #222;
+  border: 1px solid #ff0;
+  color: #ff0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #444;
+}

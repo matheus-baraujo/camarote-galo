@@ -60,4 +60,5 @@
   background-color: var(--dark);
   color: var(--highlight);
   transform: scale(1.05);
+  border: 1px solid var(--highlight);
 }

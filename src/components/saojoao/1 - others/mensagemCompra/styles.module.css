@@ -1,0 +1,11 @@
+.wrapper{
+  width: 735px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  border-radius: 8px;
+  background-color: var(--lightBlue);
+}

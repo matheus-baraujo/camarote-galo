@@ -2,10 +2,9 @@
 
 import React, {useState} from 'react'
 import styles from './styles.module.css'
-import CardIngresso from './cardIngresso'
-import CardResumo from './cardResumo'
 
-import LoginModal from '../../1 - others/loginModal'
+import FormCadastro from './formCadastro'
+import Steps from '../../1 - others/steps'
 
 const index = () => {
 
@@ -16,23 +15,18 @@ const index = () => {
 
   const [login, setLogin] = useState(false) //não está logado
 
-  const [logar, setLogar] = useState(false) // habilitar o modal de login
-
-  
 
   return (
     <div className={styles.wrapper}>
 
+      <Steps step={1}/>
+
       <div className={styles.wrapper2}>
-        <CardIngresso number={0} tickets={ingressos} setTickets={setIngressos}/>
-        <CardIngresso number={1} tickets={ingressos} setTickets={setIngressos}/>
+
+        <FormCadastro />
+
       </div>
-
-      <CardResumo number={0} tickets={ingressos} login={login} setLogin={setLogin} logar={logar} setLogar={setLogar}/>
-
-      {logar ?  <LoginModal  setLogar={setLogar}/> : <></>}
       
-
     </div>
   )
 }

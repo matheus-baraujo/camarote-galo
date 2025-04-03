@@ -16,29 +16,22 @@ export default function LoginForm() {
         
         <div className={styles.inputGroup}>
           <label>E-mail</label>
-          <input
-            type="email"
-            placeholder="seu@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
+        
         <div className={styles.inputGroup}>
           <div className={styles.passwordHeader}>
             <label>Senha</label>
             <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
           </div>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Sua senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type={showPassword ? "text" : "password"} placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
+
         <div className={styles.rememberMe}>
           <input type="checkbox" checked={remember} onChange={() => setRemember(!remember)} />
           <label>Lembrar de mim</label>
         </div>
+
         <button className={styles.loginButton}>Entrar</button>
         <p className={styles.registerLink}>
           Não tem uma conta? <a href="#">Cadastre-se</a>
