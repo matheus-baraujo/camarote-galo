@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, {useState, useEffect} from 'react'
 import styles from './styles.module.css'
 
 import Steps from '@/components/saojoao/1 - others/steps'
@@ -6,6 +8,9 @@ import MensagemCompra from '@/components/saojoao/1 - others/mensagemCompra'
 import DisplayTicket from '@/components/saojoao/1 - others/displayTicket'
 
 const index = () => {
+
+  const [ticket, setTicket] = useState({id:"123456789", codigo: "aB1234", status: "Aprovado", quantidade1: 2, quantidade2: 1});
+
   return (
     <div className={styles.wrapper}> 
 
@@ -17,9 +22,9 @@ const index = () => {
 
         <div className={styles.content}>
           
-          <MensagemCompra />
+          <MensagemCompra ticket={ticket} />
 
-          <DisplayTicket />
+          <DisplayTicket ticket={ticket} />
 
         </div>
 

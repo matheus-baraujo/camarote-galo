@@ -20,18 +20,22 @@ const index = () => {
   // },[]);
 
   return (
-    <div className={styles.bg}>
-      <div className={styles.wrapper}>
+    <>
+      <div className={styles.bg}>
+        <div className={styles.wrapper}>
 
-        <h2 className={styles.h2}>Se você não for eu vou</h2>
+          <h2 className={styles.h2}>Se você não for eu vou</h2>
 
-        <button className={styles.button}>
-          <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
-          Entrar
-        </button>
+          <button className={styles.button} >
+            <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
+            Entrar
+          </button>
 
+        </div>
       </div>
-    </div>
+    
+    </>
+    
   )
 }
 

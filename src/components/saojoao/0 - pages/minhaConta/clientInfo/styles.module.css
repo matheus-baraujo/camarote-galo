@@ -1,0 +1,25 @@
+.clientInfo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--lightBlue);
+}
+
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.inputGroup input {
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+}

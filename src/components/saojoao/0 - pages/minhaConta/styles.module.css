@@ -9,8 +9,6 @@
   padding: 34px 0px;
 }
 
-
-
 .wrapper2{
   display: flex;
   flex-direction: column;
@@ -52,28 +50,76 @@
   border: 1px solid var(--dark);
   border-radius: 8px;
   transition: ease-in-out .3s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.content button:nth-child(even){
+.buttonIcon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttonEven{
   background-color: var(--highlight);
   color: var(--dark);
 }
 
-.content button:nth-child(odd){
+.buttonOdd{
   background-color: var(--dark);
   color: var(--highlight);
 }
 
-.content button:nth-child(even):hover{
-  background-color: var(--dark);
-  color: var(--highlight);
-}
-
-.content button:nth-child(odd):hover{
-  background-color: var(--highlight);
-  color: var(--dark);
-}
-
-.content button:hover{
+.content button:hover, .buttonReturn:hover{
   scale: 1.05;
+  opacity: 0.8;
+}
+
+.clientInfo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--lightBlue);
+}
+
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.inputGroup input {
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.wrapperTicket{
+  background-color: white;
+  padding: 20px;
+}
+
+.buttonReturn{
+  background-color: var(--dark);
+  color: var(--highlight);
+  width: 100px;
+  height: 50px;
+  padding: 0px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: ease-in-out .3s;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

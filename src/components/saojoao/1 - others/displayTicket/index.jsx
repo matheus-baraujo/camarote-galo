@@ -12,7 +12,16 @@ var info = [[faCalendar, 'far fa-calendar'],
             [faEnvelope, 'far fa-envelope'],
             [faShareNodes, 'fas fa-share-nodes']]
 
-const index = () => {
+const index = ({ticket}) => {
+
+  var code = ''
+
+  if(ticket.status !== 'Aprovado'){
+    code = "******"
+  }else{
+    code = ticket.codigo
+  }
+
   return (
     <div className={styles.wrapper}>
 
@@ -20,9 +29,11 @@ const index = () => {
         <h3>Código de acesso ao evento</h3>
 
         <div className={styles.codeBoxes}>
-          {[0, 0, 0, 0, 0, 0].map((num, index) => (
-            <span key={index} className={styles.codeBox}>{num}</span>
-          ))}
+          {
+            code.split('').map((num, index) => (
+              <span key={index} className={styles.codeBox}>{num}</span>
+            ))
+          }
         </div>
 
         <p>Apresente este código na entrada do evento</p>
@@ -38,7 +49,7 @@ const index = () => {
         <p>
           <span className={styles.icon}><FontAwesomeIcon icon={info[1][0]} className={info[1][1]}></FontAwesomeIcon></span> Freje - Recife Antigo
         </p>
-        <p>1x Mesa para 4 pessoas + 1x Ingresso Individual</p>
+        <p>{ticket.quantidade2}x Mesa para 4 pessoas + {ticket.quantidade1}x Ingresso Individual</p>
       </div>
 
       <div className={styles.actions}>

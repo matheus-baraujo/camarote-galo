@@ -1,0 +1,18 @@
+.ticketList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.msgEmpty{
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: lightGray;
+}
