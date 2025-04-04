@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1400px;
+  max-width: 1400px;
 
   margin: 0 auto;
 }
@@ -32,4 +32,39 @@
 .text2{
   font-size: 24px;
   width: 60%;
+}
+
+.map{
+  border: 0;
+  width: 890px;
+  height: 390px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .wrapper{
+    gap: 24px;
+    min-height: 550px;
+  }
+
+  .wrapper2{
+    flex-direction: column;
+    padding: 0px 25px;
+  }
+
+  .title{
+    font-size: 34px;
+  }
+
+  .text2{
+    width: 100%;
+  }
+
+  .map{
+    border: 0;
+    width: 100%;
+    height: 222px;
+    margin: auto;
+  }
+  
 }

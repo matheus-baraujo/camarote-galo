@@ -62,3 +62,21 @@
   opacity: 1;
   scale: 1;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper{
+    width: 350px;
+    gap: 10px;
+  }
+
+  .wrapper3{
+    padding: 16px 20px;
+  }
+
+  .button{
+    font-size: 16px;
+    height: 40px;
+    width: 90%;
+  }
+  
+}

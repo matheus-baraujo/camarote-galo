@@ -24,3 +24,17 @@
   width: var(--largura);
   height: var(--altura);
 }
+
+@media screen and (max-width: 768px) {
+  .container{
+    --largura: 350px;
+    --altura: 300px;
+    
+    top: calc(50% - var(--altura) / 2);
+    left: calc(50% - var(--largura) / 2);
+    
+    width: var(--largura);
+    height: var(--altura);
+  }
+  
+}

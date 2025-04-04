@@ -94,3 +94,29 @@
   margin-top: 10px;
   font-size: 12px;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .formContainer, .resumoContainer {
+    width: 100%;
+  }
+
+  .row{
+    flex-direction: column;
+  }
+
+  .inputGroup {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+  
+}

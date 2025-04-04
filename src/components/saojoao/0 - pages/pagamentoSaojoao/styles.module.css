@@ -16,3 +16,18 @@
   justify-content: space-between;
   width: 1400px;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper{
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .wrapper2{
+    width: 100%;
+    flex-direction: column;
+    padding: 0px 25px;
+    gap: 20px;
+  }
+  
+}

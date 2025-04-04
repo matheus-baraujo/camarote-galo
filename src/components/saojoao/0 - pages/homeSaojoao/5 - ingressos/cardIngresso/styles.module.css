@@ -35,3 +35,18 @@
   color: var(--highlight);
   transform: scale(1.05);
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper{
+    width: 350px;
+    height: 250px;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .button{
+    font-size: 16px;
+    height: 40px;
+  }
+  
+}

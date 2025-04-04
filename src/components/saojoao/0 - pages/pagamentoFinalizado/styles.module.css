@@ -54,3 +54,19 @@
   gap: 20px;
 
 }
+
+@media screen and (max-width: 768px) {
+
+  .wrapper{
+    padding: 20px;
+  }
+
+  .wrapper2{
+    width: 100%;
+  }
+
+  .content{
+    padding: 10px;
+  }
+  
+}

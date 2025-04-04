@@ -60,3 +60,26 @@
 .actions button:hover {
   background: #444;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .codeBox {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .actions{
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions button {
+    font-size: 12px;
+    padding: 8px 12px;
+    width: 100%;
+  }
+  
+}

@@ -13,6 +13,8 @@ export const ContextoProvider = ({ children }) => {
   //carnaval ou saojoao
   const [evento, setEvento] = useState('saojoao');
 
+  const [cliente, setCliente] = useState({status: true});
+
   return (
     <Contexto.Provider value={{ evento, setEvento }}>
       {children}

@@ -16,3 +16,17 @@
   justify-content: space-between;
   width: 1400px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .wrapper {
+    padding: 20px;
+    height: 180px;
+  }
+
+  .wrapper2 {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+}

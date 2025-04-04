@@ -22,3 +22,15 @@
   text-align: center;
   -webkit-text-stroke: 2px var(--dark);
 }
+
+@media screen and (max-width: 600px) {
+
+  .wrapper{
+    min-height: 105px;
+  }
+
+  .h1{
+    font-size: 32px;
+  }
+  
+}

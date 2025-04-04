@@ -123,3 +123,33 @@
   justify-content: space-around;
   align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+
+  .wrapper{
+    padding: 20px;
+  }
+
+  .wrapper2{
+    width: 100%;
+  }
+
+  .title{
+    height: auto;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .content{
+    padding: 10px;
+  }
+
+  .content p{
+    font-size: 14px;
+  }
+
+  .content button{
+    font-size: 14px;
+  }
+  
+}

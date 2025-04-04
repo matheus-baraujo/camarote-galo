@@ -32,3 +32,23 @@
   font-size: 24px;
   font-weight: lighter;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper{
+    width: 168px;
+    height: 222px;
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .icon{
+    font-size: 40px;
+  }
+  .title{
+    font-size: 18px;
+  }
+  .text{
+    font-size: 18px;
+  }
+  
+}

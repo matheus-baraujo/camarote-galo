@@ -3,21 +3,15 @@
 import React, {useState, useEffect} from 'react'
 import styles from './styles.module.css'
 
+import { usarContexto } from '@/context/contexto';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons"
 
 
 const index = () => {
 
-
-  // const [ urlHome, setUrlHome ] = useState(true)
-
-  // useEffect(() => {
-  //   var url = window.location.href;
-  //   if(url != process.env.NEXT_PUBLIC_DB_URL_RETURN){
-  //     setUrlHome(false)
-  //   }
-  // },[]);
+  const { cliente, setCliente } = usarContexto();
 
   return (
     <>

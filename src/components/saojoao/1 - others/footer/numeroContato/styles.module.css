@@ -20,3 +20,11 @@
 .numeroContato:hover{
   scale: 1.05;
 }
+
+@media screen and (max-width: 600px) {
+  .numeroContato img{
+    width: 20px;
+    height: 20px;
+  }
+  
+}

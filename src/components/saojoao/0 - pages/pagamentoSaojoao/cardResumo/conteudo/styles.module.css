@@ -14,3 +14,10 @@
   background-color: var(--dark);
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .content{
+    padding: 16px 20px;
+  }
+  
+}

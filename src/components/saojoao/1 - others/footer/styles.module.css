@@ -42,3 +42,30 @@
 .wrapper4 h2{
   font-size: 16px;
 }
+
+@media screen and (max-width: 600px) {
+  .wrapper{
+    gap: 0px;
+    min-height: 160px;
+    padding: 20px 0px;
+  }
+
+  .wrapper img{
+    width: 49px;
+    height: 49px;
+  }
+
+  .wrapper2{
+    width: 65%;
+    gap: 20px;
+  }
+
+  .wrapper3{
+    gap: 5px;
+  }
+
+  .wrapper4{
+    min-height: 60px;
+  }
+  
+}

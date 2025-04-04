@@ -62,3 +62,23 @@
   transform: scale(1.05);
   border: 1px solid var(--highlight);
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper{
+    padding: 20px 0px;
+    min-height: 588px;
+  }
+
+  .wrapper2, .wrapper3{
+    width: 100%;
+  }
+
+  .wrapper3{
+    flex-wrap: wrap;
+  }
+
+  .button{
+    display: none;
+  }
+  
+}
