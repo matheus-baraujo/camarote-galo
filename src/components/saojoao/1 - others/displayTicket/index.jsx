@@ -19,7 +19,7 @@ const index = ({ticket}) => {
   if(ticket.status !== 'Aprovado'){
     code = "******"
   }else{
-    code = ticket.codigo
+    code = ticket.codigoRecebimento
   }
 
   return (
@@ -49,7 +49,7 @@ const index = ({ticket}) => {
         <p>
           <span className={styles.icon}><FontAwesomeIcon icon={info[1][0]} className={info[1][1]}></FontAwesomeIcon></span> Freje - Recife Antigo
         </p>
-        <p>{ticket.quantidade2}x Mesa para 4 pessoas + {ticket.quantidade1}x Ingresso Individual</p>
+        <p>{ticket.mesa}x Mesa para 4 pessoas + {ticket.ingresso}x Ingresso Individual</p>
       </div>
 
       <div className={styles.actions}>

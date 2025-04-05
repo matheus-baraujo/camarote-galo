@@ -14,7 +14,7 @@ export const ContextoProvider = ({ children }) => {
   //carnaval ou saojoao
   const [evento, setEvento] = useState('saojoao');
 
-  const [cliente, setCliente] = useState(false);
+  const [cliente, setCliente] = useState();
 
 
   const atualizarCliente = () => {
@@ -23,9 +23,9 @@ export const ContextoProvider = ({ children }) => {
       try {
         const decoded = jwtDecode(token);
         setCliente(decoded);
-        console.log('Token decodificado:', decoded);
+        // console.log('Token decodificado:', decoded);
       } catch (error) {
-        console.error('Erro ao decodificar o token:', error);
+        // console.error('Erro ao decodificar o token:', error);
         setCliente(false);
       }
     } else {

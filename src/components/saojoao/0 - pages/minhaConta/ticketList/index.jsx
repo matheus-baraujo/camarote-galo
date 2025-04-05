@@ -22,8 +22,8 @@ const index = ({lista, setInfo, setCompras, setDetail, setTicket}) => {
             style={ticket.status === "Aprovado" ? {backgroundColor: "#aeffb1"} : 
                   ticket.status === "Pendente" ? {backgroundColor: "#fdff80"} : 
                   ticket.status === "Cancelado" ? {backgroundColor: "#ff7b7b"} : {}}>
-              <span>Individual x{ticket.quantidade1}</span>
-              <span>Mesa x{ticket.quantidade2}</span>
+              <span>Individual x{ticket.ingresso}</span>
+              <span>Mesa x{ticket.mesa}</span>
               <span>{ticket.status}</span>
             </button>
           ))

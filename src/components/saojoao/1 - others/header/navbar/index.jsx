@@ -8,7 +8,7 @@ import { usarContexto } from '@/context/contexto';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons"
 
-import LoginModal from '@/components/saojoao/1 - others/LoginModal';
+import LoginModal from '@/components/saojoao/1 - others/loginModal';
 
 
 const index = () => {

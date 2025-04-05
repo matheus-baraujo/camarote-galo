@@ -69,21 +69,24 @@ async function getAllClient() {
 }
 
 async function getComprasClient(cpf) {
-
   try {
-    var url = process.env.NEXT_PUBLIC_DB_URL+`getComprasCliente.php?api_key=${apiKey}&cpf=${cpf}`;
+    const url = `${process.env.NEXT_PUBLIC_DB_URL}getComprasCliente2.php?api_key=${apiKey}&cpf=${cpf}`;
 
-    var response = await fetch(url);
-    if(!response.ok) throw new Error(`${response.error}`);
-    
-    var data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Erro desconhecido na resposta da API');
+    }
+
+    console.log(data);
     return data;
   } catch (error) {
     console.error("Erro ao buscar compras do cliente:", error);
     return { error: error.message };
   }
-    
 }
+
 
 async function getAdmin(login) {
 
@@ -160,29 +163,66 @@ async function getPayment(id) {
 
 }
 
-async function createPreference(nome, email, cpf, quant){
+async function createPreference(nome, email, cpf, quant1, quant2){
+
+  var items = []
+
+  if(quant1 && quant2) {
+    items = [
+      {
+        "id": "010983098",
+        "title": "Ingresso Individual - Se você não for eu vou",
+        "quantity": quant1,
+        "unit_price": 70,
+        "description": "Acesso ao evento"
+      },
+      {
+        "id": "010983099",
+        "title": "Reserva de mesa completa - Se você não for eu vou",
+        "quantity": quant2,
+        "unit_price": 250,
+        "description": "Mesa de até 4 pessoas"
+      }
+    ]
+  } 
+  else if(quant1) {
+    items = [
+      {
+        "id": "010983098",
+        "title": "Ingresso Individual - Se você não for eu vou",
+        "quantity": quant1,
+        "unit_price": 70,
+        "description": "Acesso ao evento"
+      }
+    ]
+  }else{
+    items = [
+      {
+        "id": "010983099",
+        "title": "Reserva de mesa completa - Se você não for eu vou",
+        "quantity": quant2,
+        "unit_price": 250,
+        "description": "Mesa de até 4 pessoas"
+      }
+    ]
+  }
   
   try {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
+
+    var aux = 'https://7e53-45-4-119-230.ngrok-free.app/api/notification2.php'
+
     var raw = JSON.stringify({
       "auto_return": "approved",
       "back_urls": {
-        "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Sucesso",
-        "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro",
-        "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"Erro"
+        "success": process.env.NEXT_PUBLIC_DB_URL_RETURN+"PagamentoFinalizado",
+        "failure": process.env.NEXT_PUBLIC_DB_URL_RETURN+"PagamentoFinalizado",
+        "pending": process.env.NEXT_PUBLIC_DB_URL_RETURN+"PagamentoFinalizado"
       },
-      "statement_descriptor": "Camarote - Se Voce Nao For Eu Vou",
-      "items": [
-        {
-          "id": "010983098",
-          "title": "Ingresso - Se você não for eu vou",
-          "quantity": quant,
-          "unit_price": 360,
-          "description": "Ingresso + kit(Camisa, Caneca, Pulseira)"
-        }
-      ],
+      "statement_descriptor": "Se Voce Nao For Eu Vou",
+      "items": items,
       "payer": {
         "email": email,
         "name": nome
@@ -192,7 +232,8 @@ async function createPreference(nome, email, cpf, quant){
         "excluded_payment_methods": [{ id: "bolbradesco" },],
         "installments": 1
       },
-      "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
+      // "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
+      "notification_url": aux,
       "external_reference": cpf,
       "expires": false
     });
@@ -204,6 +245,9 @@ async function createPreference(nome, email, cpf, quant){
     };
 
     var response = await fetch("https://api.mercadopago.com/checkout/preferences", requestOptions);
+
+    //console.log(raw);
+
     if (!response.ok) throw new Error("Erro ao gerar preference");
 
     var data = await response.json();

@@ -7,6 +7,8 @@ import ClientInfo from './clientInfo/index.jsx'
 import TicketList from './ticketList/index.jsx'
 import DisplayTicket from '@/components/saojoao/1 - others/displayTicket'
 
+import { getComprasClient } from '@/services/api.js'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faTicketSimple, faCartShopping, faAngleRight, faDisplay } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,22 +24,34 @@ const index = () => {
 
   const { cliente, setCliente } = usarContexto();
 
+  const [ingressos, setIngressos] = useState([]);
+
   useEffect(() => {
-
-    console.log(cliente);
-
-    // if(!cliente) {
-    //   window.location.href = '/';
-    // }
+    if(cliente == false){
+      window.location.href = '/';
+    }
   },[cliente]);
+
+  useEffect(() => {
+    if (!cliente || !cliente.data || !cliente.data.cpf) return;
+  
+    async function getCompras(cpf) {
+      const data = await getComprasClient(cpf);
+      setIngressos(data);
+    }
+  
+    getCompras(cliente.data.cpf);
+  }, [cliente]);
+
+  useEffect(() => {
+    console.log(ingressos);
+  },[ingressos]);
+
 
   const [info, setInfo] = useState(false);
   
   const [compras, setCompras] = useState(false);
-  const [ingressos, setIngressos] = useState([
-      {id:"123456789", codigo: "aB1234", status: "Aprovado", quantidade1: 2, quantidade2: 1}, 
-      {id:"987654321", codigo: "cd6789", status: "Pendente", quantidade1: 0, quantidade2: 1}
-    ]);
+  
 
   const [detail, setDetail] = useState(false);
   const [ticket, setTicket] = useState({});
@@ -58,7 +72,7 @@ const index = () => {
 
           <div style={{borderRadius: "8px", overflow: "clip", border: "1px solid var(--dark)"}}>
 
-            <div className={styles.title}><h3>Compra - {ticket.id} ({ticket.status})</h3></div>
+            <div className={styles.title}><h3>Compra - {ticket.idPagamento} ({ticket.status})</h3></div>
             <div className={styles.wrapperTicket}>
               <DisplayTicket ticket={ticket}/> 
             </div>
