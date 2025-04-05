@@ -239,7 +239,44 @@ async function registerClient(cliente){
 
 }
 
-// ============ EMAIL  ============ //
+
+// ============ LOGIN ============ //
+
+async function loginUsuario(cpf, senha) {
+  var api_key = 'minha_chave_secreta'; // mesma usada na API PHP
+
+  try {
+    var url = process.env.NEXT_PUBLIC_DB_URL+'loginCliente.php'
+    const resposta = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ cpf, senha, api_key })
+    });
+
+    const resultado = await resposta.json();
+
+    // console.log({ cpf, senha, api_key });
+    // console.log(resultado);
+
+    if (resultado.success) {
+      // Salva o token JWT na sessionStorage
+      sessionStorage.setItem('token', resultado.token);
+      return true;
+    } else {
+      console.error('Erro no login:', resultado.message);
+      return false;
+    }
+  } catch (resultado) {
+    console.error('Erro na requisição:', resultado.message);
+    return false;
+  }
+}
+
+
+
+// ============ EMAIL ============ //
 
 async function sendEmail(email, codigo) {
 
@@ -266,5 +303,6 @@ module.exports = {
   getAdmin,
   createPreference,
   registerClient,
+  loginUsuario,
   sendEmail,
 };

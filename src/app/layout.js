@@ -37,6 +37,8 @@ export default function RootLayout({ children }) {
 
       <ContextoProvider>    
 
+        
+
         <Header />
         <body className={chau_Philomene_One.className}>
           {children}
