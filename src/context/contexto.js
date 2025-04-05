@@ -40,7 +40,7 @@ export const ContextoProvider = ({ children }) => {
   }, []);
 
   return (
-    <Contexto.Provider value={{ evento, setEvento, cliente, atualizarCliente }}>
+    <Contexto.Provider value={{ evento, setEvento, cliente, setCliente, atualizarCliente }}>
       {children}
     </Contexto.Provider>
   );

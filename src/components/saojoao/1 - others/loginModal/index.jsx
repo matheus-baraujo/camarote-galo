@@ -5,12 +5,11 @@ import LoginForm from './loginForm'
 const index = ({setLogar}) => {
   return (
     <>
-    <div className={styles.backdrop} onClick={() => setLogar(false)}></div>
+      <div className={styles.backdrop} onClick={() => setLogar(false)}></div>
 
-    <div className={styles.container}>
-      <LoginForm />
-    </div>
-
+      <div className={styles.container}>
+        <LoginForm setLogar={setLogar}/>
+      </div>
     </>
   )
 }

@@ -2,7 +2,12 @@ import React from 'react'
 import styles from './styles.module.css'
 import Conteudo from './conteudo'
 
+import { usarContexto } from '@/context/contexto';
+
 const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
+
+  const { cliente } = usarContexto();
+
   return (
     <div className={styles.wrapper}>
       
@@ -20,7 +25,7 @@ const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
       </div>      
       
       <button className={styles.button} disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
-        onClick={() => {login ? alert('Compra finalizada com sucesso!') : setLogar(true)}}>
+        onClick={() => {cliente ? alert('Compra finalizada com sucesso!') : setLogar(true)}}>
         Finalizar Compra
       </button>
 

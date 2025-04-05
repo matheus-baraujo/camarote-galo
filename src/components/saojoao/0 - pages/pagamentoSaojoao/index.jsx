@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 import CardIngresso from './cardIngresso'
 import CardResumo from './cardResumo'
 
-import LoginModal from '../../1 - others/loginModal'
+import LoginModal from '@/components/saojoao/1 - others/loginModal'
 
 const index = () => {
 

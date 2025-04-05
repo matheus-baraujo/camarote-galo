@@ -1,29 +1,57 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 
 import { usarContexto } from '@/context/contexto';
 import { loginUsuario } from "@/services/api"; 
+import { alterarCpf } from "@/services/database";
 
-export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginForm( {setLogar} ) {
+
+  const [cpf, setCpf] = useState('')
+  const [cpfError, setCpfError] = useState('')
+  
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const { atualizarCliente } = usarContexto();
 
-  var cpf = "999.999.999-99"; // CPF de teste
-  var senha = "Admin1234"; // Senha de teste
-
   const handleLogin = async () => {
+
+    setCpfError('');
+    setPasswordError('');
+
+    if (cpf.length < 14) {
+      setCpfError('Campo obligatório!');
+      return;
+    }
+
+    if (password.length == 0) {
+      setPasswordError('Campo obligatório!');
+      return;
+    }else if (password.length < 6) {
+      setPasswordError('Senha invalida!');
+      return;
+    }
+
     try {
-      loginUsuario(cpf, senha)
+      loginUsuario(cpf, password)
         .then((res) => {
-          if (res == true){
-            // console.log("Funcionou");
+
+          if (res == 404) {
+            setCpfError('CPF não encontrado!');
+          } 
+          else if(res == true){
             atualizarCliente();
+            setLogar(false);
+          }
+          else {
+            setPasswordError('Credenciais incorretas!');
           }
           
         });
@@ -38,8 +66,9 @@ export default function LoginForm() {
       <div className={styles.loginBox}>
         
         <div className={styles.inputGroup}>
-          <label>E-mail</label>
-          <input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label>Cpf</label>
+          <input type="text" placeholder="000.000.000-00" maxLength='15' value={cpf} onChange={(e) => alterarCpf(e.target.value, setCpf)} />
+          <label className={styles.erro}>{cpfError}</label>
         </div>
         
         <div className={styles.inputGroup}>
@@ -48,6 +77,7 @@ export default function LoginForm() {
             <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
           </div>
           <input type={showPassword ? "text" : "password"} placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <label className={styles.erro}>{passwordError}</label>
         </div>
 
         <div className={styles.rememberMe}>

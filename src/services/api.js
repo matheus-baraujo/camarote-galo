@@ -1,4 +1,4 @@
-const { hashPassword } = require('../services/database');
+const { hashPassword } = require('@/services/database');
 
 const apiKey = process.env.NEXT_PUBLIC_DB_API;
 const token = "Bearer "+process.env.NEXT_PUBLIC_ACCESS_TOKEN;
@@ -233,8 +233,8 @@ async function registerClient(cliente){
     return true;
 
   } catch (error) {
-    //console.error("Erro no registro de cliente", error);
-    return { error: error.message };
+    //console.error("Erro no registro de cliente", error.message);
+    return false ;
   }
 
 }
@@ -265,12 +265,14 @@ async function loginUsuario(cpf, senha) {
       sessionStorage.setItem('token', resultado.token);
       return true;
     } else {
-      console.error('Erro no login:', resultado.message);
+      // credenciais incorretas
+      // console.error('Erro no login:', resultado.message);
       return false;
     }
-  } catch (resultado) {
-    console.error('Erro na requisição:', resultado.message);
-    return false;
+  } catch (e) {
+    //cpf não encontrado
+    //console.error('Erro na requisição:', e.message);
+    return 404;
   }
 }
 
@@ -301,6 +303,7 @@ module.exports = {
   getAllClient,
   getComprasClient,
   getAdmin,
+  getPayment,
   createPreference,
   registerClient,
   loginUsuario,

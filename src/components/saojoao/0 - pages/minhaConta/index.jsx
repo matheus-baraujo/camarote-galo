@@ -1,6 +1,6 @@
 'use client'
 
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import styles from './styles.module.css'
 
 import ClientInfo from './clientInfo/index.jsx'
@@ -9,7 +9,8 @@ import DisplayTicket from '@/components/saojoao/1 - others/displayTicket'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faTicketSimple, faCartShopping, faAngleRight, faDisplay } from '@fortawesome/free-solid-svg-icons';
-import { transform } from 'lodash';
+
+import { usarContexto } from '@/context/contexto';
 
 var icons = [[faTicketSimple, 'fas fa-ticket-simple'],
             [faUser, 'fas fa-user'],
@@ -19,9 +20,19 @@ var icons = [[faTicketSimple, 'fas fa-ticket-simple'],
 
 const index = () => {
 
-  const [info, setInfo] = useState(false);
-  const [cliente, setCliente] = useState({nome: 'teste', telefone: '(81) 91234-5678', cpf: '123.456.789-00', email: 'teste@email.com'});
+  const { cliente, setCliente } = usarContexto();
 
+  useEffect(() => {
+
+    console.log(cliente);
+
+    // if(!cliente) {
+    //   window.location.href = '/';
+    // }
+  },[cliente]);
+
+  const [info, setInfo] = useState(false);
+  
   const [compras, setCompras] = useState(false);
   const [ingressos, setIngressos] = useState([
       {id:"123456789", codigo: "aB1234", status: "Aprovado", quantidade1: 2, quantidade2: 1}, 
@@ -75,7 +86,7 @@ const index = () => {
               <FontAwesomeIcon icon={icons[3][0]} className={icons[3][1]} style={info ? {transition: "ease-in-out .3s", transform: "rotate(90deg)" } : {}}></FontAwesomeIcon>
             </button>
 
-            {info ? <ClientInfo cliente={cliente}/> : null}
+            {info ? <ClientInfo cliente={cliente.data}/> : null}
 
 
             <button className={styles.buttonEven} onClick={()=> {setInfo(false); setCompras(!compras);}}>

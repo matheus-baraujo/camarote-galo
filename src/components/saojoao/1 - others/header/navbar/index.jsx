@@ -13,9 +13,9 @@ import LoginModal from '@/components/saojoao/1 - others/LoginModal';
 
 const index = () => {
 
-  const { cliente, atualizarCliente } = usarContexto();
+  const { cliente, setCliente } = usarContexto();
 
-  const [logar, setLogar] = useState(false) // habilitar o modal de login
+  const [logar, setLogar] = useState(false) // como habilitar o modal de login
 
 
   return (
@@ -23,12 +23,28 @@ const index = () => {
       <div className={styles.bg}>
         <div className={styles.wrapper}>
 
-          <h2 className={styles.h2}>Se você não for eu vou</h2>
+          <h2 className={styles.h2}>
+            Se você não for eu vou 
+          </h2>
 
-          <button className={styles.button} onClick={() => setLogar(true)}>
-            <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
-            Entrar
-          </button>
+          { cliente ? 
+
+            <div style={{display: 'flex', flexDirection: 'row', gap: '20px'}}>
+              <button className={styles.button} onClick={() => window.location.href='/MinhaConta'}>
+                <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
+                Minha conta
+              </button>
+              <button className={styles.button} onClick={() => {sessionStorage.removeItem("token"); setCliente(false)}}>
+                Sair
+              </button>
+            </div>
+            
+            :
+            <button className={styles.button} onClick={() => setLogar(true)}>
+              <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
+              Entrar
+            </button>
+          }
 
         </div>
       </div>
