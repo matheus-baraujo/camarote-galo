@@ -3,13 +3,34 @@
 import React, {useState, useEffect} from 'react'
 import styles from './styles.module.css'
 
+
+import { getCompraClient } from '@/services/api.js'
+
 import Steps from '@/components/saojoao/1 - others/steps'
 import MensagemCompra from '@/components/saojoao/1 - others/mensagemCompra'
 import DisplayTicket from '@/components/saojoao/1 - others/displayTicket'
 
 const index = () => {
 
-  const [ticket, setTicket] = useState({id:"123456789", codigo: "aB1234", status: "Aprovado", quantidade1: 2, quantidade2: 1});
+  const [ticket, setTicket] = useState({});
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('payment_id');
+
+    if (!id) {
+      window.location.href = '/';
+    }
+
+    async function getCompra(id) {
+      const data = await getCompraClient(id);
+      setTicket(data[0]);
+    }
+
+    getCompra(id);
+      
+  }, []);
+
 
   return (
     <div className={styles.wrapper}> 

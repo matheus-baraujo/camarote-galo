@@ -60,6 +60,8 @@ export default function LoginForm( {setLogar} ) {
     }
   }
 
+
+
   return (
     <div className={styles.loginContainer}>
       <h2 className={styles.loginTitle}>Entre na sua conta</h2>
@@ -80,17 +82,17 @@ export default function LoginForm( {setLogar} ) {
           <label className={styles.erro}>{passwordError}</label>
         </div>
 
-        <div className={styles.rememberMe}>
+        {/* <div className={styles.rememberMe}>
           <input type="checkbox" checked={remember} onChange={() => setRemember(!remember)} />
           <label>Lembrar de mim</label>
-        </div>
+        </div> */}
 
         <button className={styles.loginButton} 
           onClick={()=>{ handleLogin(); }}>
             Entrar
         </button>
         <p className={styles.registerLink}>
-          Não tem uma conta? <a href="#">Cadastre-se</a>
+          Não tem uma conta? <a href="/Cadastro">Cadastre-se</a>
         </p>
       </div>
     </div>

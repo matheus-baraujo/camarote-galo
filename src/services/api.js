@@ -68,6 +68,25 @@ async function getAllClient() {
 
 }
 
+async function getCompraClient(id) {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_DB_URL}getCompraCliente2.php?api_key=${apiKey}&id=${id}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Erro desconhecido na resposta da API');
+    }
+
+    //console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Erro ao buscar compras do cliente:", error);
+    return { error: error.message };
+  }
+}
+
 async function getComprasClient(cpf) {
   try {
     const url = `${process.env.NEXT_PUBLIC_DB_URL}getComprasCliente2.php?api_key=${apiKey}&cpf=${cpf}`;
@@ -79,7 +98,7 @@ async function getComprasClient(cpf) {
       throw new Error(data.error || 'Erro desconhecido na resposta da API');
     }
 
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (error) {
     console.error("Erro ao buscar compras do cliente:", error);
@@ -107,7 +126,7 @@ async function getAdmin(login) {
 
 // ============ CREATE DATA ============ //
 
-async function createCliente(nome, email, cpf, cep, telefone, password) {
+async function createCliente(nome, email, cpf, telefone, password) {
 
   try {
 
@@ -115,9 +134,9 @@ async function createCliente(nome, email, cpf, cep, telefone, password) {
     var salt = senha[0]
     var hash = senha[1]
 
-    var url = process.env.NEXT_PUBLIC_DB_URL+`createCliente.php`;
+    var url = process.env.NEXT_PUBLIC_DB_URL+`createCliente2.php`;
 
-    var clienteData = {apiKey, nome, email, cpf, cep, telefone, salt, hash}
+    var clienteData = {apiKey, nome, email, cpf, telefone, salt, hash}
 
     var response = await fetch(url, {
         method: 'POST',
@@ -346,6 +365,7 @@ module.exports = {
   getClientCPF,
   getAllClient,
   getComprasClient,
+  getCompraClient,
   getAdmin,
   getPayment,
   createPreference,
