@@ -54,6 +54,7 @@ $stmt = $conn->prepare("INSERT INTO cliente (nome, email, cpf, telefone, salt, s
 $stmt->bind_param('ssssss', $nome, $email, $cpf, $telefone, $salt, $hash); 
 
 if ($stmt->execute()) {
+    http_response_code(200);
     echo json_encode(['success' => 'Cliente criado com sucesso']);
 } else {
     http_response_code(500); // Erro 500 (Erro Interno do Servidor)

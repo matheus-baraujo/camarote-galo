@@ -12,6 +12,7 @@ const index = () => {
 
   const { cliente, setCliente } = usarContexto();
 
+
   useEffect(() => {
     if(cliente != false && cliente != null && cliente != undefined){
       window.location.href = '/Pagamento';

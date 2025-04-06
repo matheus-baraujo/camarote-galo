@@ -1,5 +1,7 @@
 const md5 = require('md5');
 
+// generate database data //
+
 function makeid(length) {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -59,14 +61,8 @@ function hashPassword2(salt, password) {
   return hash;
 }
 
-function checkEmail(email) {
-  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    
-    return 'Please enter a valid email';
-  }else{
-    return 'ok'
-  }
-}
+
+// front end scripts //
 
 function getAllUrlParams(url) {
 
@@ -156,6 +152,18 @@ async function sendEmail(email, codigo) {
   console.log(result.message);
 }
 
+
+// check data //
+
+function checkEmail(email) {
+  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    
+    return 'Please enter a valid email';
+  }else{
+    return 'ok'
+  }
+}
+
 function cpfMask(value) {
   return value
     .replace(/\D/g, '') // substitui qualquer caracter que nao seja numero por nada
@@ -170,15 +178,29 @@ function alterarCpf (value, setCpf) {
   setCpf(value)
 }
 
+const phoneMask = (value) => {
+  return value
+    .replace(/\D/g, '') // Remove caracteres que não sejam números
+    .replace(/(\d{2})(\d)/, '($1) $2') // Adiciona parênteses em torno do código de área
+    .replace(/(\d{5})(\d)/, '$1-$2') // Adiciona um traço após os primeiros 5 dígitos do número
+    .replace(/(-\d{4})\d+?$/, '$1'); // Garante que apenas 4 números sejam mantidos após o traço
+};
+
+const alterarTelefone = (value, setTelefone) => {
+  value = phoneMask(value);
+  setTelefone(value); // Adapte para a função ou estado que você está utilizando
+  // console.log(telefone)
+};
+
 module.exports = {
   makeid,
   makeCod,
-  checkEmail,
   hashPassword,
   hashPassword2,
   getAllUrlParams,
   scroll,
   sendEmail,
-  cpfMask,
-  alterarCpf
+  checkEmail,
+  alterarCpf,
+  alterarTelefone,
 };
