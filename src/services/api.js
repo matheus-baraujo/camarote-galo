@@ -149,12 +149,12 @@ async function createCliente(nome, email, cpf, telefone, password) {
     if (!response.ok) throw new Error(` ${response.statusText || response.status}`);
 
     var data = await response.json();
-
+    
     return true
     
   } catch (error) {
-    //console.error("Erro ao criar cliente:", error);
-    return { error: error.message };
+    console.error("Erro ao criar cliente:", error);
+    return false;
   }
 
 }
@@ -231,7 +231,7 @@ async function createPreference(nome, email, cpf, quant1, quant2){
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
 
-    var aux = 'https://7e53-45-4-119-230.ngrok-free.app/api/notification2.php'
+    var aux = 'https://b7fe-45-4-119-230.ngrok-free.app/api/notification2.php'
 
     var raw = JSON.stringify({
       "auto_return": "approved",
@@ -362,6 +362,7 @@ async function sendEmail(email, codigo) {
 }
 
 module.exports = {
+  checkClientCPF,
   getClientCPF,
   getAllClient,
   getComprasClient,
@@ -369,6 +370,7 @@ module.exports = {
   getAdmin,
   getPayment,
   createPreference,
+  createCliente,
   registerClient,
   loginUsuario,
   sendEmail,

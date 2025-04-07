@@ -10,10 +10,10 @@ import { createPreference } from '@/services/api';
 
 async function handlePayment(nome, email, cpf, quant1, quant2){
   var preference = await createPreference(nome, email, cpf, quant1, quant2)
-  console.log(preference)
+  //console.log(preference)
 
   if(preference != undefined){
-    console.log(preference.init_point)
+    //console.log(preference.init_point)
     
     window.open(preference.init_point, "_self")
   }
@@ -50,7 +50,10 @@ const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
       </div>      
       
       <button className={styles.button} disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
-        onClick={() => {cliente ? handlePayment(dados.nome, dados.email, dados.cpf, tickets[0].quantidade, tickets[1].quantidade) : setLogar(true)}}>
+        onClick={() => {cliente ? 
+          handlePayment(dados.nome, dados.email, dados.cpf, tickets[0].quantidade, tickets[1].quantidade) 
+          : 
+          (setLogar(true), sessionStorage.setItem("tickets", [tickets[0].quantidade, tickets[1].quantidade])) }}>
         Finalizar Compra
       </button>
 

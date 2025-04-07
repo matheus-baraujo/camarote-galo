@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import styles from "./styles.module.css";
 
 import { usarContexto } from '@/context/contexto';
-import { loginUsuario , checkClientCPF, createCliente } from "@/services/api"; 
+import { loginUsuario , checkClientCPF, createCliente, createPreference } from "@/services/api"; 
 
-import { alterarTelefone, alterarCpf, checkEmail } from "@/services/database";
+import { alterarTelefone, alterarCpf } from "@/services/database";
 
 function checarDados ({nome, setNomeError, email, setEmailError, confirmEmail, setConfirmEmailError, 
                       password, setPasswordError, confirmPassword, setConfirmPasswordError, cpf, 
@@ -101,14 +101,18 @@ async function cadastrar({nome, email, password, cpf, telefone, setCpfError}) {
 
     //não há cadastro com este cpf//
     if (cadastrar == true) {
-      var cadastrado = await createCliente(nome, email, password, cpf, telefone);
+
+      var cadastroFeito = await createCliente(nome, email, cpf, telefone, password);
       
-      if(cadastrado == true){
+      if(cadastroFeito == true){
         return true
       }else{
-        setCpfError("Já há um cadastro com esse cpf")
         return false
       }
+    }else{
+      //há um cadastro com este cpf//
+      setCpfError("Já há um cadastro com esse cpf")
+      return false
     }
 
   } catch (error) {
@@ -117,8 +121,28 @@ async function cadastrar({nome, email, password, cpf, telefone, setCpfError}) {
   }
 }
 
+async function handlePayment(nome, email, cpf, quant1, quant2){
+  var preference = await createPreference(nome, email, cpf, quant1, quant2)
+  //console.log(preference)
+
+  if(preference != undefined){
+    sessionStorage.removeItem("tickets");
+    window.open(preference.init_point, "_self");
+  }
+}
 
 export default function DadosPessoaisForm() {
+
+  const [tickets, setTickets]  = useState([0,0]);
+
+  useEffect(() => {
+    var ingressos = JSON.parse('[' + sessionStorage.getItem("tickets") + ']');
+    
+    if (ingressos != undefined && ingressos != false && ingressos){
+      setTickets(ingressos);
+    }
+
+  },[]);
 
   const { atualizarCliente } = usarContexto();
 
@@ -141,39 +165,38 @@ export default function DadosPessoaisForm() {
   const [telefone, setTelefone] = useState('')
   const [telefoneError, setTelefoneError] = useState('')
 
-  const logar = async () => {
-    try {
-      loginUsuario(cpf, password)
-        .then((res) => {
-          atualizarCliente();
-          return true
-        });
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      return false
-    }
-  }
-
   const handleClick = async ({nome, setNomeError, email, setEmailError, confirmEmail, setConfirmEmailError, 
     password, setPasswordError, confirmPassword, setConfirmPasswordError, cpf, 
     setCpfError, telefone, setTelefoneError}) =>{
 
-    var step1 = checarDados({nome, setNomeError, email, setEmailError, confirmEmail, setConfirmEmailError, password, setPasswordError, confirmPassword, setConfirmPasswordError, cpf, setCpfError, telefone, setTelefoneError});
-    var step2 = false;
-    var step3 = false;
-
-    if(step1){
-      step2 = await cadastrar({nome, email, password, cpf, telefone, setCpfError});
-
-      if (step2) {
-        step3 = await logar({cpf, password});
-
-        if (step3) {
-          console.log("fluxo completado")
-        }
-      }
+    var res = checarDados({nome, setNomeError, email, setEmailError, confirmEmail, setConfirmEmailError, password, setPasswordError, confirmPassword, setConfirmPasswordError, cpf, setCpfError, telefone, setTelefoneError});
+    if (!res) {
+      console.log('Dados inválidos!');
+      return
     }
+
+    const cadastroOk = await cadastrar({nome, email, password, cpf, telefone, setCpfError});
+    if (!cadastroOk) {
+      console.log('Erro ao cadastrar');
+      return
+    }
+
+    const loginOk = await loginUsuario(cpf, password);
+    if (!loginOk) {
+      console.log('Erro ao logar');
+      return
+    }
+
+    await atualizarCliente();
+
+    const total = tickets[0] + tickets[1];
+    if (total > 0) {
+      await handlePayment(nome, email, cpf, tickets[0], tickets[1]);
+    }
+    //fluxo concluido
+
   }
+
 
   return (
     <div className={styles.container}>
@@ -243,8 +266,8 @@ export default function DadosPessoaisForm() {
         <h2 className={styles.title}>Resumo do pedido</h2>
 
         <div className={styles.wrapper}>
-          <p>Ingresso Individual <span>0x</span></p>
-          <p>Mesa para 4 pessoas <span>0x</span></p>
+          <p>Ingresso Individual <span>{tickets[0]}x</span></p>
+          <p>Mesa para 4 pessoas <span>{tickets[1]}x</span></p>
           <p className={styles.total}>Total <span>R$0,00</span></p>
           <div className={styles.infoBox}>
             Seus ingressos serão enviados para o seu e-mail após a confirmação do pagamento.

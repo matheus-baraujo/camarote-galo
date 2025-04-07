@@ -18,7 +18,7 @@ const index = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('payment_id');
 
-    if (!id) {
+    if (!id || id == "null") {
       window.location.href = '/';
     }
 

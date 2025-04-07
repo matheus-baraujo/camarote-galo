@@ -27,13 +27,6 @@ const index = () => {
       <div className={styles.bg}>
         <div className={styles.wrapper}>
 
-          {pathname == '/Pagamento' || pathname == '/Cadastro' ? 
-            <>
-              <button className={styles.button} onClick={() => {window.location.href='/Ingressos'}}>
-                Voltar
-              </button>
-            </> : <></>}
-
           <h2 className={styles.h2} style={pathname == '/Pagamento' || pathname == '/Cadastro' ? {textAlign: 'center'} : {}}>
             {pathname == '/Pagamento' ? 'Pagamento' : pathname == '/Cadastro' ? 'Cadastro' : pathname == '/PagamentoFinalizado' ? 'Compra Finalizada' : 'Se você não for eu vou'}
           </h2>
