@@ -81,7 +81,7 @@ function checarDados ({nome, setNomeError, email, setEmailError, confirmEmail, s
     return
   }
   if (confirmPassword.length < 6) {
-    setPasswordError('Senha deve ter 6 ou mais caracteres')
+    setConfirmPasswordError('Senha deve ter 6 ou mais caracteres')
     return
   }
   if (password != confirmPassword){

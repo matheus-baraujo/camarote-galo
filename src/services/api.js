@@ -159,6 +159,36 @@ async function createCliente(nome, email, cpf, telefone, password) {
 
 }
 
+async function updateSenha(id, senha, novaSenha) {
+  try {
+    var password = hashPassword(novaSenha); // [salt,hash]
+    var salt = password[0]
+    var hash = password[1]
+
+    var url = process.env.NEXT_PUBLIC_DB_URL+`updateSenha.php`;
+
+    var clienteData = {apiKey, id, senha, salt, hash}
+
+    var response = await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(clienteData),
+    })
+  
+    if (!response.ok) throw new Error(` ${response.statusText || response.status}`);
+
+    var data = await response.json();
+    
+    return true
+    
+  } catch (error) {
+    console.error("Erro ao atualizar senha:", error);
+    return false;
+  }
+}
+
 // ============ MERCADO PAGO API ============ //
 
 async function getPayment(id) {
@@ -371,6 +401,7 @@ module.exports = {
   getPayment,
   createPreference,
   createCliente,
+  updateSenha,
   registerClient,
   loginUsuario,
   sendEmail,

@@ -31,7 +31,9 @@ const index = () => {
             {pathname == '/Pagamento' ? 'Pagamento' : pathname == '/Cadastro' ? 'Cadastro' : pathname == '/PagamentoFinalizado' ? 'Compra Finalizada' : 'Se você não for eu vou'}
           </h2>
 
-          { cliente ? 
+          { pathname != '/RecuperarSenha' ? 
+          
+            cliente ? 
 
             <div style={{display: 'flex', flexDirection: 'row', gap: '20px'}}>
               <button className={styles.button} onClick={() => window.location.href='/MinhaConta'}>
@@ -48,6 +50,10 @@ const index = () => {
               <FontAwesomeIcon icon={faUser} className="far fa-user"></FontAwesomeIcon>
               Entrar
             </button>
+
+            :
+
+            <></>
           }
 
         </div>

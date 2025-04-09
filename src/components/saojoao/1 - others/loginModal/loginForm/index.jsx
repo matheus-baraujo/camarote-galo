@@ -60,6 +60,38 @@ export default function LoginForm( {setLogar} ) {
     }
   }
 
+  const esqueciSenha = async () =>{
+    setCpfError('');
+
+    if (cpf.length < 14) {
+      setCpfError('Campo obligatório!');
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("cpf", cpf);
+  
+      const response = await fetch("/api/recuperarSenha.php", {
+        method: "POST",
+        body: formData,
+      });
+  
+      const resultado = await response.json();
+  
+      if (resultado.status === "success") {
+        //alert("E-mail de recuperação enviado com sucesso!");
+        return true
+      } else {
+        return false
+        //alert("Erro: " + resultado.message);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição:", erro);
+      //alert("Erro ao enviar CPF.");
+    }
+
+  }
 
 
   return (
@@ -76,7 +108,7 @@ export default function LoginForm( {setLogar} ) {
         <div className={styles.inputGroup}>
           <div className={styles.passwordHeader}>
             <label>Senha</label>
-            <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
+            <a href="#" className={styles.forgotPassword} onClick={() => esqueciSenha()}>Esqueceu a senha?</a>
           </div>
           <input type={showPassword ? "text" : "password"} placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
           <label className={styles.erro}>{passwordError}</label>
