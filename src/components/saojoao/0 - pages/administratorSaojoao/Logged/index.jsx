@@ -188,7 +188,7 @@ const index = () => {
     // URL do endpoint com a chave de API
     const apiKey = process.env.NEXT_PUBLIC_DB_API;
     
-    const url = process.env.NEXT_PUBLIC_DB_URL+`getTotalCompras.php?api_key=${apiKey}`;
+    const url = process.env.NEXT_PUBLIC_DB_URL+`getTotalCompras2.php?api_key=${apiKey}`;
     
     await fetch(url)
     .then((response) => {
@@ -198,7 +198,8 @@ const index = () => {
         return response.json();
     })
     .then((data) => {
-      setTotalIngressos(data.total_ingressos)
+      console.log(data)
+      setTotalIngressos(data)
     })
     .catch((error) => console.log(error.message));
   }
@@ -249,7 +250,6 @@ const index = () => {
   
   useEffect(() => {
     totalCompras();
-    //console.log(totalIngressos)
   },[data2]);
   
   return (
@@ -309,7 +309,8 @@ const index = () => {
       {
         lista ? 
           <>
-            <p className={styles.totalIngressos}> Total de ingressos vendidos (aprovados) : <span>{totalIngressos}</span> </p>
+            <p className={styles.totalIngressos}> Total de ingressos vendidos (aprovados) : <span>{totalIngressos.total_ingressos}</span> </p>
+            <p className={styles.totalIngressos}> Total de mesas reservadas (aprovados) : <span>{totalIngressos.total_mesas}</span> </p>
 
             <div style={{borderRadius: "0px 0px 8px 8px", width: '100%'}}>
               <DataTable

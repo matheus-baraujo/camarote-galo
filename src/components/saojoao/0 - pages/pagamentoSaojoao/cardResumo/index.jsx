@@ -50,8 +50,8 @@ const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
       </div>      
       
       <button className={styles.button} 
-        //disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
-        disabled={true}
+        disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
+        
         onClick={() => {cliente ? 
           handlePayment(dados.nome, dados.email, dados.cpf, tickets[0].quantidade, tickets[1].quantidade) 
           : 

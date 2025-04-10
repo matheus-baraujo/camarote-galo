@@ -30,7 +30,7 @@ const index = () => {
               <h3>Dúvidas? Entre em contato conosco no WhatsApp!</h3>
 
               <div className={styles.wrapper3}>
-                <NumeroContato number={"9969-6930"}/>
+                <NumeroContato number={"9969-6830"}/>
                 <NumeroContato number={"9929-7718"}/>
               </div>
 
