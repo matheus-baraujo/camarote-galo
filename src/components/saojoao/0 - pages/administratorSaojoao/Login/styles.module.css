@@ -1,0 +1,48 @@
+.form{
+  width: 75%;
+  margin: auto;
+}
+
+.button{
+  background-color: var(--highlight);
+  color: var(--dark);
+  width: 255px;
+  height: 50px;
+  border: 1px solid var(--dark);
+  border-radius: 8px;
+  transition: ease-in-out .3s;
+}
+
+.button:hover{
+  background-color: var(--dark);
+  color: var(--highlight);
+  scale: 1.05;
+}
+
+.label{
+  color: #F4016A;
+}
+
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+}
+
+.content{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.erro{
+  text-align: end;
+  width: 100%;
+  color: red;
+}
+
+@media screen and (max-width:600px) {
+  .form{
+    width: 100%;
+  }
+}

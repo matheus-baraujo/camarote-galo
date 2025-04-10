@@ -1,0 +1,83 @@
+.Card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  border-radius: 8px;
+  background-color: var(--dark);
+
+  min-height: 100px;
+  text-align: center;
+}
+
+.Item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.Item p{
+  color: var(--highlight);  
+  margin: 0;
+}
+
+
+.Valor{
+  background-color: white;
+  color: black !important;
+  border-radius: 8px;
+  padding: 3px;
+  font-family: Helvetica, sans-serif;
+}
+
+
+.button{
+  background-color: var(--highlight);
+  color: var(--dark);
+  border: 1px solid var(--dark);
+  border-radius: 8px;
+  transition: ease-in-out .3s;
+}
+
+.button:hover{
+  background-color: var(--dark);
+  border: 1px solid var(--highlight);
+  color: var(--highlight);
+  scale: 1.05;
+}
+
+.button:disabled, .button:disabled:hover{
+  background-color: gray;
+  border: none;
+  color: white;
+  opacity: 1;
+  scale: 1;
+}
+
+
+@media screen and (max-width: 758px) {
+  .Card{
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px 15px;
+  }
+  
+  .Item{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0px;
+  }
+  
+  .Valor{
+    width: 30%;
+  }
+
+  .button{
+    justify-content: center;
+    text-align: center;
+    width:100%;
+  }
+
+}

@@ -31,7 +31,7 @@ const index = () => {
             {pathname == '/Pagamento' ? 'Pagamento' : pathname == '/Cadastro' ? 'Cadastro' : pathname == '/PagamentoFinalizado' ? 'Compra Finalizada' : 'Se você não for eu vou'}
           </h2>
 
-          { pathname != '/RecuperarSenha' ? 
+          { pathname != '/RecuperarSenha' && pathname != '/Administrator' ? 
           
             cliente ? 
 

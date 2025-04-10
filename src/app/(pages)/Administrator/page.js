@@ -3,6 +3,7 @@
 import { usarContexto } from '@/context/contexto';
 
 import AdministratorCarnaval from '@/components/carnaval/0 - pages/AdministratorCarnaval'
+import AdministratorSoajoao from '@/components/saojoao/0 - pages/administratorSaojoao'
 
 export default function Administrator() {
 
@@ -12,8 +13,6 @@ export default function Administrator() {
     evento == "carnaval" ?
       <AdministratorCarnaval />
     :
-      <>
-        <p>sao joao</p>
-      </>
+      <AdministratorSoajoao />
   );
 }
