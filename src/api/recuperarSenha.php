@@ -1,8 +1,9 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include 'header.php';
+include 'api/header.php';
 
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Prepara e executa a consulta
-        $stmt = $conn->prepare("SELECT id, email, senha FROM clientes WHERE cpf = ?");
+        $stmt = $conn->prepare("SELECT id, email, senha FROM cliente WHERE cpf = ?");
         $stmt->bind_param("s", $cpf_formatado);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -69,9 +70,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->addAddress($email);
                 $mail->isHTML(true);
 
-                $mail->Subject = 'Recuperação de senha - Camarote';
-                $mail->Body    = "Olá, para redefinir sua senha acesse o link abaixo:<br><br><a href='{$linkRecuperacao}'>{$linkRecuperacao}</a><br><br>Se você não solicitou essa recuperação, ignore este e-mail.";
-                $mail->AltBody = "Olá, para redefinir sua senha acesse o link: {$linkRecuperacao}";
+                $mail->Subject = 'Recuperação de senha - Se você não for eu vou';
+
+                $mail->Body = "
+                <div style='
+                    font-family: Arial, sans-serif;
+                    background-color: #ffffff;
+                    color: #222;
+                    padding: 30px 20px;
+                    max-width: 600px;
+                    margin: auto;
+                    border: 1px solid #eee;
+                    border-radius: 10px;
+                    text-align: center;
+                '>
+                    <h2 style='color: #111; margin-bottom: 10px;'>Recuperação de senha</h2>
+                    <p style='font-size: 16px; margin: 20px 0;'>
+                        Recebemos uma solicitação para redefinir sua senha.<br>
+                        Clique no botão abaixo para criar uma nova senha:
+                    </p>
+
+                    <a href='{$linkRecuperacao}' style='
+                        display: inline-block;
+                        margin: 25px 0;
+                        padding: 12px 20px;
+                        background-color: #ffdf00;
+                        color: #111;
+                        text-decoration: none;
+                        font-weight: bold;
+                        border-radius: 8px;
+                        font-size: 16px;
+                    '>
+                        Redefinir senha
+                    </a>
+
+                    <p style='font-size: 14px; margin-top: 30px; color: #555;'>
+                        Se você não solicitou esta recuperação, apenas ignore este e-mail.
+                    </p>
+
+                    <hr style='border: none; border-top: 1px solid #ccc; margin: 40px 0;' />
+
+                    <p style='font-size: 13px; color: #888;'>Se você não for eu vou © 2025</p>
+                </div>
+                ";
+
+                $mail->AltBody = "Olá, para redefinir sua senha acesse: {$linkRecuperacao}\nSe você não solicitou essa recuperação, ignore este e-mail.";
+
 
                 $mail->send();
                 echo json_encode(['status' => 'success', 'message' => 'E-mail de recuperação enviado com sucesso!']);

@@ -49,7 +49,9 @@ const index = ({number, tickets, logar, setLogar, login, setLogin}) => {
         <h4>R$ {tickets[0].preco*tickets[0].quantidade + tickets[1].preco*tickets[1].quantidade},00</h4>
       </div>      
       
-      <button className={styles.button} disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
+      <button className={styles.button} 
+        //disabled={tickets[0].quantidade === 0 && tickets[1].quantidade === 0} 
+        disabled={true}
         onClick={() => {cliente ? 
           handlePayment(dados.nome, dados.email, dados.cpf, tickets[0].quantidade, tickets[1].quantidade) 
           : 

@@ -14,6 +14,9 @@ import { ContextoProvider } from "@/context/contexto";
 import Header from "@/components/saojoao/1 - others/header"
 import Footer from "@/components/saojoao/1 - others/footer"
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const metadata = {
   title: "Camarote - Se vc não for eu vou",
   description: 'Curta o carnaval no camarote "Se Você Não For Eu Vou" no Galo da Madrugada! Shows de Chicadan, Faringes da Paixão e Patusco com muita música e alegria!',
@@ -42,6 +45,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <ToastContainer />
         </body>
         
 

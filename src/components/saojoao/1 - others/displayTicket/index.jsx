@@ -1,12 +1,14 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 
 import html2canvas from "html2canvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faTicketSimple, faDownload, faShareNodes } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope , faCalendar } from "@fortawesome/free-regular-svg-icons";
+
+import { toast } from 'react-toastify';
 
 import { usarContexto } from '@/context/contexto';
 
@@ -23,7 +25,8 @@ const Index = ({ ticket }) => {
 
   const { cliente, setCliente } = usarContexto();
 
-  const ref = useRef(null);
+  const [sendingEmail, setSendingEmail] = useState(false);
+
 
   const shareTicket = async () => {
     if (!ref.current) return;
@@ -121,48 +124,44 @@ const Index = ({ ticket }) => {
       console.error("Erro ao baixar imagem:", error);
     }
   };
+
+  const sendTicketByEmail = async (email, codigo) => {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("codigo", codigo);
   
-  const sendTicketByEmail = async (email) => {
-    if (!ref.current) return;
+    const response = await fetch("/send_email2.php", {
+      method: "POST",
+      body: formData,
+    });
   
-    try {
-      const canvas = await html2canvas(ref.current);
-      const blob = await new Promise((resolve) =>
-        canvas.toBlob((b) => resolve(b), "image/png")
-      );
-  
-      if (!blob) {
-        alert("Erro ao gerar imagem.");
-        return;
-      }
-  
-      const formData = new FormData();
-      formData.append("email", email);
-      formData.append("image", blob, "ingresso.png");
-  
-      const response = await fetch("/send_email.php", {
-        method: "POST",
-        body: formData,
-      });
-  
-      const result = await response.json();
-  
-      if (result.status === "success") {
-        alert("Ingresso enviado com sucesso!");
-      } else {
-        alert("Erro: " + result.message);
-      }
-  
-    } catch (error) {
-      console.error("Erro ao enviar e-mail:", error);
-      alert("Erro ao enviar e-mail.");
+    const result = await response.json();
+    if (result.status === "success") {
+      return { success: true };
+    } else {
+      throw new Error(result.message || "Erro ao enviar o e-mail.");
     }
   };
+  
+  
+  const handleSendTicketByEmail = async () => {
+    setSendingEmail(true);
+    try {
+      await sendTicketByEmail(cliente.data.email, code);
+      toast.success("Ingresso enviado por e-mail com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao enviar o ingresso por e-mail.");
+      console.error(error);
+    } finally {
+      setSendingEmail(false);
+    }
+  };
+  
 
   const code = ticket.status !== 'Aprovado' ? "******" : ticket.codigoRecebimento;
 
   return (
-    <div className={styles.wrapper} ref={ref}>
+    <div className={styles.wrapper}>
       <div className={styles.accessCodeContainer} >
         <h3>Código de acesso ao evento</h3>
         <div className={styles.codeBoxes}>
@@ -187,7 +186,16 @@ const Index = ({ ticket }) => {
 
       <div className={styles.actions}>
         <button className={styles.download} onClick={downloadTicket}><FontAwesomeIcon icon={info[3][0]} className={info[3][1]} /> Baixar</button>
-        <button className={styles.email} onClick={() => sendTicketByEmail(cliente.data.email)}><FontAwesomeIcon icon={info[4][0]} className={info[4][1]} /> Enviar por email</button>
+
+        <button className={styles.email} onClick={handleSendTicketByEmail} disabled={sendingEmail}>
+          {sendingEmail ? (
+            <>Enviando...</>
+          ) : (
+            <><FontAwesomeIcon icon={info[4][0]} className={info[4][1]} /> Enviar por email</>
+          )}
+        </button>
+
+        
         <button className={styles.share} onClick={shareTicket}><FontAwesomeIcon icon={info[5][0]} className={info[5][1]} /> Compartilhar</button>
       </div>
     </div>

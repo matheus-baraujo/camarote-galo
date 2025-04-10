@@ -40,7 +40,7 @@ $query = "
         COALESCE(SUM(CASE WHEN co.status = 'Aprovado' THEN co.mesa ELSE 0 END), 0) AS total_mesas,
         CASE 
             WHEN COUNT(CASE WHEN co.status = 'Aprovado' THEN 1 END) > 0 THEN 'Aprovado'
-            WHEN COUNT(CASE WHEN co.status = 'Pendente' THEN 1 END) > 0 THEN 'Pendente'
+            WHEN COUNT(CASE WHEN co.status = 'Aguardando pagamento' THEN 1 END) > 0 THEN 'Aguardando pagamento'
             ELSE 'none'
         END AS status_compra
     FROM cliente c
@@ -51,10 +51,10 @@ $query = "
         FIELD(
             CASE 
                 WHEN COUNT(CASE WHEN co.status = 'Aprovado' THEN 1 END) > 0 THEN 'Aprovado'
-                WHEN COUNT(CASE WHEN co.status = 'Pendente' THEN 1 END) > 0 THEN 'Pendente'
+                WHEN COUNT(CASE WHEN co.status = 'Aguardando pagamento' THEN 1 END) > 0 THEN 'Aguardando pagamento'
                 ELSE 'none'
             END, 
-            'Aprovado', 'Pendente', 'none'
+            'Aprovado', 'Aguardando pagamento', 'none'
         ), 
         c.id DESC;
 ";

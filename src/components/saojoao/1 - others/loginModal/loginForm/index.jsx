@@ -7,6 +7,8 @@ import { usarContexto } from '@/context/contexto';
 import { loginUsuario } from "@/services/api"; 
 import { alterarCpf } from "@/services/database";
 
+import { toast } from 'react-toastify';
+
 export default function LoginForm( {setLogar} ) {
 
   const [cpf, setCpf] = useState('')
@@ -42,7 +44,7 @@ export default function LoginForm( {setLogar} ) {
     try {
       loginUsuario(cpf, password)
         .then((res) => {
-
+          
           if (res == 404) {
             setCpfError('CPF não encontrado!');
           } 
@@ -60,19 +62,23 @@ export default function LoginForm( {setLogar} ) {
     }
   }
 
-  const esqueciSenha = async () =>{
-    setCpfError('');
+  const [sendingRecoveryEmail, setSendingRecoveryEmail] = useState(false);
 
+  const esqueciSenha = async () => {
+    if (sendingRecoveryEmail) return; // Evita múltiplos envios
+  
+    setCpfError('');
     if (cpf.length < 14) {
-      setCpfError('Campo obligatório!');
+      setCpfError('Campo obrigatório!');
       return;
     }
-
+  
+    setSendingRecoveryEmail(true); // começa o envio
     try {
       const formData = new FormData();
       formData.append("cpf", cpf);
   
-      const response = await fetch("/api/recuperarSenha.php", {
+      const response = await fetch("/recuperarSenha.php", {
         method: "POST",
         body: formData,
       });
@@ -80,19 +86,19 @@ export default function LoginForm( {setLogar} ) {
       const resultado = await response.json();
   
       if (resultado.status === "success") {
-        //alert("E-mail de recuperação enviado com sucesso!");
-        return true
+        toast.success("E-mail de recuperação enviado com sucesso!");
+        return true;
       } else {
-        return false
-        //alert("Erro: " + resultado.message);
+        toast.error("Erro: " + resultado.message);
+        return false;
       }
     } catch (erro) {
+      toast.error("Erro ao enviar CPF.");
       console.error("Erro na requisição:", erro);
-      //alert("Erro ao enviar CPF.");
+    } finally {
+      setSendingRecoveryEmail(false); // termina o envio
     }
-
-  }
-
+  };
 
   return (
     <div className={styles.loginContainer}>
@@ -108,16 +114,15 @@ export default function LoginForm( {setLogar} ) {
         <div className={styles.inputGroup}>
           <div className={styles.passwordHeader}>
             <label>Senha</label>
-            <a href="#" className={styles.forgotPassword} onClick={() => esqueciSenha()}>Esqueceu a senha?</a>
+            <a href="#" className={`${styles.forgotPassword} ${sendingRecoveryEmail ? styles.disabledLink : ''}`}
+              onClick={(e) => { e.preventDefault(); esqueciSenha(); }} 
+            >
+              {sendingRecoveryEmail ? "Enviando..." : "Esqueceu a senha?"}
+            </a>
           </div>
           <input type={showPassword ? "text" : "password"} placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
           <label className={styles.erro}>{passwordError}</label>
         </div>
-
-        {/* <div className={styles.rememberMe}>
-          <input type="checkbox" checked={remember} onChange={() => setRemember(!remember)} />
-          <label>Lembrar de mim</label>
-        </div> */}
 
         <button className={styles.loginButton} 
           onClick={()=>{ handleLogin(); }}>

@@ -48,3 +48,31 @@ body{
 nextjs-portal {
   display: none;
 }
+
+/* toast-custom.css */
+
+.toast-container {
+  font-family: 'Arial', sans-serif;
+}
+
+.toast-body {
+  font-size: 15px;
+  color: #3c3c3c;
+  padding: 12px;
+}
+
+.toast-success {
+  background-color: #f0fdf4;
+  border-left: 5px solid #22c55e;
+  border-radius: 8px;
+}
+
+.toast-error {
+  background-color: #fef2f2;
+  border-left: 5px solid #ef4444;
+  border-radius: 8px;
+}
+
+.toast-progress-bar {
+  background: #22c55e;
+}

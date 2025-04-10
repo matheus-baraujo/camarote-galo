@@ -58,6 +58,12 @@
   text-decoration: none;
 }
 
+.disabledLink {
+  pointer-events: none;
+  color: #999 !important;
+  cursor: default;
+}
+
 .rememberMe {
   display: flex;
   align-items: center;

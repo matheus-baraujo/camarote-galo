@@ -261,7 +261,7 @@ async function createPreference(nome, email, cpf, quant1, quant2){
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
 
-    var aux = 'https://b7fe-45-4-119-230.ngrok-free.app/api/notification2.php'
+    //var aux = 'https://b7fe-45-4-119-230.ngrok-free.app/api/notification2.php'
 
     var raw = JSON.stringify({
       "auto_return": "approved",
@@ -281,8 +281,8 @@ async function createPreference(nome, email, cpf, quant1, quant2){
         "excluded_payment_methods": [{ id: "bolbradesco" },],
         "installments": 1
       },
-      // "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification.php",
-      "notification_url": aux,
+      "notification_url": process.env.NEXT_PUBLIC_DB_URL+"notification2.php",
+      //"notification_url": aux,
       "external_reference": cpf,
       "expires": false
     });
@@ -340,6 +340,7 @@ async function loginUsuario(cpf, senha) {
 
   try {
     var url = process.env.NEXT_PUBLIC_DB_URL+'loginCliente.php'
+
     const resposta = await fetch(url, {
       method: 'POST',
       headers: {
@@ -348,10 +349,9 @@ async function loginUsuario(cpf, senha) {
       body: JSON.stringify({ cpf, senha, api_key })
     });
 
+    
     const resultado = await resposta.json();
-
-    // console.log({ cpf, senha, api_key });
-    // console.log(resultado);
+    
 
     if (resultado.success) {
       // Salva o token JWT na sessionStorage
@@ -359,12 +359,12 @@ async function loginUsuario(cpf, senha) {
       return true;
     } else {
       // credenciais incorretas
-      // console.error('Erro no login:', resultado.message);
+      //console.error('Erro no login:', resultado.message);
       return false;
     }
   } catch (e) {
     //cpf não encontrado
-    //console.error('Erro na requisição:', e.message);
+    console.error('Erro na requisição:', e);
     return 404;
   }
 }

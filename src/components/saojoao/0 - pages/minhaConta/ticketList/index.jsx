@@ -20,7 +20,7 @@ const index = ({lista, setInfo, setCompras, setDetail, setTicket}) => {
           lista.map((ticket, index) => (
             <button key={index} onClick={() => {handleTicketClick(ticket)}}
             style={ticket.status === "Aprovado" ? {backgroundColor: "#aeffb1"} : 
-                  ticket.status === "Pendente" ? {backgroundColor: "#fdff80"} : 
+                  ticket.status === "Aguardando Pagamento" ? {backgroundColor: "#fdff80"} : 
                   ticket.status === "Cancelado" ? {backgroundColor: "#ff7b7b"} : {}}>
               <span>Individual x{ticket.ingresso}</span>
               <span>Mesa x{ticket.mesa}</span>
