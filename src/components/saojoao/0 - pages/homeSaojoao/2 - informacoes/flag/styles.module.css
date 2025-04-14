@@ -5,10 +5,10 @@
   background-repeat: no-repeat;
   
   width: 326px;
-  height: 392px;
+  height: 425px;
 
   padding: 30px;
-  gap: 20px;
+  gap: 15px;
 
   text-align: center;
   display: flex;
@@ -36,9 +36,9 @@
 @media screen and (max-width: 768px) {
   .wrapper{
     width: 168px;
-    height: 222px;
+    height: 260px;
     padding: 5px;
-    gap: 5px;
+    gap: 0px;
   }
 
   .icon{

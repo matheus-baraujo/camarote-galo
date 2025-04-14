@@ -18,9 +18,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
-  title: "Camarote - Se vc não for eu vou",
-  description: 'Curta o carnaval no camarote "Se Você Não For Eu Vou" no Galo da Madrugada! Shows de Chicadan, Faringes da Paixão e Patusco com muita música e alegria!',
-  keywords: "Camarote, ingresso, Se vc não for eu vou, carnaval Recife, camarote Galo da Madrugada, Se Você Não For Eu Vou, Chicadan, Faringes da Paixão, Patusco, carnaval 2025, camarote premium Recife, festas de carnaval Recife, atrações Galo da Madrugada",
+  title: "Se vc não for eu vou - São Joao",
+  description: 'Curta o são joão no "Se Você Não For Eu Vou" ! Shows de Chicadan, As Januárias, Vera Freitase  e Tomá Henrique!',
+  keywords: "Camarote, ingresso, Se vc não for eu vou, são joão Recife, Se Você Não For Eu Vou, Chicadan, As Januárias, Vera Freitase, Tomá Henrique, são joão 2025, festas de são joão Recife, atrações são joão",
 };
 
 const roboto = Roboto({
