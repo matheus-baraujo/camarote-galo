@@ -34,7 +34,7 @@ if (isset($data['type']) && $data['type'] === 'payment') {
     $paymentId = $data['data']['id'] ?? null;
     if (!$paymentId) exit;
 
-    $accessToken = 'APP_USR-8863321753051093-112114-41a86e2093152d19ff5b839604fa15b9-2108742539';
+    $accessToken = 'APP_USR-4647900598391126-112915-89bd44f18cea7302fc55e389c73c0050-55447398';
     $url = "https://api.mercadopago.com/v1/payments/$paymentId";
 
     $ch = curl_init();
@@ -56,6 +56,21 @@ if (isset($data['type']) && $data['type'] === 'payment') {
 
         $quantity1 = $items[0]['quantity'] ?? 0;
         $quantity2 = $items[1]['quantity'] ?? 0;
+        
+        if (count($items) == 1){
+            if ($items[0]['id'] == '010983099') {
+                #mesa
+                $quantity1 = 0;
+                $quantity2 = $items[0]['quantity'] ?? 0;
+            }elseif ($items[0]['id'] == '010983098') {
+                #individual
+                $quantity1 = $items[0]['quantity'] ?? 0;
+                $quantity2 = 0;
+            }
+        }else{
+            $quantity1 = $items[0]['quantity'] ?? 0;
+            $quantity2 = $items[1]['quantity'] ?? 0;
+        }
 
         $jsonResponse = json_encode($paymentDetails, JSON_UNESCAPED_UNICODE);
         $stmtLog = $conn->prepare("INSERT INTO logs_pagamentos (idPagamento, status, response) VALUES (?, ?, ?)");
